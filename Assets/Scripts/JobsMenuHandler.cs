@@ -60,6 +60,7 @@ public class JobsMenuHandler : MonoBehaviour
             Amount.text = "$" + p.jobReward;
         }
         GameObject _tempgo2 = Instantiate(jobsInfo, jobsTransform);  
+        
 
         
     }
