@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 public class JobsMenuHandler : MonoBehaviour
 {
 
-    [SerializeField] InputField jobDescriptionText;
+    [SerializeField] InputField jobdText;
     [SerializeField] InputField jobClientText;
     [SerializeField] InputField jobRewardText;
 
-    [SerializeField] Text Description;
-    [SerializeField] Text Client;
-    [SerializeField] Text Amount;
+    [SerializeField] Text description;
+    [SerializeField] Text client;
+    [SerializeField] Text amount;
 
     public GameObject jobsInfo;
     public Transform jobsTransform;
@@ -44,8 +44,8 @@ public class JobsMenuHandler : MonoBehaviour
 
     public void SendJobs()
     {
-        Jobs vagina = new Jobs(jobDescriptionText.text, jobClientText.text, jobRewardText.text, "Active");
-        UserData.jobsArray.jobsList.Add(vagina);
+        Jobs newJob = new Jobs(jobdText.text, jobClientText.text, jobRewardText.text, "Active");
+        UserData.jobsArray.jobsList.Add(newJob);
         UpdateJobs();
         noJobsText.SetActive(false);
         UserData.instance.SendInfo();
@@ -55,12 +55,11 @@ public class JobsMenuHandler : MonoBehaviour
     {
         foreach (Jobs p in UserData.jobsArray.jobsList)
         {
-            Description.text = p.jobDescription;
-            Client.text = p.jobClient;
-            Amount.text = "$" + p.jobReward;
+            description.text = p.jobDescription;
+            client.text = p.jobClient;
+            amount.text = "$" + p.jobReward;
         }
-        GameObject _tempgo2 = Instantiate(jobsInfo, jobsTransform);  
-        
+        GameObject _tempgo2 = Instantiate(jobsInfo, jobsTransform);          
 
         
     }

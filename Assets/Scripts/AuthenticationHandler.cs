@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 public class AuthenticationHandler : MonoBehaviour
 {
 
-    // este es el que estoy escribiendo!!
     public string scheme;
     public string host;
     public int port;
@@ -20,14 +19,9 @@ public class AuthenticationHandler : MonoBehaviour
     private IApiAccount account;
     public User newUser;
     public static AuthenticationHandler instance;
-
-    //public static UserRecords userRecords;
     private IApiStorageObject[] userData;
-
     public InputField userEmail;
     public InputField userPassword;
-
-
     public InputField signUserEmail;
     public InputField signUserPassword;
     public InputField signUserPasswordRepeat;
@@ -39,7 +33,7 @@ public class AuthenticationHandler : MonoBehaviour
     public ClientHolder tempClientArray = new ClientHolder();
     public JobsHolder tempJobsArray = new JobsHolder();
     public Jobs tempJob = new Jobs("", "", "", "");
-    public Clients tempClients = new Clients("");
+    public Clients tempClients = new Clients("", "", "", "");
     private AccountValidation validationInfo = new AccountValidation();
 
     public void Awake()
@@ -55,8 +49,7 @@ public class AuthenticationHandler : MonoBehaviour
             Debug.LogError($"Error: {e.Message} / codes: {e.StatusCode}, {e.GrpcStatusCode}");
         }
     }
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         try
@@ -81,7 +74,6 @@ public class AuthenticationHandler : MonoBehaviour
         account = await client.GetAccountAsync(session);
         //StorageObjects(email);
         ReadStorageObjects(email);
-
         OnLogin(session, account, email);
         print(account);
     }
@@ -100,7 +92,6 @@ public class AuthenticationHandler : MonoBehaviour
         catch (ApiResponseException e)
         {
             Debug.LogError($"Error: {e.Message} / codes: {e.StatusCode}, {e.GrpcStatusCode}");
-
             print(e.Message);
         }
     }

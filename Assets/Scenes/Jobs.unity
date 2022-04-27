@@ -2192,7 +2192,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1314450047}
   - component: {fileID: 1314450048}
-  - component: {fileID: 1314450050}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -2226,29 +2225,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8198b90020c99ae4588a95d73a75451b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jobDescriptionText: {fileID: 2123043148}
+  jobdText: {fileID: 2123043148}
   jobClientText: {fileID: 938765158}
   jobRewardText: {fileID: 1564635611}
-  Description: {fileID: 113141674868218980}
-  Client: {fileID: 113141674868218979}
-  Amount: {fileID: 113141674868218978}
+  description: {fileID: 113141674868218980}
+  client: {fileID: 113141674868218979}
+  amount: {fileID: 113141674868218978}
   jobsInfo: {fileID: 807694755}
   jobsTransform: {fileID: 1447374949}
   noJobsText: {fileID: 1550888434}
---- !u!114 &1314450050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314450046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e0a73b18f4ee642a44874fd668680f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jobsInfo: {fileID: 807694755}
-  jobsTransform: {fileID: 1447374949}
 --- !u!1 &1327240017
 GameObject:
   m_ObjectHideFlags: 0
@@ -2513,10 +2498,10 @@ RectTransform:
   m_Father: {fileID: 444186536}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 499.74, y: -1271.8708}
-  m_SizeDelta: {x: 998.08, y: 1226.9583}
+  m_AnchorMin: {x: 0.028, y: 0.014700734}
+  m_AnchorMax: {x: 1, y: 0.65926325}
+  m_AnchoredPosition: {x: -14.26001, y: -13.37085}
+  m_SizeDelta: {x: 26.080017, y: 1.958252}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1447374950
 MonoBehaviour:
@@ -3781,11 +3766,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 612239919685116707, guid: 7e34a1ddbccad2d4db347fd4dc9000e5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -742
+      value: -813
       objectReference: {fileID: 0}
     - target: {fileID: 612239919685116707, guid: 7e34a1ddbccad2d4db347fd4dc9000e5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -787
+      value: -1158
       objectReference: {fileID: 0}
     - target: {fileID: 612239919685116707, guid: 7e34a1ddbccad2d4db347fd4dc9000e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

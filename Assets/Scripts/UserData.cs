@@ -81,8 +81,13 @@ public class UserData : MonoBehaviour
             Key = "UserRecords",
             Value = JsonUtility.ToJson(userRecords)
         };
+        WriteStorageObject storageObject3 = new WriteStorageObject
+        {
+            Collection = userValidationInfo.email,
+            Key = "Clients",
+            Value = JsonUtility.ToJson(clientsArray)
+        };
         
-        print("el email es2" + userValidationInfo.email);
         WriteStorageObject storageObject4 = new WriteStorageObject
         {
             Collection = userValidationInfo.email,
@@ -98,19 +103,14 @@ public class UserData : MonoBehaviour
             Key = "UserValidation",
             Value = JsonUtility.ToJson(userValidationInfo)
         };
-        WriteStorageObject storageObject3 = new WriteStorageObject
-        {
-            Collection = userValidationInfo.email,
-            Key = "Clients",
-            Value = JsonUtility.ToJson(clientUser)
-        };
+        
         WriteStorageObject storageObject4 = new WriteStorageObject
         {
             Collection = userValidationInfo.email,
             Key = "Jobs",
             Value = JsonUtility.ToJson(jobs)
         }; */
-        IApiWriteStorageObject[] Objects = { storageObject, storageObject4};
+        IApiWriteStorageObject[] Objects = { storageObject, storageObject3, storageObject4};
         await client.WriteStorageObjectsAsync(session, Objects);
     }
 }
