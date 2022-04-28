@@ -6,12 +6,11 @@ using UnityEngine.UI;
 
 public class OverviewMenuHandler : MonoBehaviour
 {
-    [SerializeField] Text Description;
-    [SerializeField] Text Client;
-    [SerializeField] Text Amount;
-    void Start()
+
+    int activeJobs;
+        void Start()
     {
-        
+        GetInformation();
     }
 
     void Update()
@@ -22,6 +21,12 @@ public class OverviewMenuHandler : MonoBehaviour
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+
+    void GetInformation()
+    {
+        activeJobs = UserData.jobsArray.jobsList.Count;
+        print("hay " + activeJobs + "trabajos activos");
     }
 
     
