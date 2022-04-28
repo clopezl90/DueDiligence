@@ -977,6 +977,18 @@ MonoBehaviour:
           m_StringArgument: MainMenu
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1314450048}
+        m_TargetAssemblyTypeName: JobsMenuHandler, Assembly-CSharp
+        m_MethodName: CleanJobs
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &797979859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1022,6 +1034,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 444186536}
     m_Modifications:
+    - target: {fileID: 1412918065417475651, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412918065417475651, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412918065417475651, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412918065417475651, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3013135778255599532, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3013135778255599532, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3013135778255599532, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3013135778255599532, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5010582400453563816, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1106,9 +1150,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8086010832778611691, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086010832778611691, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086010832778611691, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086010832778611691, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9066015112214254738, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
       propertyPath: m_Name
       value: JobsContent2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9151104893215974556, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9151104893215974556, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9151104893215974556, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9151104893215974556, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}

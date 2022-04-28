@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ClientsMenuHandler : MonoBehaviour
 {
-     
+
     [SerializeField] InputField clientName;
     [SerializeField] InputField clientCompany;
     [SerializeField] InputField clientPhone;
@@ -23,22 +23,22 @@ public class ClientsMenuHandler : MonoBehaviour
 
     void Start()
     {
-        if (UserData.clientsArray.clientsList.Count >0)
+        if (UserData.clientsArray.clientsList.Count > 0)
         {
             UpdateClients();
         }
-        else 
+        else
         {
             noClientsText.SetActive(true);
         }
     }
     void Update()
     {
-        
+
     }
     public void SendClients()
     {
-        Clients newClient  = new Clients(clientName.text, clientCompany.text, clientPhone.text, clientEmail.text);
+        Clients newClient = new Clients(clientName.text, clientCompany.text, clientPhone.text, clientEmail.text);
         UserData.clientsArray.clientsList.Add(newClient);
         UpdateClients();
         noClientsText.SetActive(false);
@@ -47,22 +47,36 @@ public class ClientsMenuHandler : MonoBehaviour
         clientCompany.text = "";
         clientEmail.text = "";
         clientPhone.text = "";
-       
+
     }
     public void UpdateClients()
     {
+        CleanClients();
         foreach (Clients p in UserData.clientsArray.clientsList)
         {
             clientNameText.text = p.clientName;
             clientCompanyText.text = p.clientCompany;
             clientEmailText.text = p.clientEmail;
             clientPhoneText.text = p.clientPhone;
+            GameObject _tempgo2 = Instantiate(clientsInfo, clientsTransform);
         }
-        GameObject _tempgo2 = Instantiate(clientsInfo, clientsTransform);           
+        
     }
 
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+
+
+    public void CleanClients()
+    {
+        foreach (Transform child in clientsTransform.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+
+        }
+
+
     }
 }

@@ -56,18 +56,31 @@ public class JobsMenuHandler : MonoBehaviour
 
     public void UpdateJobs()
     {
+        CleanJobs();
         foreach (Jobs p in UserData.jobsArray.jobsList)
         {
             description.text = p.jobDescription;
             client.text = p.jobClient;
             amount.text = "$" + p.jobReward;
+            GameObject _tempgo2 = Instantiate(jobsInfo, jobsTransform);
         }
-        GameObject _tempgo2 = Instantiate(jobsInfo, jobsTransform);          
+                  
 
         
     }
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+
+    public void CleanJobs()
+    {
+        foreach (Transform child in jobsTransform.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+
+        }
+
+
     }
 }
