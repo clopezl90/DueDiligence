@@ -32,7 +32,7 @@ public class AuthenticationHandler : MonoBehaviour
     public UserRecords tempUserRecords;
     public ClientHolder tempClientArray = new ClientHolder();
     public JobsHolder tempJobsArray = new JobsHolder();
-    public Jobs tempJob = new Jobs("", "", "", "");
+    public Jobs tempJob = new Jobs("", "", 0, "");
     public Clients tempClients = new Clients("", "", "", "");
     private AccountValidation validationInfo = new AccountValidation();
 
