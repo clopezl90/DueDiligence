@@ -43,6 +43,10 @@ public class ClientsMenuHandler : MonoBehaviour
         UpdateClients();
         noClientsText.SetActive(false);
         UserData.instance.SendInfo();
+        clientName.text = "";
+        clientCompany.text = "";
+        clientEmail.text = "";
+        clientPhone.text = "";
        
     }
     public void UpdateClients()

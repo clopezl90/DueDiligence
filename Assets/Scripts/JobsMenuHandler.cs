@@ -49,6 +49,9 @@ public class JobsMenuHandler : MonoBehaviour
         UpdateJobs();
         noJobsText.SetActive(false);
         UserData.instance.SendInfo();
+        jobdText.text = "";
+        jobClientText.text = "";
+        jobRewardText.text ="";
     }
 
     public void UpdateJobs()

@@ -1032,7 +1032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5010582400453563816, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5010582400453563816, guid: 6e127789410214e4dad3abe17824ccb7, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2419,10 +2419,10 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: -40
+    m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: -40
+  m_Spacing: 15
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -3467,7 +3467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 612239919685116707, guid: 7e34a1ddbccad2d4db347fd4dc9000e5, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 612239919685116707, guid: 7e34a1ddbccad2d4db347fd4dc9000e5, type: 3}
       propertyPath: m_AnchorMax.x
