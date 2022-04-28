@@ -8,7 +8,7 @@ public class JobsMenuHandler : MonoBehaviour
 {
 
     [SerializeField] InputField jobdText;
-    [SerializeField] InputField jobClientText;
+    [SerializeField] Text jobClientText;
     [SerializeField] InputField jobRewardText;
 
     [SerializeField] Text description;
@@ -18,9 +18,7 @@ public class JobsMenuHandler : MonoBehaviour
     public GameObject jobsInfo;
     public Transform jobsTransform;
     public GameObject noJobsText;
-
-
-    // Start is called before the first frame update
+    public Dropdown clientsDropDown;
 
     void Start()
     {
@@ -32,16 +30,14 @@ public class JobsMenuHandler : MonoBehaviour
         {
             noJobsText.SetActive(true);
         }
-        
 
+        FillDropdownList();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
     }
-
     public void SendJobs()
     {
         Jobs newJob = new Jobs(jobdText.text, jobClientText.text, jobRewardText.text, "Active");
@@ -51,7 +47,7 @@ public class JobsMenuHandler : MonoBehaviour
         UserData.instance.SendInfo();
         jobdText.text = "";
         jobClientText.text = "";
-        jobRewardText.text ="";
+        jobRewardText.text = "";
     }
 
     public void UpdateJobs()
@@ -64,22 +60,27 @@ public class JobsMenuHandler : MonoBehaviour
             amount.text = "$" + p.jobReward;
             GameObject _tempgo2 = Instantiate(jobsInfo, jobsTransform);
         }
-                  
-
-        
     }
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
     }
-
     public void CleanJobs()
     {
         foreach (Transform child in jobsTransform.transform)
         {
             GameObject.Destroy(child.gameObject);
-
         }
+    }
+
+    public void FillDropdownList()
+    {
+        List<string> names = new List<string>();        
+        foreach (Clients c in UserData.clientsArray.clientsList)
+        {          
+            names.Add(c.clientName);
+        }
+        clientsDropDown.AddOptions(names);
 
 
     }
