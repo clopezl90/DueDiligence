@@ -12,6 +12,7 @@ public class Jobs
     public string jobClient;
     public int jobReward;
     public string jobStatus;
+    public Clients jobCientObject;
 
 
     public Jobs (string _jobDescription, string _jobClient, int _jobReward, string _jobStatus) 
