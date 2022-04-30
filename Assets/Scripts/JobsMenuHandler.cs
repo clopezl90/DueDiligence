@@ -19,7 +19,7 @@ public class JobsMenuHandler : MonoBehaviour
     public Transform jobsTransform;
     public GameObject noJobsText;
     public Dropdown clientsDropDown;
-
+    
     void Start()
     {
         if (UserData.jobsArray.jobsList.Count > 0)
@@ -61,6 +61,7 @@ public class JobsMenuHandler : MonoBehaviour
             client.text = p.jobClient;
             amount.text = "$" + p.jobReward;
             GameObject _tempgo2 = Instantiate(jobsInfo, jobsTransform);
+            _tempgo2.GetComponentInChildren<JobsLoader>().thisJob = p;
         }
     }
     public void LoadScene(string scene)
@@ -83,7 +84,6 @@ public class JobsMenuHandler : MonoBehaviour
             names.Add(c.clientName);
         }
         clientsDropDown.AddOptions(names);
-
-
     }
+
 }
