@@ -17,6 +17,9 @@ public class Jobs
     public Orders jobOrdersObject;
     public JobEstimate jobEstimateObject;
     public JobPayments jobPaymentsObject;
+    public int overhead = 10;
+    public int profit = 10;
+    public int contingency = 15;
 
 
     public Jobs (string _jobDescription, string _jobClient, int _jobReward, string _jobStatus) 

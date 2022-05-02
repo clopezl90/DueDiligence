@@ -42,7 +42,7 @@ public class JobsMenuHandler : MonoBehaviour
     {
         int intJobReward = int.Parse(jobRewardText.text.ToString());
             
-        Jobs newJob = new Jobs(jobdText.text, jobClientText.text,  intJobReward, "Active");
+        Jobs newJob = new Jobs(jobdText.text, jobClientText.text,  intJobReward, "Lead");
         UserData.jobsArray.jobsList.Add(newJob);
         UpdateJobs();
         noJobsText.SetActive(false);
