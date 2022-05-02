@@ -8,11 +8,13 @@ public class MainMenuHandler : MonoBehaviour
 {
     
     [SerializeField] Text userNametext;
+    [SerializeField] GameObject loadingPanel;
+    [SerializeField] GameObject mainPanel;
     // Start is called before the first frame update
     void Start()
     {
         userNametext.text = UserData.userValidationInfo.userName;
-        
+        //StartCoroutine(ShowLoadingPanel()); 
         
     }
     // Update is called once per frame
@@ -24,6 +26,14 @@ public class MainMenuHandler : MonoBehaviour
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+
+    IEnumerator ShowLoadingPanel()
+    {
+        loadingPanel.SetActive(true);
+        yield return new WaitForSeconds(6f);
+        loadingPanel.SetActive(false);
+        mainPanel.SetActive(true);
     }
 
 }

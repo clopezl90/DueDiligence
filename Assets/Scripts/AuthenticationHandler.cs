@@ -27,6 +27,9 @@ public class AuthenticationHandler : MonoBehaviour
     public InputField signUserPasswordRepeat;
     public InputField userName;
 
+    [SerializeField] GameObject loadingPanel;
+    
+
     [Header("TemporalObjectsForSignIn")]
 
     public UserRecords tempUserRecords;
@@ -84,7 +87,7 @@ public class AuthenticationHandler : MonoBehaviour
         {
             session = await client.AuthenticateEmailAsync(email, password, null, false, null);
             account = await client.GetAccountAsync(session);
-            await GetUserInformation(session, email);
+            await GetUserInformation(session, email);            
             OnLogin(session, account, email);
             print(tempUserRecords);
             print(validationInfo.ToString());
@@ -188,7 +191,8 @@ public class AuthenticationHandler : MonoBehaviour
     }
 
     public void OnLoginButton()
-    {
+    {       
+        
         Login2(userEmail.text, userPassword.text);
     }
 
@@ -196,6 +200,7 @@ public class AuthenticationHandler : MonoBehaviour
     {
 
         UserData.instance.StoreUserData(client, session, account, tempUserRecords, validationInfo, tempClientArray, tempJobsArray);
+        StartCoroutine(ShowLoadingPanel());
         LoadScene("MainMenu");
     }
 
@@ -356,5 +361,13 @@ public class AuthenticationHandler : MonoBehaviour
                 
             }
         }        
-    }    
+    }
+
+    IEnumerator ShowLoadingPanel()
+    {
+        loadingPanel.SetActive(true);
+        yield return new WaitForSeconds(20f);
+        loadingPanel.SetActive(false);
+        //mainPanel.SetActive(true);
+    }  
 }
