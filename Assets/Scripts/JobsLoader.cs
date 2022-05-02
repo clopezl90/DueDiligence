@@ -34,6 +34,7 @@ public class JobsLoader : MonoBehaviour
         JobInfo.instance.AssingJobValues(thisJob);
         print(thisJob.jobDescription);
         JobTitle.text = thisJob.jobDescription;
+        //JobTitleHeader.text = thisJob.jobDescription;
         /* JobTitleHeader.text = thisJob.jobDescription;
         jobDescriptionDashboard.text = thisJob.jobDescription; */
 

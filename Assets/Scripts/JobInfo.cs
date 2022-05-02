@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JobInfo : MonoBehaviour
 {
     public static JobInfo instance;
     public string thisJobDescription;
+    public Text thisJobDescription2;
+    public Text thisJobStatus;
+    public Text thisJobReward;
+    
 
     
 
@@ -30,8 +35,12 @@ public class JobInfo : MonoBehaviour
 
     public void AssingJobValues(Jobs jobToValue)
     {
-        thisJobDescription = jobToValue.jobDescription;
-        print("this is the " + thisJobDescription);
+        //thisJobDescription = jobToValue.jobDescription;
+        thisJobDescription2.text = jobToValue.jobDescription;
+        thisJobStatus.text = jobToValue.jobStatus;
+        thisJobReward.text = jobToValue.jobReward.ToString();
+
+        print("this is the " + thisJobDescription2);
 
     }
 }
