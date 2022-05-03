@@ -19,6 +19,7 @@ public class JobsMenuHandler : MonoBehaviour
     public Transform jobsTransform;
     public GameObject noJobsText;
     public Dropdown clientsDropDown;
+    public Toggle leadStatus;
     
     void Start()
     {
@@ -44,6 +45,14 @@ public class JobsMenuHandler : MonoBehaviour
             
         Jobs newJob = new Jobs(jobdText.text, jobClientText.text,  intJobReward, "Lead");
         UserData.jobsArray.jobsList.Add(newJob);
+        foreach (Clients client in UserData.clientsArray.clientsList)
+        {
+            print (jobClientText.text + client.clientName);
+            if (jobClientText.text == client.clientName)
+            {
+                UserData.jobsArray.jobsList[0].jobCientObject = client;                
+            }           
+        }
         UpdateJobs();
         noJobsText.SetActive(false);
         UserData.instance.SendInfo();
@@ -86,4 +95,5 @@ public class JobsMenuHandler : MonoBehaviour
         clientsDropDown.AddOptions(names);
     }
 
+    
 }

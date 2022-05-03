@@ -13,6 +13,7 @@ public class Jobs
     public int jobReward;
     public string jobStatus;
     public string jobTag;
+    public string jobSite;
     public Clients jobCientObject;
     public Orders jobOrdersObject;
     public JobEstimate jobEstimateObject;
