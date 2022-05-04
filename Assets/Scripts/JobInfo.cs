@@ -32,20 +32,17 @@ public class JobInfo : MonoBehaviour
     public Text thisJobContingency;
     public Toggle[] stateToggles;
     public Toggle[] tagToggles;
+    public Text jobTitletext;
+    public Dropdown clientsDropDownCustomer;
+    public Text jobCustomerText;
 
     public Dropdown clientsDropDown;
     [Header("Job estimate")]
     public Text thisJobIssueDate;
     public Text thisJobExpiration;
-    public Text thisJobEstimateExpiration;
+    public Text thisJobEstimateExpiration;   
 
-    public GameObject tempGO;
-
-
-
-
-    // Start is called before the first frame update
-
+    
     public void Awake()
     {
         instance = this;
@@ -56,12 +53,10 @@ public class JobInfo : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
 
     }
-
     public void AssingJobValues(Jobs jobToValue)
     {
         activeJob = jobToValue;
@@ -75,22 +70,17 @@ public class JobInfo : MonoBehaviour
         thisJobClientCompany.text = jobToValue.jobCientObject.clientCompany;
         thisJobClientPhone.text = jobToValue.jobCientObject.clientPhone;
         thisJobClientName.text = jobToValue.jobCientObject.clientName;
-        
         thisJobSite.text = jobToValue.jobSite;
         thisJobTitle.text = jobToValue.jobDescription;
         thisJobOverhead.text = jobToValue.overhead.ToString();
         thisJobProfit.text = jobToValue.profit.ToString();
         thisJobContingency.text = jobToValue.contingency.ToString();
-
         //Estimate
         thisJobIssueDate.text = jobToValue.jobEstimateObject.issueDate;
         thisJobExpiration.text = jobToValue.jobEstimateObject.expirationPeriod.ToString() + " days";
         thisJobEstimateExpiration.text = jobToValue.jobEstimateObject.description;
-
         FillDropdownList();
     }
-
-
     public void FillDropdownList()
     {
         List<string> names = new List<string>();
@@ -99,6 +89,7 @@ public class JobInfo : MonoBehaviour
             names.Add(c.clientName);
         }
         clientsDropDown.AddOptions(names);
+        //      clientsDropDownCustomer.AddOptions(names);
     }
 
     public void ToogleChangedStatus()
@@ -119,9 +110,35 @@ public class JobInfo : MonoBehaviour
             if (toggle.isOn)
             {
                 UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobClient == activeJob.jobClient).jobTag = toggle.name;
+                /* AssingJobValues(activeJob);
+                print("se envio la informacion"); */
                 UserData.instance.SendInfo();
             }
         }
+        
+    }
+
+    public void JobTitleChanged()
+    {
+        if (jobTitletext != null)
+        {
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobClient == activeJob.jobClient).jobDescription = jobTitletext.text;
+            UserData.instance.SendInfo();
+        }
+        else
+        {
+            return;
+        }
+    }
+    public void jobCustomerChanged()
+    {
+        if (jobCustomerText.text != UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobClient == activeJob.jobClient).jobClient)
+        {
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobClient == activeJob.jobClient).jobClient = jobCustomerText.text;
+            UserData.instance.SendInfo();
+            print("este es el nuevo customer " + jobCustomerText.text);
+        }
+
     }
 }
 

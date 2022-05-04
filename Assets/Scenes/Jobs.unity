@@ -1703,7 +1703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &105608971
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3042,7 +3042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &156864014
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19650,6 +19650,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1314450050}
+        m_TargetAssemblyTypeName: JobInfo, Assembly-CSharp
+        m_MethodName: jobCustomerChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1101145332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21425,7 +21437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1205017597
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23424,7 +23436,7 @@ MonoBehaviour:
   thisJobClientCompany: {fileID: 3394417246932650729}
   thisJobClientPhone: {fileID: 4776239461814584223}
   thisJobClientEmail: {fileID: 8367215157388785072}
-  thisJobSite: {fileID: 0}
+  thisJobSite: {fileID: 902540018940476746}
   thisJobTitle: {fileID: 1269606590}
   thisJobOverhead: {fileID: 467641479}
   thisJobProfit: {fileID: 1660188213}
@@ -23442,11 +23454,13 @@ MonoBehaviour:
   - {fileID: 676725044}
   - {fileID: 1527124172}
   - {fileID: 545216126}
+  jobTitletext: {fileID: 1397577541}
+  clientsDropDownCustomer: {fileID: 779392912}
+  jobCustomerText: {fileID: 1109186338}
   clientsDropDown: {fileID: 779392912}
   thisJobIssueDate: {fileID: 1330664761}
   thisJobExpiration: {fileID: 1040846958}
   thisJobEstimateExpiration: {fileID: 304291520}
-  tempGO: {fileID: 0}
 --- !u!1 &1322320935
 GameObject:
   m_ObjectHideFlags: 0
@@ -24775,6 +24789,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1314450050}
+        m_TargetAssemblyTypeName: JobInfo, Assembly-CSharp
+        m_MethodName: JobTitleChanged
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -27430,7 +27456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1497926997
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37633,7 +37659,7 @@ GameObject:
   - component: {fileID: 7125712223650869869}
   - component: {fileID: 6705430771334195299}
   m_Layer: 5
-  m_Name: BuildingImage
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37883,7 +37909,7 @@ GameObject:
   - component: {fileID: 4157020742362709244}
   - component: {fileID: 902540018940476746}
   m_Layer: 5
-  m_Name: ClientName
+  m_Name: JobSite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
