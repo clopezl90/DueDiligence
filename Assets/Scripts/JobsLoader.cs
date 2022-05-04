@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class JobsLoader : MonoBehaviour
 {
-    public Text JobTitle;
-    public Text JobTitleHeader;
-
     public Text jobDescriptionDashboard;
     public Text jobDescriptionClient;
 
@@ -33,7 +30,6 @@ public class JobsLoader : MonoBehaviour
     {
         JobInfo.instance.AssingJobValues(thisJob);
         print(thisJob.jobDescription);
-        JobTitle.text = thisJob.jobDescription;
         //JobTitleHeader.text = thisJob.jobDescription;
         /* JobTitleHeader.text = thisJob.jobDescription;
         jobDescriptionDashboard.text = thisJob.jobDescription; */

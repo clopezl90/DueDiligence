@@ -9,6 +9,7 @@ public class JobInfo : MonoBehaviour
     public static JobInfo instance;
     public Jobs activeJob;
     public Clients thisJobClientsObject;
+    public Text mainTitleJob;
     [Header("Instances")]
     public Text thisJobDescription;
     [Header("Job Dashboard")]
@@ -33,7 +34,8 @@ public class JobInfo : MonoBehaviour
     public Text thisJobContingency;
     public Toggle[] stateToggles;
     public Toggle[] tagToggles;
-    public Text jobTitletext;
+    public InputField jobTitleText;
+    //public Text jobTitletext;
     public Dropdown clientsDropDownCustomer;
     public Text jobCustomerText;
 
@@ -61,6 +63,7 @@ public class JobInfo : MonoBehaviour
     public void AssingJobValues(Jobs jobToValue)
     {
         activeJob = jobToValue;
+        mainTitleJob.text = jobToValue.jobDescription;
 
         // Header
         thisJobDescription.text = jobToValue.jobDescription;
@@ -82,6 +85,10 @@ public class JobInfo : MonoBehaviour
         thisJobExpiration.text = jobToValue.jobEstimateObject.expirationPeriod.ToString() + " days";
         thisJobEstimateExpiration.text = jobToValue.jobEstimateObject.description;
         FillDropdownList();
+    }
+    public void OnBackButton()
+    {
+        AssingJobValues(activeJob);
     }
     public void FillDropdownList()
     {
@@ -117,20 +124,22 @@ public class JobInfo : MonoBehaviour
                 UserData.instance.SendInfo();
             }
         }
-        
     }
 
     public void JobTitleChanged()
     {
-        if (jobTitletext != null)
+        if (!string.IsNullOrEmpty(jobTitleText.text))
         {
-            UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobCientObject.clientName == activeJob.jobCientObject.clientName).jobDescription = jobTitletext.text;
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobCientObject.clientName == activeJob.jobCientObject.clientName).jobDescription = jobTitleText.text;
             UserData.instance.SendInfo();
+            jobTitleText.text = "";
+            
         }
         else
         {
             return;
         }
+        
     }
     public void jobCustomerChanged()
     {

@@ -23355,6 +23355,11 @@ MonoBehaviour:
   description: {fileID: 887197464}
   client: {fileID: 887197463}
   amount: {fileID: 887197462}
+  selectedClient:
+    clientName: 
+    clientCompany: 
+    clientPhone: 
+    clientEmail: 
   jobsInfo: {fileID: 887197461}
   jobsTransform: {fileID: 1447374949}
   noJobsText: {fileID: 1550888434}
@@ -23372,13 +23377,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e0a73b18f4ee642a44874fd668680f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JobTitle: {fileID: 1862626268}
-  JobTitleHeader: {fileID: 382067200}
   jobDescriptionDashboard: {fileID: 1420934052}
   jobDescriptionClient: {fileID: 4913135870647725842}
   thisJob:
     jobDescription: 
-    jobClient: 
     jobReward: 0
     jobStatus: 
     jobTag: 
@@ -23410,7 +23412,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeJob:
     jobDescription: 
-    jobClient: 
     jobReward: 0
     jobStatus: 
     jobTag: 
@@ -23428,6 +23429,12 @@ MonoBehaviour:
     overhead: 0
     profit: 0
     contingency: 0
+  thisJobClientsObject:
+    clientName: 
+    clientCompany: 
+    clientPhone: 
+    clientEmail: 
+  mainTitleJob: {fileID: 1862626268}
   thisJobDescription: {fileID: 382067200}
   thisJobDescription2: {fileID: 1420934052}
   thisJobStatus: {fileID: 1420934053}
@@ -23454,7 +23461,7 @@ MonoBehaviour:
   - {fileID: 676725044}
   - {fileID: 1527124172}
   - {fileID: 545216126}
-  jobTitletext: {fileID: 1397577541}
+  jobTitleText: {fileID: 674095786}
   clientsDropDownCustomer: {fileID: 779392912}
   jobCustomerText: {fileID: 1109186338}
   clientsDropDown: {fileID: 779392912}
@@ -24800,6 +24807,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1314450050}
         m_TargetAssemblyTypeName: JobInfo, Assembly-CSharp
         m_MethodName: JobTitleChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1314450050}
+        m_TargetAssemblyTypeName: JobInfo, Assembly-CSharp
+        m_MethodName: OnBackButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33491,6 +33510,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1314450048}
+        m_TargetAssemblyTypeName: JobsMenuHandler, Assembly-CSharp
+        m_MethodName: UpdateJobs
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
