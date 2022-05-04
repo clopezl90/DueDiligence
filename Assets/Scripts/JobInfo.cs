@@ -38,14 +38,15 @@ public class JobInfo : MonoBehaviour
     //public Text jobTitletext;
     public Dropdown clientsDropDownCustomer;
     public Text jobCustomerText;
+    public string noneText = "";
 
     public Dropdown clientsDropDown;
     [Header("Job estimate")]
     public Text thisJobIssueDate;
     public Text thisJobExpiration;
-    public Text thisJobEstimateExpiration;   
+    public Text thisJobEstimateExpiration;
 
-    
+
     public void Awake()
     {
         instance = this;
@@ -62,6 +63,7 @@ public class JobInfo : MonoBehaviour
     }
     public void AssingJobValues(Jobs jobToValue)
     {
+
         activeJob = jobToValue;
         mainTitleJob.text = jobToValue.jobDescription;
 
@@ -84,7 +86,7 @@ public class JobInfo : MonoBehaviour
         thisJobIssueDate.text = jobToValue.jobEstimateObject.issueDate;
         thisJobExpiration.text = jobToValue.jobEstimateObject.expirationPeriod.ToString() + " days";
         thisJobEstimateExpiration.text = jobToValue.jobEstimateObject.description;
-        FillDropdownList();
+
     }
     public void OnBackButton()
     {
@@ -92,13 +94,16 @@ public class JobInfo : MonoBehaviour
     }
     public void FillDropdownList()
     {
+        clientsDropDown.ClearOptions();
         List<string> names = new List<string>();
+        names.Add(noneText);
         foreach (Clients c in UserData.clientsArray.clientsList)
         {
             names.Add(c.clientName);
         }
         clientsDropDown.AddOptions(names);
         //      clientsDropDownCustomer.AddOptions(names);
+
     }
 
     public void ToogleChangedStatus()
@@ -118,7 +123,7 @@ public class JobInfo : MonoBehaviour
         {
             if (toggle.isOn)
             {
-                UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobCientObject.clientName == activeJob.jobCientObject.clientName).jobTag = toggle.name;
+                UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobTag = toggle.name;
                 /* AssingJobValues(activeJob);
                 print("se envio la informacion"); */
                 UserData.instance.SendInfo();
@@ -130,25 +135,29 @@ public class JobInfo : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(jobTitleText.text))
         {
-            UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobCientObject.clientName == activeJob.jobCientObject.clientName).jobDescription = jobTitleText.text;
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobDescription = jobTitleText.text;
             UserData.instance.SendInfo();
             jobTitleText.text = "";
-            
         }
         else
         {
             return;
         }
-        
     }
     public void jobCustomerChanged()
     {
-        if (jobCustomerText.text != UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobCientObject.clientName == activeJob.jobCientObject.clientName).jobCientObject.clientName)
+        if (jobCustomerText.text != UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobCientObject.clientName || jobCustomerText.text != "")
         {
-            UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobCientObject.clientName == activeJob.jobCientObject.clientName).jobCientObject.clientName = jobCustomerText.text;
-            UserData.instance.SendInfo();            
+            foreach (Clients client in UserData.clientsArray.clientsList)
+            {
+                print(jobCustomerText + client.clientName);
+                if (jobCustomerText.text == client.clientName)
+                {
+                    UserData.jobsArray.jobsList[0].jobCientObject = client;
+                }
+            }
+            UserData.instance.SendInfo();
         }
-
     }
 }
 
