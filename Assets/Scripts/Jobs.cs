@@ -9,7 +9,6 @@ using System;
 public class Jobs 
 {
     public string jobDescription;
-    public string jobClient;
     public int jobReward;
     public string jobStatus;
     public string jobTag;
@@ -23,10 +22,10 @@ public class Jobs
     public int contingency = 15;
 
 
-    public Jobs (string _jobDescription, string _jobClient, int _jobReward, string _jobStatus) 
+    public Jobs (string _jobDescription, int _jobReward, string _jobStatus) 
     {
-        jobDescription =_jobDescription;
-        jobClient = _jobClient;
+        jobDescription =_jobDescription;     
+          
         jobReward = _jobReward;
         jobStatus = _jobStatus;
     }

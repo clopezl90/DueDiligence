@@ -8,6 +8,7 @@ public class JobInfo : MonoBehaviour
 {
     public static JobInfo instance;
     public Jobs activeJob;
+    public Clients thisJobClientsObject;
     [Header("Instances")]
     public Text thisJobDescription;
     [Header("Job Dashboard")]
@@ -60,6 +61,7 @@ public class JobInfo : MonoBehaviour
     public void AssingJobValues(Jobs jobToValue)
     {
         activeJob = jobToValue;
+
         // Header
         thisJobDescription.text = jobToValue.jobDescription;
         //Info
@@ -98,7 +100,7 @@ public class JobInfo : MonoBehaviour
         {
             if (toggle.isOn)
             {
-                UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobClient == activeJob.jobClient).jobStatus = toggle.name;
+                UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobCientObject.clientName == activeJob.jobCientObject.clientName).jobStatus = toggle.name;
                 UserData.instance.SendInfo();
             }
         }
@@ -109,7 +111,7 @@ public class JobInfo : MonoBehaviour
         {
             if (toggle.isOn)
             {
-                UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobClient == activeJob.jobClient).jobTag = toggle.name;
+                UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobCientObject.clientName == activeJob.jobCientObject.clientName).jobTag = toggle.name;
                 /* AssingJobValues(activeJob);
                 print("se envio la informacion"); */
                 UserData.instance.SendInfo();
@@ -122,7 +124,7 @@ public class JobInfo : MonoBehaviour
     {
         if (jobTitletext != null)
         {
-            UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobClient == activeJob.jobClient).jobDescription = jobTitletext.text;
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobCientObject.clientName == activeJob.jobCientObject.clientName).jobDescription = jobTitletext.text;
             UserData.instance.SendInfo();
         }
         else
@@ -132,11 +134,10 @@ public class JobInfo : MonoBehaviour
     }
     public void jobCustomerChanged()
     {
-        if (jobCustomerText.text != UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobClient == activeJob.jobClient).jobClient)
+        if (jobCustomerText.text != UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobCientObject.clientName == activeJob.jobCientObject.clientName).jobCientObject.clientName)
         {
-            UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobClient == activeJob.jobClient).jobClient = jobCustomerText.text;
-            UserData.instance.SendInfo();
-            print("este es el nuevo customer " + jobCustomerText.text);
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs.jobCientObject.clientName == activeJob.jobCientObject.clientName).jobCientObject.clientName = jobCustomerText.text;
+            UserData.instance.SendInfo();            
         }
 
     }

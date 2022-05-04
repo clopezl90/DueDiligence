@@ -35,8 +35,10 @@ public class AuthenticationHandler : MonoBehaviour
     public UserRecords tempUserRecords;
     public ClientHolder tempClientArray = new ClientHolder();
     public JobsHolder tempJobsArray = new JobsHolder();
-    public Jobs tempJob = new Jobs("", "", 0, "");
+    
     public Clients tempClients = new Clients("", "", "", "");
+    
+    public Jobs tempJob = new Jobs("", 0, "");
     private AccountValidation validationInfo = new AccountValidation();
 
     public void Awake()
