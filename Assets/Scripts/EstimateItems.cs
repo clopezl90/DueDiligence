@@ -7,6 +7,16 @@ using System;
 
 public class EstimateItems 
 {
+    public string itemName;
+    public string itemDescription;
+    public int itemQuantity;
+    // costs
+    public float itemMaterialCost;
+    public float itemLaborCost;
+    public float itemEquipmentCost;
+    public float itemOtherCost;
+    public float itemSubcontractCost;
+    
     public EstimateItems (){}
     
 }

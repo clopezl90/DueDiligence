@@ -11,6 +11,11 @@ public class JobEstimate
     public int expirationPeriod = 30;
     public string description = "None";
     public int poNumber;
-    public EstimateItems estimateItems;
+    public float estimateSubtotal;
+    public float estimateOverhead;
+    public float estimateProfit;
+    public float estimateContingency;
+    public float estimateDiscount;
+    public List <EstimateItems> estimateList = new List<EstimateItems>();
     public JobEstimate (){}    
 }
