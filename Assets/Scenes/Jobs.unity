@@ -9854,6 +9854,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1314450050}
+        m_TargetAssemblyTypeName: JobInfo, Assembly-CSharp
+        m_MethodName: sendEstimate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &462912842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28710,6 +28722,7 @@ MonoBehaviour:
   thisJobIssueDate: {fileID: 1330664761}
   thisJobExpiration: {fileID: 1040846958}
   thisJobEstimateExpiration: {fileID: 304291520}
+  itemName: {fileID: 2141806689}
 --- !u!1 &1322320935
 GameObject:
   m_ObjectHideFlags: 0

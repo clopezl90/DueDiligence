@@ -39,12 +39,17 @@ public class JobInfo : MonoBehaviour
     public Dropdown clientsDropDownCustomer;
     public Text jobCustomerText;
     public string noneText = "";
-
     public Dropdown clientsDropDown;
     [Header("Job estimate")]
     public Text thisJobIssueDate;
     public Text thisJobExpiration;
     public Text thisJobEstimateExpiration;
+    [Header("EstimateInfo")]
+    public InputField itemName;
+    public InputField itemDescription;
+    public InputField itemQuantity;
+    public InputField itemMaterialCost;
+
 
 
     public void Awake()
@@ -158,6 +163,17 @@ public class JobInfo : MonoBehaviour
             }
             UserData.instance.SendInfo();
         }
+    }
+
+    public void sendEstimate()
+    {
+        EstimateItems itemEstimate = new EstimateItems(itemName.text);
+        itemEstimate.itemDescription = itemDescription.text;
+        itemEstimate.itemQuantity = int.Parse(itemQuantity.text);
+        itemEstimate.itemMaterialCost = float.Parse(itemMaterialCost.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobEstimateObject.estimateList.Add(itemEstimate);
+        UserData.instance.SendInfo();
+
     }
 }
 

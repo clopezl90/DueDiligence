@@ -17,6 +17,9 @@ public class EstimateItems
     public float itemOtherCost;
     public float itemSubcontractCost;
     
-    public EstimateItems (){}
+    public EstimateItems (string _itemName)
+    {
+        itemName = _itemName;
+    }
     
 }

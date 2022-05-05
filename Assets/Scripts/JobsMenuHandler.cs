@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
+
 
 public class JobsMenuHandler : MonoBehaviour
 {
@@ -16,12 +18,18 @@ public class JobsMenuHandler : MonoBehaviour
     [SerializeField] Text amount;
 
     public Clients selectedClient;
+    
 
     public GameObject jobsInfo;
     public Transform jobsTransform;
     public GameObject noJobsText;
     public Dropdown clientsDropDown;
     public Toggle leadStatus;
+    
+    
+    
+
+    
     
     void Start()
     {
@@ -116,6 +124,8 @@ public class JobsMenuHandler : MonoBehaviour
         }
         clientsDropDown.AddOptions(names);
     }
+
+    
 
     
 }
