@@ -115,7 +115,7 @@ public class JobInfo : MonoBehaviour
                 subtotalCounter = subtotalCounter + item.itemSubtotal;
                 overheadCouter = overheadCouter + item.itemOverhead;
                 profitCounter = profitCounter + item.itemProfit;
-                contingencyCounter = contingencyCounter + item.itemContingency;                
+                contingencyCounter = contingencyCounter + item.itemContingency;
             }
         }
         itemsEstimateSubtotal.text = subtotalCounter.ToString();
@@ -124,6 +124,11 @@ public class JobInfo : MonoBehaviour
         itemsEstimateContingency.text = contingencyCounter.ToString();
         itemFinalPriceCounter = subtotalCounter + overheadCouter + profitCounter + contingencyCounter;
         itemsEstimateFinalPrice.text = itemFinalPriceCounter.ToString();
+        itemscounter = 0;
+        subtotalCounter = 0;
+        overheadCouter = 0;
+        profitCounter = 0;
+        contingencyCounter = 0;
     }
     public void OnBackButton()
     {
@@ -143,33 +148,22 @@ public class JobInfo : MonoBehaviour
 
     public void UpdateEstimateItems()
     {
+        CleanEstimateItems();
         foreach (EstimateItems item in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobEstimateObject.estimateList)
         {
             itemText.text = item.itemDescription;
             itemCost.text = item.itemSubtotal.ToString();
             GameObject _tempGo = Instantiate(itemsInfo, itemsTransform);
-            
-
-
         }
-        /* CleanJobs();
-        foreach (Jobs p in UserData.jobsArray.jobsList)
-        {
-            description.text = p.jobDescription;
-            if (p.jobCientObject.clientName != null)
-            {
-                client.text = p.jobCientObject.clientName;
-            }
-            else
-            {
-                client.text = "No client";
-            }
-            amount.text = "$" + p.jobReward;
-            GameObject _tempgo2 = Instantiate(jobsInfo, jobsTransform);
-            _tempgo2.GetComponentInChildren<JobsLoader>().thisJob = p;
-        } */
     }
 
+    public void CleanEstimateItems()
+    {
+        foreach (Transform child in itemsTransform.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+    }
     public void ToogleChangedStatus()
     {
         foreach (Toggle toggle in stateToggles)
@@ -194,7 +188,6 @@ public class JobInfo : MonoBehaviour
             }
         }
     }
-
     public void JobTitleChanged()
     {
         if (!string.IsNullOrEmpty(jobTitleText.text))
@@ -239,6 +232,10 @@ public class JobInfo : MonoBehaviour
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobEstimateObject.estimateList.Add(itemEstimate);
         UserData.instance.SendInfo();
         AssingJobValues(activeJob);
+        itemDescription.text = "";
+        itemMaterialCost.text = "";
+        itemLaborCost.text = "";
+        itemQuantity.text = "";
     }
 }
 
