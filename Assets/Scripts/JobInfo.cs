@@ -49,6 +49,7 @@ public class JobInfo : MonoBehaviour
     public InputField itemDescription;
     public InputField itemQuantity;
     public InputField itemMaterialCost;
+    public InputField itemLaborCost;
     public Text itemEstimateDescription;
     public Text itemEstimateValue;
     public Text itemsEstimateSubtotal;
@@ -56,14 +57,16 @@ public class JobInfo : MonoBehaviour
     public Text itemsEstimateProfit;
     public Text itemsEstimateContingency;
     public Text itemsEstimateFinalPrice;
-
-    double itemFinalPriceUI;
     public Text itemText;
     public Text itemCost;
-
-
-
-
+    double subtotalCounter;
+    double overheadCouter;
+    double profitCounter;
+    double contingencyCounter;
+    double itemFinalPriceCounter;
+    int itemscounter = 0;
+    public GameObject itemsInfo;
+    public Transform itemsTransform;
 
     public void Awake()
     {
@@ -106,20 +109,21 @@ public class JobInfo : MonoBehaviour
         thisJobEstimateExpiration.text = jobToValue.jobEstimateObject.description;
         if (jobToValue.jobEstimateObject.estimateList.Count != 0)
         {
-            itemEstimateDescription.text = jobToValue.jobEstimateObject.estimateList[0].itemDescription;
-            double itemValue = (jobToValue.jobEstimateObject.estimateList[0].itemMaterialCost * jobToValue.jobEstimateObject.estimateList[0].itemQuantity);
-            itemEstimateValue.text = "$ " +  itemValue.ToString();
-            itemsEstimateSubtotal.text = "$ " + itemValue.ToString();
-            double itemOverhead = (itemValue * 0.1);
-            itemsEstimateOverhead.text = "$ " + itemOverhead.ToString();
-            double itemProfit = (itemValue * 0.1);
-            itemsEstimateProfit.text = "$ " + itemProfit.ToString();
-            double itemContingency = (itemValue * 0.15);
-            itemsEstimateContingency.text = "$ " + itemContingency.ToString();
-            double itemFinalPrice = itemValue + itemOverhead + itemProfit + itemContingency;
-            itemsEstimateFinalPrice.text = "$ " + itemFinalPrice.ToString();
-                        
+            foreach (EstimateItems item in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobEstimateObject.estimateList)
+            {
+                itemscounter++;
+                subtotalCounter = subtotalCounter + item.itemSubtotal;
+                overheadCouter = overheadCouter + item.itemOverhead;
+                profitCounter = profitCounter + item.itemProfit;
+                contingencyCounter = contingencyCounter + item.itemContingency;                
+            }
         }
+        itemsEstimateSubtotal.text = subtotalCounter.ToString();
+        itemsEstimateOverhead.text = overheadCouter.ToString();
+        itemsEstimateProfit.text = profitCounter.ToString();
+        itemsEstimateContingency.text = contingencyCounter.ToString();
+        itemFinalPriceCounter = subtotalCounter + overheadCouter + profitCounter + contingencyCounter;
+        itemsEstimateFinalPrice.text = itemFinalPriceCounter.ToString();
     }
     public void OnBackButton()
     {
@@ -135,8 +139,6 @@ public class JobInfo : MonoBehaviour
             names.Add(c.clientName);
         }
         clientsDropDown.AddOptions(names);
-        //      clientsDropDownCustomer.AddOptions(names);
-
     }
 
     public void UpdateEstimateItems()
@@ -144,8 +146,11 @@ public class JobInfo : MonoBehaviour
         foreach (EstimateItems item in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobEstimateObject.estimateList)
         {
             itemText.text = item.itemDescription;
-             
+            itemCost.text = item.itemSubtotal.ToString();
+            GameObject _tempGo = Instantiate(itemsInfo, itemsTransform);
             
+
+
         }
         /* CleanJobs();
         foreach (Jobs p in UserData.jobsArray.jobsList)
@@ -224,7 +229,13 @@ public class JobInfo : MonoBehaviour
         EstimateItems itemEstimate = new EstimateItems(itemName.text);
         itemEstimate.itemDescription = itemDescription.text;
         itemEstimate.itemQuantity = int.Parse(itemQuantity.text);
-        itemEstimate.itemMaterialCost = float.Parse(itemMaterialCost.text);
+        itemEstimate.itemMaterialCost = double.Parse(itemMaterialCost.text);
+        itemEstimate.itemLaborCost = double.Parse(itemLaborCost.text);
+        itemEstimate.itemSubtotal = ((itemEstimate.itemMaterialCost + itemEstimate.itemLaborCost) * itemEstimate.itemQuantity);
+        itemEstimate.itemOverhead = itemEstimate.itemSubtotal * 0.1;
+        itemEstimate.itemProfit = itemEstimate.itemSubtotal * 0.1;
+        itemEstimate.itemContingency = itemEstimate.itemSubtotal * 0.15;
+        itemEstimate.itemFinalPrice = itemEstimate.itemOverhead + itemEstimate.itemContingency + itemEstimate.itemContingency;
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobEstimateObject.estimateList.Add(itemEstimate);
         UserData.instance.SendInfo();
         AssingJobValues(activeJob);
