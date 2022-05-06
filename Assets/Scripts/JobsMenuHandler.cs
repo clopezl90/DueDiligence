@@ -103,6 +103,8 @@ public class JobsMenuHandler : MonoBehaviour
             _tempgo2.GetComponentInChildren<JobsLoader>().thisJob = p;
         }
     }
+
+    
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);

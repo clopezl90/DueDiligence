@@ -16,6 +16,7 @@ public class EstimateItems
     public float itemEquipmentCost;
     public float itemOtherCost;
     public float itemSubcontractCost;
+    public double itemFinalPrice;
     
     public EstimateItems (string _itemName)
     {

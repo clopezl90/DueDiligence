@@ -49,6 +49,19 @@ public class JobInfo : MonoBehaviour
     public InputField itemDescription;
     public InputField itemQuantity;
     public InputField itemMaterialCost;
+    public Text itemEstimateDescription;
+    public Text itemEstimateValue;
+    public Text itemsEstimateSubtotal;
+    public Text itemsEstimateOverhead;
+    public Text itemsEstimateProfit;
+    public Text itemsEstimateContingency;
+    public Text itemsEstimateFinalPrice;
+
+    double itemFinalPriceUI;
+    public Text itemText;
+    public Text itemCost;
+
+
 
 
 
@@ -91,7 +104,22 @@ public class JobInfo : MonoBehaviour
         thisJobIssueDate.text = jobToValue.jobEstimateObject.issueDate;
         thisJobExpiration.text = jobToValue.jobEstimateObject.expirationPeriod.ToString() + " days";
         thisJobEstimateExpiration.text = jobToValue.jobEstimateObject.description;
-
+        if (jobToValue.jobEstimateObject.estimateList.Count != 0)
+        {
+            itemEstimateDescription.text = jobToValue.jobEstimateObject.estimateList[0].itemDescription;
+            double itemValue = (jobToValue.jobEstimateObject.estimateList[0].itemMaterialCost * jobToValue.jobEstimateObject.estimateList[0].itemQuantity);
+            itemEstimateValue.text = "$ " +  itemValue.ToString();
+            itemsEstimateSubtotal.text = "$ " + itemValue.ToString();
+            double itemOverhead = (itemValue * 0.1);
+            itemsEstimateOverhead.text = "$ " + itemOverhead.ToString();
+            double itemProfit = (itemValue * 0.1);
+            itemsEstimateProfit.text = "$ " + itemProfit.ToString();
+            double itemContingency = (itemValue * 0.15);
+            itemsEstimateContingency.text = "$ " + itemContingency.ToString();
+            double itemFinalPrice = itemValue + itemOverhead + itemProfit + itemContingency;
+            itemsEstimateFinalPrice.text = "$ " + itemFinalPrice.ToString();
+                        
+        }
     }
     public void OnBackButton()
     {
@@ -109,6 +137,32 @@ public class JobInfo : MonoBehaviour
         clientsDropDown.AddOptions(names);
         //      clientsDropDownCustomer.AddOptions(names);
 
+    }
+
+    public void UpdateEstimateItems()
+    {
+        foreach (EstimateItems item in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobEstimateObject.estimateList)
+        {
+            itemText.text = item.itemDescription;
+             
+            
+        }
+        /* CleanJobs();
+        foreach (Jobs p in UserData.jobsArray.jobsList)
+        {
+            description.text = p.jobDescription;
+            if (p.jobCientObject.clientName != null)
+            {
+                client.text = p.jobCientObject.clientName;
+            }
+            else
+            {
+                client.text = "No client";
+            }
+            amount.text = "$" + p.jobReward;
+            GameObject _tempgo2 = Instantiate(jobsInfo, jobsTransform);
+            _tempgo2.GetComponentInChildren<JobsLoader>().thisJob = p;
+        } */
     }
 
     public void ToogleChangedStatus()
@@ -173,7 +227,7 @@ public class JobInfo : MonoBehaviour
         itemEstimate.itemMaterialCost = float.Parse(itemMaterialCost.text);
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobEstimateObject.estimateList.Add(itemEstimate);
         UserData.instance.SendInfo();
-
+        AssingJobValues(activeJob);
     }
 }
 
