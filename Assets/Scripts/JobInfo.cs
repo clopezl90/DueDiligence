@@ -71,7 +71,6 @@ public class JobInfo : MonoBehaviour
     public void Awake()
     {
         instance = this;
-
     }
     void Start()
     {
@@ -84,10 +83,8 @@ public class JobInfo : MonoBehaviour
     }
     public void AssingJobValues(Jobs jobToValue)
     {
-
         activeJob = jobToValue;
         mainTitleJob.text = jobToValue.jobDescription;
-
         // Header
         thisJobDescription.text = jobToValue.jobDescription;
         //Info

@@ -1493,7 +1493,7 @@ GameObject:
   - component: {fileID: 1231109667}
   - component: {fileID: 1231109666}
   m_Layer: 5
-  m_Name: Payment
+  m_Name: Amount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1551,7 +1551,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Payment
+  m_Text: Amount
 --- !u!222 &1231109667
 CanvasRenderer:
   m_ObjectHideFlags: 0
