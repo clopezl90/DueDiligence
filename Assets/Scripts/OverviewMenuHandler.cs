@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class OverviewMenuHandler : MonoBehaviour
 {
-
     public string jobStatus;
     public Text leadJobs;
     public Text leadJObsGlobalAmount;
@@ -46,7 +45,6 @@ public class OverviewMenuHandler : MonoBehaviour
         double workCompletedAmountCounter = 0;
         int workClosedCounter = 0;
         double workClosedAmountCounter = 0;
-
         foreach (Jobs job in UserData.jobsArray.jobsList)
         {
             jobStatus = job.jobStatus;
@@ -76,26 +74,20 @@ public class OverviewMenuHandler : MonoBehaviour
                     break;
             }
         }
-
-        print("los lead son " + leadCounter + "y suman " + leadAmountCounter);
+        /* print("los lead son " + leadCounter + "y suman " + leadAmountCounter);
         print("los contract son " + contracSignedCounter + "y suman " + contractsSignedAmountCounter);
         print("los work started son " + workStartedCounter + "y suman " + workStartedAmountCounter);
         print("los work comple son " + workCompletedCounter + "y suman " + workCompletedAmountCounter);
-        print("los closed son " + workClosedCounter + "y suman " + workClosedAmountCounter);
-
+        print("los closed son " + workClosedCounter + "y suman " + workClosedAmountCounter); */
         leadJobs.text = leadCounter.ToString();
-        leadJObsGlobalAmount.text ="$" + leadAmountCounter.ToString();
+        leadJObsGlobalAmount.text = "$" + leadAmountCounter.ToString();
         contractSignedJobs.text = contracSignedCounter.ToString();
-        contractSignedGlobalAmount.text ="$" +  contractsSignedAmountCounter.ToString();
+        contractSignedGlobalAmount.text = "$" + contractsSignedAmountCounter.ToString();
         workStartedJobs.text = workStartedCounter.ToString();
-        workStartedGlobalAmount.text ="$" +  workStartedAmountCounter.ToString();
+        workStartedGlobalAmount.text = "$" + workStartedAmountCounter.ToString();
         workCompletedJobs.text = workCompletedCounter.ToString();
-        workCompletedGlobalAmount.text ="$" +  workCompletedAmountCounter.ToString();
+        workCompletedGlobalAmount.text = "$" + workCompletedAmountCounter.ToString();
         workClosedJobs.text = workClosedCounter.ToString();
-        workClosedGlobalAmount.text ="$" +  workClosedAmountCounter.ToString();
-
-
-
-
+        workClosedGlobalAmount.text = "$" + workClosedAmountCounter.ToString();
     }
 }

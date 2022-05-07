@@ -2546,6 +2546,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1314450050}
+        m_TargetAssemblyTypeName: JobInfo, Assembly-CSharp
+        m_MethodName: ContingencyChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &109213024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28685,6 +28697,9 @@ MonoBehaviour:
   itemCost: {fileID: 1150219845}
   itemsInfo: {fileID: 858210110}
   itemsTransform: {fileID: 731206656}
+  overheadInputfield: {fileID: 1435524294}
+  profitInputfield: {fileID: 830389550}
+  contingencyInputfield: {fileID: 2063815361}
 --- !u!1 &1322320935
 GameObject:
   m_ObjectHideFlags: 0
@@ -41736,6 +41751,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1314450050}
+        m_TargetAssemblyTypeName: JobInfo, Assembly-CSharp
+        m_MethodName: OverheadChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1871457542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45410,6 +45437,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1314450050}
+        m_TargetAssemblyTypeName: JobInfo, Assembly-CSharp
+        m_MethodName: ProfitChange
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

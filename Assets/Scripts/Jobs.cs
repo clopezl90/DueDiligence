@@ -17,9 +17,9 @@ public class Jobs
     public Orders jobOrdersObject;
     public JobEstimate jobEstimateObject;
     public JobPayments jobPaymentsObject;
-    public int overhead = 10;
-    public int profit = 10;
-    public int contingency = 15;
+    public double overhead = 10;
+    public double profit = 10;
+    public double contingency = 15;
     public double jobGlobalAmount;
 
 

@@ -68,6 +68,17 @@ public class JobInfo : MonoBehaviour
     public GameObject itemsInfo;
     public Transform itemsTransform;
 
+    [Header("OverheadInfo")]
+
+    public InputField overheadInputfield;
+    [Header("profiInfo")]
+
+    public InputField profitInputfield;
+    [Header("ContingencyInfo")]
+
+    public InputField contingencyInputfield;
+
+
     public void Awake()
     {
         instance = this;
@@ -122,7 +133,7 @@ public class JobInfo : MonoBehaviour
         itemFinalPriceCounter = subtotalCounter + overheadCouter + profitCounter + contingencyCounter;
         itemsEstimateFinalPrice.text = itemFinalPriceCounter.ToString();
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount = itemFinalPriceCounter;
-        print ("el global es " + UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount);
+        print("el global es " + UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount);
         itemscounter = 0;
         subtotalCounter = 0;
         overheadCouter = 0;
@@ -144,7 +155,6 @@ public class JobInfo : MonoBehaviour
         }
         clientsDropDown.AddOptions(names);
     }
-
     public void UpdateEstimateItems()
     {
         CleanEstimateItems();
@@ -155,7 +165,6 @@ public class JobInfo : MonoBehaviour
             GameObject _tempGo = Instantiate(itemsInfo, itemsTransform);
         }
     }
-
     public void CleanEstimateItems()
     {
         foreach (Transform child in itemsTransform.transform)
@@ -214,8 +223,11 @@ public class JobInfo : MonoBehaviour
             }
             UserData.instance.SendInfo();
         }
+        else
+        {
+            return;
+        }
     }
-
     public void sendEstimate()
     {
         EstimateItems itemEstimate = new EstimateItems(itemName.text);
@@ -236,6 +248,36 @@ public class JobInfo : MonoBehaviour
         itemMaterialCost.text = "";
         itemLaborCost.text = "";
         itemQuantity.text = "";
+    }
+    public void OverheadChange()
+    {
+        if (!string.IsNullOrEmpty(overheadInputfield.text))
+        {
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead = double.Parse(overheadInputfield.text);
+            UserData.instance.SendInfo();
+            overheadInputfield.text = "";
+            AssingJobValues(activeJob); 
+        }
+    }
+    public void ProfitChange()
+    {
+        if (!string.IsNullOrEmpty(profitInputfield.text))
+        {
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit = double.Parse(profitInputfield.text);
+            UserData.instance.SendInfo();
+            profitInputfield.text = "";
+            AssingJobValues(activeJob);
+        }
+    }
+    public void ContingencyChange()
+    {
+        if (!string.IsNullOrEmpty(contingencyInputfield.text))
+        {
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency = double.Parse(contingencyInputfield.text);
+            UserData.instance.SendInfo();
+            contingencyInputfield.text = "";
+            AssingJobValues(activeJob);
+        }
     }
 }
 
