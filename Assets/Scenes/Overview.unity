@@ -1603,8 +1603,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b24189ba5e2f3747b5991208807f54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeJobsQty: {fileID: 7380400110254109521}
-  activeJobsAmount: {fileID: 6475784217595572558}
+  jobStatus: 
+  leadJobs: {fileID: 7380400110254109521}
+  leadJObsGlobalAmount: {fileID: 6475784217595572558}
+  contractSignedJobs: {fileID: 735657459}
+  contractSignedGlobalAmount: {fileID: 1956998625}
+  workStartedJobs: {fileID: 1105396347}
+  workStartedGlobalAmount: {fileID: 1521795380}
+  workCompletedJobs: {fileID: 891455639}
+  workCompletedGlobalAmount: {fileID: 632566536}
+  workClosedJobs: {fileID: 441920592}
+  workClosedGlobalAmount: {fileID: 1074864988}
 --- !u!1 &1327240017
 GameObject:
   m_ObjectHideFlags: 0

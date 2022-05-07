@@ -2758,7 +2758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &113998330
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9105,7 +9105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &430835134
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28590,6 +28590,7 @@ MonoBehaviour:
     overhead: 0
     profit: 0
     contingency: 0
+    jobGlobalAmount: 0
 --- !u!114 &1314450050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28627,6 +28628,7 @@ MonoBehaviour:
     overhead: 0
     profit: 0
     contingency: 0
+    jobGlobalAmount: 0
   thisJobClientsObject:
     clientName: 
     clientCompany: 

@@ -121,6 +121,8 @@ public class JobInfo : MonoBehaviour
         itemsEstimateContingency.text = contingencyCounter.ToString();
         itemFinalPriceCounter = subtotalCounter + overheadCouter + profitCounter + contingencyCounter;
         itemsEstimateFinalPrice.text = itemFinalPriceCounter.ToString();
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount = itemFinalPriceCounter;
+        print ("el global es " + UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount);
         itemscounter = 0;
         subtotalCounter = 0;
         overheadCouter = 0;
@@ -226,6 +228,7 @@ public class JobInfo : MonoBehaviour
         itemEstimate.itemProfit = itemEstimate.itemSubtotal * 0.1;
         itemEstimate.itemContingency = itemEstimate.itemSubtotal * 0.15;
         itemEstimate.itemFinalPrice = itemEstimate.itemOverhead + itemEstimate.itemContingency + itemEstimate.itemContingency;
+        //UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount = UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount + itemEstimate.itemFinalPrice;
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobEstimateObject.estimateList.Add(itemEstimate);
         UserData.instance.SendInfo();
         AssingJobValues(activeJob);

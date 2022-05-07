@@ -6,16 +6,21 @@ using UnityEngine.UI;
 
 public class OverviewMenuHandler : MonoBehaviour
 {
-    int activeJobs;
-    int finishedJobs;
-    int totalRewardsActive = 0;
-    public string jobStatus;
 
-    [SerializeField] Text activeJobsQty;
-    [SerializeField] Text activeJobsAmount;
+    public string jobStatus;
+    public Text leadJobs;
+    public Text leadJObsGlobalAmount;
+    public Text contractSignedJobs;
+    public Text contractSignedGlobalAmount;
+    public Text workStartedJobs;
+    public Text workStartedGlobalAmount;
+    public Text workCompletedJobs;
+    public Text workCompletedGlobalAmount;
+    public Text workClosedJobs;
+    public Text workClosedGlobalAmount;
+
     void Start()
     {
-        GetInformation();
         GetJobsInfo();
     }
 
@@ -27,19 +32,7 @@ public class OverviewMenuHandler : MonoBehaviour
     {
         SceneManager.LoadScene(scene);
     }
-    void GetInformation()
-    {
-        activeJobs = UserData.jobsArray.jobsList.Count;
-        foreach (Jobs b in UserData.jobsArray.jobsList)
-        {
-            if (b.jobStatus == "Active")
-            {
-                totalRewardsActive += b.jobReward;
-            }
-        }
-        activeJobsQty.text = activeJobs.ToString();
-        activeJobsAmount.text = "$ " + totalRewardsActive.ToString();
-    }
+
 
     public void GetJobsInfo()
     {
@@ -61,23 +54,23 @@ public class OverviewMenuHandler : MonoBehaviour
             {
                 case "Lead":
                     leadCounter++;
-                    leadAmountCounter = leadAmountCounter + job.jobEstimateObject.estimateSubtotal;
+                    leadAmountCounter = leadAmountCounter + job.jobGlobalAmount;
                     break;
                 case "Contract signed":
                     contracSignedCounter++;
-                    contractsSignedAmountCounter = contractsSignedAmountCounter + job.jobEstimateObject.estimateSubtotal;
+                    contractsSignedAmountCounter = contractsSignedAmountCounter + job.jobGlobalAmount;
                     break;
                 case "Work started":
                     workStartedCounter++;
-                    workStartedAmountCounter = workStartedAmountCounter + job.jobEstimateObject.estimateSubtotal;
+                    workStartedAmountCounter = workStartedAmountCounter + job.jobGlobalAmount;
                     break;
                 case "Work completed":
                     workCompletedCounter++;
-                    workCompletedAmountCounter = workCompletedAmountCounter + job.jobEstimateObject.estimateSubtotal;
+                    workCompletedAmountCounter = workCompletedAmountCounter + job.jobGlobalAmount;
                     break;
                 case "Closed":
                     workClosedCounter++;
-                    workClosedAmountCounter = workClosedAmountCounter + job.jobEstimateObject.estimateSubtotal;
+                    workClosedAmountCounter = workClosedAmountCounter + job.jobGlobalAmount;
                     break;
                 default:
                     break;
@@ -89,6 +82,20 @@ public class OverviewMenuHandler : MonoBehaviour
         print("los work started son " + workStartedCounter + "y suman " + workStartedAmountCounter);
         print("los work comple son " + workCompletedCounter + "y suman " + workCompletedAmountCounter);
         print("los closed son " + workClosedCounter + "y suman " + workClosedAmountCounter);
+
+        leadJobs.text = leadCounter.ToString();
+        leadJObsGlobalAmount.text ="$" + leadAmountCounter.ToString();
+        contractSignedJobs.text = contracSignedCounter.ToString();
+        contractSignedGlobalAmount.text ="$" +  contractsSignedAmountCounter.ToString();
+        workStartedJobs.text = workStartedCounter.ToString();
+        workStartedGlobalAmount.text ="$" +  workStartedAmountCounter.ToString();
+        workCompletedJobs.text = workCompletedCounter.ToString();
+        workCompletedGlobalAmount.text ="$" +  workCompletedAmountCounter.ToString();
+        workClosedJobs.text = workClosedCounter.ToString();
+        workClosedGlobalAmount.text ="$" +  workClosedAmountCounter.ToString();
+
+
+
 
     }
 }
