@@ -68,6 +68,14 @@ public class JobInfo : MonoBehaviour
     public GameObject itemsInfo;
     public Transform itemsTransform;
 
+    [Header("ItemInfo")]
+
+    public InputField itemSelectedName;
+    public InputField itemSelectedDescription;
+    public InputField itemSelectedQuantity;
+    public InputField itemSelectedMaterialCost;
+    public InputField itemSelectedLaborCost;
+
     [Header("OverheadInfo")]
 
     public InputField overheadInputfield;
@@ -282,6 +290,16 @@ public class JobInfo : MonoBehaviour
             contingencyInputfield.text = "";
             AssingJobValues(activeJob);
         }
+    }
+
+    public void AssingItemValues(EstimateItems itemToValue)
+    {
+        print("este es el nmomebre del item " + itemToValue.itemName);
+        itemSelectedName.text = itemToValue.itemName;
+        itemSelectedDescription.text = itemToValue.itemDescription;
+        itemSelectedQuantity.text = itemToValue.itemQuantity.ToString();
+        itemSelectedMaterialCost.text = itemToValue.itemMaterialCost.ToString();
+        itemSelectedLaborCost.text = itemToValue.itemLaborCost.ToString();
     }
 }
 
