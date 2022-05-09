@@ -120,6 +120,9 @@ public class JobInfo : MonoBehaviour
             foreach (EstimateItems item in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobEstimateObject.estimateList)
             {
                 itemscounter++;
+                item.itemOverhead = item.itemSubtotal * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead / 100);
+                item.itemProfit = item.itemSubtotal * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit / 100);
+                item.itemContingency = item.itemSubtotal * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency / 100);
                 subtotalCounter = subtotalCounter + item.itemSubtotal;
                 overheadCouter = overheadCouter + item.itemOverhead;
                 profitCounter = profitCounter + item.itemProfit;
@@ -236,14 +239,15 @@ public class JobInfo : MonoBehaviour
         itemEstimate.itemMaterialCost = double.Parse(itemMaterialCost.text);
         itemEstimate.itemLaborCost = double.Parse(itemLaborCost.text);
         itemEstimate.itemSubtotal = ((itemEstimate.itemMaterialCost + itemEstimate.itemLaborCost) * itemEstimate.itemQuantity);
-        itemEstimate.itemOverhead = itemEstimate.itemSubtotal * 0.1;
+        /* itemEstimate.itemOverhead = itemEstimate.itemSubtotal * 0.1;
         itemEstimate.itemProfit = itemEstimate.itemSubtotal * 0.1;
         itemEstimate.itemContingency = itemEstimate.itemSubtotal * 0.15;
-        itemEstimate.itemFinalPrice = itemEstimate.itemOverhead + itemEstimate.itemContingency + itemEstimate.itemContingency;
+        itemEstimate.itemFinalPrice = itemEstimate.itemOverhead + itemEstimate.itemContingency + itemEstimate.itemContingency; */
         //UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount = UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount + itemEstimate.itemFinalPrice;
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobEstimateObject.estimateList.Add(itemEstimate);
         UserData.instance.SendInfo();
         AssingJobValues(activeJob);
+        itemName.text = "";
         itemDescription.text = "";
         itemMaterialCost.text = "";
         itemLaborCost.text = "";
