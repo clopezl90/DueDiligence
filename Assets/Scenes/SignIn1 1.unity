@@ -3639,12 +3639,17 @@ MonoBehaviour:
     appPurchased: 0
   tempJobsArray:
     jobsList: []
+  tempClients:
+    clientName: 
+    clientCompany: 
+    clientPhone: 
+    clientEmail: 
   tempJob:
     jobDescription: 
-    jobClient: 
     jobReward: 0
     jobStatus: 
     jobTag: 
+    jobSite: 
     jobCientObject:
       clientName: 
       clientCompany: 
@@ -3655,14 +3660,16 @@ MonoBehaviour:
       expirationPeriod: 30
       description: None
       poNumber: 0
+      estimateSubtotal: 0
+      estimateOverhead: 0
+      estimateProfit: 0
+      estimateContingency: 0
+      estimateDiscount: 0
+      estimateList: []
     overhead: 10
     profit: 10
     contingency: 15
-  tempClients:
-    clientName: 
-    clientCompany: 
-    clientPhone: 
-    clientEmail: 
+    jobGlobalAmount: 0
 --- !u!1 &1352174245
 GameObject:
   m_ObjectHideFlags: 0

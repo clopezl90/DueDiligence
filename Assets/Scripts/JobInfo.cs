@@ -21,6 +21,7 @@ public class JobInfo : MonoBehaviour
     public Text thisJobClientCompany;
     public Text thisJobClientPhone;
     public Text thisJobClientEmail;
+    
 
     public Text thisJobSite;
 
@@ -137,12 +138,12 @@ public class JobInfo : MonoBehaviour
                 contingencyCounter = contingencyCounter + item.itemContingency;
             }
         }
-        itemsEstimateSubtotal.text = subtotalCounter.ToString();
-        itemsEstimateOverhead.text = overheadCouter.ToString();
-        itemsEstimateProfit.text = profitCounter.ToString();
-        itemsEstimateContingency.text = contingencyCounter.ToString();
+        itemsEstimateSubtotal.text = "$" + subtotalCounter.ToString();
+        itemsEstimateOverhead.text = "$" + overheadCouter.ToString();
+        itemsEstimateProfit.text = "$" + profitCounter.ToString();
+        itemsEstimateContingency.text = "$" + contingencyCounter.ToString();
         itemFinalPriceCounter = subtotalCounter + overheadCouter + profitCounter + contingencyCounter;
-        itemsEstimateFinalPrice.text = itemFinalPriceCounter.ToString();
+        itemsEstimateFinalPrice.text = "$" +  itemFinalPriceCounter.ToString();
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount = itemFinalPriceCounter;
         print("el global es " + UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount);
         itemscounter = 0;
@@ -172,7 +173,7 @@ public class JobInfo : MonoBehaviour
         foreach (EstimateItems item in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobEstimateObject.estimateList)
         {
             itemText.text = item.itemDescription;
-            itemCost.text = item.itemSubtotal.ToString();
+            itemCost.text = "$" + item.itemSubtotal.ToString();
             GameObject _tempGo = Instantiate(itemsInfo, itemsTransform);
         }
     }

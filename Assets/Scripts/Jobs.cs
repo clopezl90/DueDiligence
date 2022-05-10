@@ -23,11 +23,11 @@ public class Jobs
     public double jobGlobalAmount;
 
 
-    public Jobs (string _jobDescription, int _jobReward, string _jobStatus) 
+    public Jobs (string _jobDescription, string _jobSite, string _jobStatus) 
     {
         jobDescription =_jobDescription;     
           
-        jobReward = _jobReward;
+        jobSite = _jobSite;
         jobStatus = _jobStatus;
     }
 

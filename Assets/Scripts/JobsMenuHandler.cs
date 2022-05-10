@@ -11,11 +11,11 @@ public class JobsMenuHandler : MonoBehaviour
 
     [SerializeField] InputField jobdText;
     [SerializeField] Text jobClientText;
-    [SerializeField] InputField jobRewardText;
+    [SerializeField] InputField jobSite;
 
     [SerializeField] Text description;
     [SerializeField] Text client;
-    [SerializeField] Text amount;
+    [SerializeField] Text site;
 
     public Clients selectedClient;
     
@@ -54,7 +54,7 @@ public class JobsMenuHandler : MonoBehaviour
     }
     public void SendJobs()
     {
-        int intJobReward = int.Parse(jobRewardText.text.ToString());
+        string stgJobSite = jobSite.text;
         foreach (Clients client in UserData.clientsArray.clientsList)
         {
             if (client.clientName == jobClientText.text)
@@ -63,7 +63,7 @@ public class JobsMenuHandler : MonoBehaviour
             }
             
         }            
-        Jobs newJob = new Jobs(jobdText.text, intJobReward, "Lead");
+        Jobs newJob = new Jobs(jobdText.text, stgJobSite, "Lead");
         newJob.jobCientObject = selectedClient;
         UserData.jobsArray.jobsList.Add(newJob);    
         selectedClient = new Clients("","","","");      
@@ -80,7 +80,7 @@ public class JobsMenuHandler : MonoBehaviour
         UserData.instance.SendInfo();        
         jobdText.text = "";
         jobClientText.text = "";
-        jobRewardText.text = "";
+        jobSite.text = "";
         
     }
 
@@ -98,7 +98,7 @@ public class JobsMenuHandler : MonoBehaviour
             {
                 client.text = "No client";
             }
-            amount.text = "$" + p.jobReward;
+            site.text = p.jobSite;
             GameObject _tempgo2 = Instantiate(jobsInfo, jobsTransform);
             _tempgo2.GetComponentInChildren<JobsLoader>().thisJob = p;
         }
