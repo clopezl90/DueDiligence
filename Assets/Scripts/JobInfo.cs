@@ -33,6 +33,7 @@ public class JobInfo : MonoBehaviour
     public Text thisJobProfit;
 
     public Text thisJobContingency;
+    public Text thisJobDiscount;
     public Toggle[] stateToggles;
     public Toggle[] tagToggles;
     public InputField jobTitleText;
@@ -57,6 +58,10 @@ public class JobInfo : MonoBehaviour
     public Text itemsEstimateOverhead;
     public Text itemsEstimateProfit;
     public Text itemsEstimateContingency;
+    public Text itemEstimateMarkup;
+    public Text itemEstimateDiscount;
+    public Text itemEstimatetaxes;
+    public Text itemFinalPriceWithDiscount;
     public Text itemsEstimateFinalPrice;
     public Text itemText;
     public Text itemCost;
@@ -64,7 +69,11 @@ public class JobInfo : MonoBehaviour
     double overheadCouter;
     double profitCounter;
     double contingencyCounter;
+    double discountCounter;
+    double taxesCounter;
     double itemFinalPriceCounter;
+    double itemFinalPriceCounterDiscount;
+    double itemFinalPriceCounterTaxes;
     int itemscounter = 0;
     public GameObject itemsInfo;
     public Transform itemsTransform;
@@ -86,6 +95,13 @@ public class JobInfo : MonoBehaviour
     [Header("ContingencyInfo")]
 
     public InputField contingencyInputfield;
+    [Header("DiscountInfo")]
+
+    public InputField discountInputfield;
+
+    [Header("TaxesInfo")]
+
+    public InputField taxesInputfield;
 
 
     public void Awake()
@@ -120,6 +136,7 @@ public class JobInfo : MonoBehaviour
         thisJobOverhead.text = jobToValue.overhead.ToString();
         thisJobProfit.text = jobToValue.profit.ToString();
         thisJobContingency.text = jobToValue.contingency.ToString();
+        thisJobDiscount.text = jobToValue.discount.ToString();  
         //Estimate
         thisJobIssueDate.text = jobToValue.jobEstimateObject.issueDate;
         thisJobExpiration.text = jobToValue.jobEstimateObject.expirationPeriod.ToString() + " days";
@@ -132,18 +149,27 @@ public class JobInfo : MonoBehaviour
                 item.itemOverhead = item.itemSubtotal * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead / 100);
                 item.itemProfit = item.itemSubtotal * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit / 100);
                 item.itemContingency = item.itemSubtotal * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency / 100);
+                item.itemDiscount = item.itemSubtotal * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).discount / 100);
+                item.itemTaxes = item.itemSubtotal * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).taxes / 100);
                 subtotalCounter = subtotalCounter + item.itemSubtotal;
                 overheadCouter = overheadCouter + item.itemOverhead;
                 profitCounter = profitCounter + item.itemProfit;
                 contingencyCounter = contingencyCounter + item.itemContingency;
+                discountCounter = discountCounter + item.itemDiscount;
+                taxesCounter = taxesCounter + item.itemTaxes;
             }
         }
         itemsEstimateSubtotal.text = "$" + subtotalCounter.ToString();
         itemsEstimateOverhead.text = "$" + overheadCouter.ToString();
         itemsEstimateProfit.text = "$" + profitCounter.ToString();
         itemsEstimateContingency.text = "$" + contingencyCounter.ToString();
+        itemEstimateDiscount.text = "$" + discountCounter.ToString();
+        itemEstimatetaxes.text = "$" + taxesCounter.ToString();
         itemFinalPriceCounter = subtotalCounter + overheadCouter + profitCounter + contingencyCounter;
-        itemsEstimateFinalPrice.text = "$" + itemFinalPriceCounter.ToString();
+        itemEstimateMarkup.text = "$" + itemFinalPriceCounter.ToString();
+        itemFinalPriceCounterDiscount = itemFinalPriceCounter - discountCounter;
+        itemFinalPriceWithDiscount.text = "$" + itemFinalPriceCounterDiscount.ToString();
+        itemsEstimateFinalPrice.text = "$" + (itemFinalPriceCounterDiscount + taxesCounter).ToString();
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount = itemFinalPriceCounter;
         print("el global es " + UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount);
         itemscounter = 0;
@@ -292,6 +318,27 @@ public class JobInfo : MonoBehaviour
             UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency = double.Parse(contingencyInputfield.text);
             UserData.instance.SendInfo();
             contingencyInputfield.text = "";
+            AssingJobValues(activeJob);
+        }
+    }
+
+    public void DiscountChange()
+    {
+        if (!string.IsNullOrEmpty(discountInputfield.text))
+        {
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).discount = double.Parse(discountInputfield.text);
+            UserData.instance.SendInfo();
+            discountInputfield.text = "";
+            AssingJobValues(activeJob);
+        }
+    }
+    public void TaxesChange()
+    {
+        if (!string.IsNullOrEmpty(taxesInputfield.text))
+        {
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).taxes = double.Parse(taxesInputfield.text);
+            UserData.instance.SendInfo();
+            taxesInputfield.text = "";
             AssingJobValues(activeJob);
         }
     }

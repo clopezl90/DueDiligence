@@ -26,6 +26,7 @@ public class AuthenticationHandler : MonoBehaviour
     public InputField signUserPassword;
     public InputField signUserPasswordRepeat;
     public InputField userName;
+    public GameObject error;
 
     [SerializeField] GameObject loadingPanel;
     
@@ -98,6 +99,8 @@ public class AuthenticationHandler : MonoBehaviour
         {
             Debug.LogError($"Error: {e.Message} / codes: {e.StatusCode}, {e.GrpcStatusCode}");
             print(e.Message);
+            loadingPanel.SetActive(false);
+            Error(error, e.Message);
         }
     }
 
@@ -371,5 +374,21 @@ public class AuthenticationHandler : MonoBehaviour
         yield return new WaitForSeconds(20f);
         loadingPanel.SetActive(false);
         //mainPanel.SetActive(true);
-    }  
+    } 
+
+    public void Error(GameObject errorPanel, string error, bool success = false)
+    {
+        errorPanel.SetActive(true);
+        Text errorText = errorPanel.GetComponent<Text>();
+        if (success) { errorText.color = Color.green; }
+        else { errorText.color = Color.red; }
+        errorText.text = error;
+        StartCoroutine(ErrorHide(errorPanel, errorText));
+    }
+    private IEnumerator ErrorHide(GameObject errorPanel, Text errorText)
+    {
+        yield return new WaitForSeconds(3f);
+        errorPanel.SetActive(false);
+        errorText.text = String.Empty;
+    } 
 }

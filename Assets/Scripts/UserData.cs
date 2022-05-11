@@ -16,6 +16,7 @@ public class UserData : MonoBehaviour
     public static ClientHolder clientsArray;
     
     public static JobsHolder jobsArray;
+    public static JobsTemplateHolder jobTemplatesArray;
 
     public static UserRecords userRecords;
     public static AccountValidation userValidationInfo;

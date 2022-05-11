@@ -21,6 +21,8 @@ public class EstimateItems
     public double itemOverhead;
     public double itemProfit;
     public double itemContingency;
+    public double itemDiscount;
+    public double itemTaxes;
     
     public EstimateItems (string _itemName)
     {

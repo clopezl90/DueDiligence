@@ -20,7 +20,10 @@ public class Jobs
     public double overhead = 10;
     public double profit = 10;
     public double contingency = 15;
+    public double discount = 0; 
+    public double taxes = 10;
     public double jobGlobalAmount;
+    
 
 
     public Jobs (string _jobDescription, string _jobSite, string _jobStatus) 
