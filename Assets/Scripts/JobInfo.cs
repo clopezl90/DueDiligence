@@ -21,7 +21,7 @@ public class JobInfo : MonoBehaviour
     public Text thisJobClientCompany;
     public Text thisJobClientPhone;
     public Text thisJobClientEmail;
-    
+
 
     public Text thisJobSite;
 
@@ -143,7 +143,7 @@ public class JobInfo : MonoBehaviour
         itemsEstimateProfit.text = "$" + profitCounter.ToString();
         itemsEstimateContingency.text = "$" + contingencyCounter.ToString();
         itemFinalPriceCounter = subtotalCounter + overheadCouter + profitCounter + contingencyCounter;
-        itemsEstimateFinalPrice.text = "$" +  itemFinalPriceCounter.ToString();
+        itemsEstimateFinalPrice.text = "$" + itemFinalPriceCounter.ToString();
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount = itemFinalPriceCounter;
         print("el global es " + UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount);
         itemscounter = 0;
@@ -213,7 +213,10 @@ public class JobInfo : MonoBehaviour
         if (!string.IsNullOrEmpty(jobTitleText.text))
         {
             UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobDescription = jobTitleText.text;
+            //thisJobDescription.text = jobTitleText.text;
+            AssingJobValues(activeJob);
             UserData.instance.SendInfo();
+
             jobTitleText.text = "";
         }
         else
@@ -269,7 +272,7 @@ public class JobInfo : MonoBehaviour
             UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead = double.Parse(overheadInputfield.text);
             UserData.instance.SendInfo();
             overheadInputfield.text = "";
-            AssingJobValues(activeJob); 
+            AssingJobValues(activeJob);
         }
     }
     public void ProfitChange()
