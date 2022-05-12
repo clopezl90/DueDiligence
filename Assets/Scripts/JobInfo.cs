@@ -42,6 +42,7 @@ public class JobInfo : MonoBehaviour
     public Text jobCustomerText;
     public string noneText = "";
     public Dropdown clientsDropDown;
+    
     [Header("Job estimate")]
     public Text thisJobIssueDate;
     public Text thisJobExpiration;
@@ -193,6 +194,7 @@ public class JobInfo : MonoBehaviour
         }
         clientsDropDown.AddOptions(names);
     }
+    
     public void UpdateEstimateItems()
     {
         CleanEstimateItems();

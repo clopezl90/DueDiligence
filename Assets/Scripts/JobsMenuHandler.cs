@@ -11,6 +11,7 @@ public class JobsMenuHandler : MonoBehaviour
 
     [SerializeField] InputField jobdText;
     [SerializeField] Text jobClientText;
+    [SerializeField] Text jobTemplateText;
     [SerializeField] InputField jobSite;
 
     [SerializeField] Text description;
@@ -18,19 +19,22 @@ public class JobsMenuHandler : MonoBehaviour
     [SerializeField] Text site;
 
     public Clients selectedClient;
-    
+    public Jobs selectedTemplateJob;
+
 
     public GameObject jobsInfo;
     public Transform jobsTransform;
     public GameObject noJobsText;
     public Dropdown clientsDropDown;
+    public Dropdown jobTemplatesDropdown;
+    public string noneText = "";
     public Toggle leadStatus;
-    
-    
-    
 
-    
-    
+
+
+
+
+
     void Start()
     {
         if (UserData.jobsArray.jobsList.Count > 0)
@@ -43,9 +47,11 @@ public class JobsMenuHandler : MonoBehaviour
         }
 
         FillDropdownList();
+        FillTemplatesDropdownList();
     }
-    private void OnEnable() {
-        
+    private void OnEnable()
+    {
+
     }
 
     void Update()
@@ -54,34 +60,50 @@ public class JobsMenuHandler : MonoBehaviour
     }
     public void SendJobs()
     {
-        string stgJobSite = jobSite.text;
-        foreach (Clients client in UserData.clientsArray.clientsList)
+        if (!string.IsNullOrEmpty(jobTemplateText.text))
         {
-            if (client.clientName == jobClientText.text)
+            foreach (Jobs job in UserData.jobTemplatesArray.jobTemplatesList)
             {
-                selectedClient = client;
+                if (job.jobDescription == jobTemplateText.text)
+                {
+                    selectedTemplateJob = job;
+                }
+
             }
-            
-        }            
-        Jobs newJob = new Jobs(jobdText.text, stgJobSite, "Lead");
-        newJob.jobCientObject = selectedClient;
-        UserData.jobsArray.jobsList.Add(newJob);    
-        selectedClient = new Clients("","","","");      
-        foreach (Clients client in UserData.clientsArray.clientsList)
-        {
-            print (jobClientText.text + client.clientName);
-            if (jobClientText.text == client.clientName)
-            {
-                UserData.jobsArray.jobsList[0].jobCientObject = client;                
-            }           
+            UserData.jobsArray.jobsList.Add(selectedTemplateJob);
+
+
         }
-        UpdateJobs();       
+        else
+        {
+            string stgJobSite = jobSite.text;
+            foreach (Clients client in UserData.clientsArray.clientsList)
+            {
+                if (client.clientName == jobClientText.text)
+                {
+                    selectedClient = client;
+                }
+
+            }
+            Jobs newJob = new Jobs(jobdText.text, stgJobSite, "Lead");
+            newJob.jobCientObject = selectedClient;
+            UserData.jobsArray.jobsList.Add(newJob);
+            selectedClient = new Clients("", "", "", "");
+            foreach (Clients client in UserData.clientsArray.clientsList)
+            {
+                print(jobClientText.text + client.clientName);
+                if (jobClientText.text == client.clientName)
+                {
+                    UserData.jobsArray.jobsList[0].jobCientObject = client;
+                }
+            }
+        }
+        UpdateJobs();
         noJobsText.SetActive(false);
-        UserData.instance.SendInfo();        
+        UserData.instance.SendInfo();
         jobdText.text = "";
         jobClientText.text = "";
         jobSite.text = "";
-        
     }
 
     public void UpdateJobs()
@@ -104,7 +126,7 @@ public class JobsMenuHandler : MonoBehaviour
         }
     }
 
-    
+
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
@@ -119,15 +141,27 @@ public class JobsMenuHandler : MonoBehaviour
 
     public void FillDropdownList()
     {
-        List<string> names = new List<string>();        
+        List<string> names = new List<string>();
         foreach (Clients c in UserData.clientsArray.clientsList)
-        {          
+        {
             names.Add(c.clientName);
         }
         clientsDropDown.AddOptions(names);
     }
 
-    
+    public void FillTemplatesDropdownList()
+    {
+        jobTemplatesDropdown.ClearOptions();
+        List<string> templates = new List<string>();
+        templates.Add(noneText);
+        foreach (Jobs c in UserData.jobTemplatesArray.jobTemplatesList)
+        {
+            templates.Add(c.jobDescription);
+        }
+        jobTemplatesDropdown.AddOptions(templates);
+    }
 
-    
+
+
+
 }

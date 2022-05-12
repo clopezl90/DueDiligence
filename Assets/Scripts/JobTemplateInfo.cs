@@ -27,6 +27,7 @@ public class JobTemplateInfo : MonoBehaviour
     public Text jobCustomerText;
     public string noneText = "";
     public Dropdown clientsDropDown;
+    public Dropdown jobTemplatesDropdown;
     [Header("Job estimate")]
     public Text thisJobIssueDate;
     public Text thisJobExpiration;
@@ -153,8 +154,7 @@ public class JobTemplateInfo : MonoBehaviour
         subtotalCounter = 0;
         overheadCouter = 0;
         profitCounter = 0;
-        contingencyCounter = 0;
-        
+        contingencyCounter = 0;        
     }
 
     public void OnBackButton()
@@ -172,6 +172,17 @@ public class JobTemplateInfo : MonoBehaviour
             names.Add(c.clientName);
         }
         clientsDropDown.AddOptions(names);
+    }
+    public void FillTemplatesDropdownList()
+    {
+        jobTemplatesDropdown.ClearOptions();
+        List<string> templates = new List<string>();
+        templates.Add(noneText);
+        foreach (Jobs c in UserData.jobTemplatesArray.jobTemplatesList)
+        {
+            templates.Add(c.jobDescription);
+        }
+        jobTemplatesDropdown.AddOptions(templates);
     }
 
     public void UpdateEstimateItems()
