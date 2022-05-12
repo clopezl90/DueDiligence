@@ -40,7 +40,7 @@ public class JobInfo : MonoBehaviour
     //public Text jobTitletext;
     public Dropdown clientsDropDownCustomer;
     public Text jobCustomerText;
-    public string noneText = "";
+    public string noneText = "None";
     public Dropdown clientsDropDown;
     
     [Header("Job estimate")]
@@ -103,8 +103,6 @@ public class JobInfo : MonoBehaviour
     [Header("TaxesInfo")]
 
     public InputField taxesInputfield;
-
-
     public void Awake()
     {
         instance = this;
@@ -113,7 +111,6 @@ public class JobInfo : MonoBehaviour
     {
 
     }
-
     void Update()
     {
 
@@ -172,7 +169,6 @@ public class JobInfo : MonoBehaviour
         itemFinalPriceWithDiscount.text = "$" + itemFinalPriceCounterDiscount.ToString();
         itemsEstimateFinalPrice.text = "$" + (itemFinalPriceCounterDiscount + taxesCounter).ToString();
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount = itemFinalPriceCounter;
-        print("el global es " + UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount);
         itemscounter = 0;
         subtotalCounter = 0;
         overheadCouter = 0;

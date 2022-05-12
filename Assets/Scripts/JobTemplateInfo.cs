@@ -172,18 +172,7 @@ public class JobTemplateInfo : MonoBehaviour
             names.Add(c.clientName);
         }
         clientsDropDown.AddOptions(names);
-    }
-    public void FillTemplatesDropdownList()
-    {
-        jobTemplatesDropdown.ClearOptions();
-        List<string> templates = new List<string>();
-        templates.Add(noneText);
-        foreach (Jobs c in UserData.jobTemplatesArray.jobTemplatesList)
-        {
-            templates.Add(c.jobDescription);
-        }
-        jobTemplatesDropdown.AddOptions(templates);
-    }
+    }    
 
     public void UpdateEstimateItems()
     {
@@ -303,7 +292,6 @@ public class JobTemplateInfo : MonoBehaviour
             AssingJobTemplateValues(activeTemplateJob);
         }
     }
-
     public void DiscountChange()
     {
         if (!string.IsNullOrEmpty(discountInputfield.text))
@@ -324,7 +312,6 @@ public class JobTemplateInfo : MonoBehaviour
             AssingJobTemplateValues(activeTemplateJob);
         }
     }
-
     public void AssingItemValues(EstimateItems itemToValue)
     {
         itemSelectedName.text = itemToValue.itemName;

@@ -8,7 +8,6 @@ using System;
 
 public class JobsMenuHandler : MonoBehaviour
 {
-
     [SerializeField] InputField jobdText;
     [SerializeField] Text jobClientText;
     [SerializeField] Text jobTemplateText;
@@ -20,21 +19,13 @@ public class JobsMenuHandler : MonoBehaviour
 
     public Clients selectedClient;
     public Jobs selectedTemplateJob;
-
-
     public GameObject jobsInfo;
     public Transform jobsTransform;
     public GameObject noJobsText;
     public Dropdown clientsDropDown;
     public Dropdown jobTemplatesDropdown;
-    public string noneText = "";
+    public string noneText = "None";
     public Toggle leadStatus;
-
-
-
-
-
-
     void Start()
     {
         if (UserData.jobsArray.jobsList.Count > 0)
@@ -53,7 +44,6 @@ public class JobsMenuHandler : MonoBehaviour
     {
 
     }
-
     void Update()
     {
 
@@ -71,8 +61,6 @@ public class JobsMenuHandler : MonoBehaviour
 
             }
             UserData.jobsArray.jobsList.Add(selectedTemplateJob);
-
-
         }
         else
         {
@@ -125,8 +113,6 @@ public class JobsMenuHandler : MonoBehaviour
             _tempgo2.GetComponentInChildren<JobsLoader>().thisJob = p;
         }
     }
-
-
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
@@ -138,7 +124,6 @@ public class JobsMenuHandler : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
     }
-
     public void FillDropdownList()
     {
         List<string> names = new List<string>();
@@ -148,7 +133,6 @@ public class JobsMenuHandler : MonoBehaviour
         }
         clientsDropDown.AddOptions(names);
     }
-
     public void FillTemplatesDropdownList()
     {
         jobTemplatesDropdown.ClearOptions();
@@ -160,8 +144,4 @@ public class JobsMenuHandler : MonoBehaviour
         }
         jobTemplatesDropdown.AddOptions(templates);
     }
-
-
-
-
 }
