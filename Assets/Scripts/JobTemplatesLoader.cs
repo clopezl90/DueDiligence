@@ -20,4 +20,15 @@ public class JobTemplatesLoader : MonoBehaviour
     {
         
     }
+
+    public void SendJobTemplateValues()
+    {
+        JobTemplateInfo.instance.AssingJobTemplateValues(thisJobTemplate);
+        //JobInfo.instance.AssingJobValues(thisJob);        
+        //JobTitleHeader.text = thisJob.jobDescription;
+        /* JobTitleHeader.text = thisJob.jobDescription;
+        jobDescriptionDashboard.text = thisJob.jobDescription; */
+
+
+    }
 }

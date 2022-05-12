@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class JobTemplatesMenuHandler : MonoBehaviour
@@ -14,7 +15,7 @@ public class JobTemplatesMenuHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AddJobTemplates();
+        UpdateJobs();
         
     }
 
@@ -34,7 +35,6 @@ public class JobTemplatesMenuHandler : MonoBehaviour
         UserData.jobTemplatesArray.jobTemplatesList.Add(newTemplateJob3); */
 
     }
-
     public void UpdateJobs()
     {
         //CleanJobs();
@@ -46,5 +46,9 @@ public class JobTemplatesMenuHandler : MonoBehaviour
             GameObject _tempgo2 = Instantiate(jobTemplateInfo, jobTempleteTransform);
             _tempgo2.GetComponentInChildren<JobTemplatesLoader>().thisJobTemplate = p;
         }
+    }
+    public void LoadScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
     }
 }
