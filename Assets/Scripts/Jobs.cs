@@ -28,7 +28,7 @@ public class Jobs
 
     public Jobs (string _jobDescription, string _jobSite, string _jobStatus) 
     {
-        jobDescription =_jobDescription;     
+        jobDescription =_jobDescription;
           
         jobSite = _jobSite;
         jobStatus = _jobStatus;

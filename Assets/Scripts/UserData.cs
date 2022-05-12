@@ -18,6 +18,8 @@ public class UserData : MonoBehaviour
     public static JobsHolder jobsArray;
     public static JobsTemplateHolder jobTemplatesArray;
 
+    
+
     public static UserRecords userRecords;
     public static AccountValidation userValidationInfo;
 
@@ -35,7 +37,7 @@ public class UserData : MonoBehaviour
         instance = this;         
     }
 
-    public void StoreUserData(IClient _client, ISession _session, IApiAccount _account, UserRecords _userRecords, AccountValidation _validationInfo, ClientHolder _clientUser, JobsHolder _jobs)
+    public void StoreUserData(IClient _client, ISession _session, IApiAccount _account, UserRecords _userRecords, AccountValidation _validationInfo, ClientHolder _clientUser, JobsHolder _jobs, JobsTemplateHolder _jobTemplates)
     {
         client = _client;
         //socket = _socket;
@@ -45,10 +47,13 @@ public class UserData : MonoBehaviour
         userValidationInfo = _validationInfo;
         jobsArray = _jobs;  
         clientsArray = _clientUser;  
+        jobTemplatesArray = _jobTemplates;
+
         //retryConfiguration = _retryConfiguration;
         //userRecords.CalculateCurrentLevel();
         //if (_user != null) { user = _user; }        
         print("User Data Stored");    
+        
     }
 
     public void SendInfo() { SendInformation(); }
@@ -95,6 +100,14 @@ public class UserData : MonoBehaviour
             Key = "Jobs",
             Value = JsonUtility.ToJson(jobsArray)
         };
+
+        WriteStorageObject storageObject5 = new WriteStorageObject
+        {
+            Collection = userValidationInfo.email,
+            Key = "JobsTemplates",
+            Value = JsonUtility.ToJson(jobTemplatesArray)
+        };
+        
         
 
         
@@ -111,7 +124,7 @@ public class UserData : MonoBehaviour
             Key = "Jobs",
             Value = JsonUtility.ToJson(jobs)
         }; */
-        IApiWriteStorageObject[] Objects = { storageObject, storageObject3, storageObject4};
+        IApiWriteStorageObject[] Objects = { storageObject, storageObject3, storageObject4,storageObject5};
         await client.WriteStorageObjectsAsync(session, Objects);
     }
 }

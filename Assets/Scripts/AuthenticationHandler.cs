@@ -36,6 +36,7 @@ public class AuthenticationHandler : MonoBehaviour
     public UserRecords tempUserRecords;
     public ClientHolder tempClientArray = new ClientHolder();
     public JobsHolder tempJobsArray = new JobsHolder();
+    public JobsTemplateHolder tempJobsTemplateArray = new JobsTemplateHolder();
     
     public Clients tempClients = new Clients("", "", "", "");
     
@@ -204,7 +205,7 @@ public class AuthenticationHandler : MonoBehaviour
     public void  OnLogin(ISession _session, IApiAccount _account, string _email)
     {
 
-        UserData.instance.StoreUserData(client, session, account, tempUserRecords, validationInfo, tempClientArray, tempJobsArray);
+        UserData.instance.StoreUserData(client, session, account, tempUserRecords, validationInfo, tempClientArray, tempJobsArray, tempJobsTemplateArray);
         StartCoroutine(ShowLoadingPanel());
         LoadScene("MainMenu");
     }
@@ -270,6 +271,8 @@ public class AuthenticationHandler : MonoBehaviour
             //jobsList = new List<Jobs>{tempJob}
             jobsList = new List<Jobs>()
         };
+        
+        JobsTemplateHolder jobTemplatesArray = new JobsTemplateHolder();
 
         ClientHolder clients = new ClientHolder
         {        
@@ -311,7 +314,14 @@ public class AuthenticationHandler : MonoBehaviour
             //Value = JsonUtility.ToJson(jobs)
             Value = JsonUtility.ToJson(jobsArray)
         };
-        IApiWriteStorageObject[] Objects = { storageObject, storageObject3, storageObject4, storageObject5 };
+        WriteStorageObject storageObject6 = new WriteStorageObject
+        {
+            Collection = _email,
+            Key = "JobTemplates",
+            //Value = JsonUtility.ToJson(jobs)
+            Value = JsonUtility.ToJson(jobTemplatesArray)
+        };
+        IApiWriteStorageObject[] Objects = { storageObject, storageObject3, storageObject4, storageObject5, storageObject6};
         await client.WriteStorageObjectsAsync(session, Objects);
     }
 
@@ -341,6 +351,12 @@ public class AuthenticationHandler : MonoBehaviour
                 Collection = _email,
                 Key = "Jobs",
                 UserId = session.UserId
+            },
+            new StorageObjectId
+            {
+                Collection = _email,
+                Key = "JobTemplates",
+                UserId = session.UserId
             }
         };
         IApiStorageObjects objects = await client.ReadStorageObjectsAsync(session, objectsId);
@@ -363,7 +379,9 @@ public class AuthenticationHandler : MonoBehaviour
                 case "Jobs":
                     tempJobsArray = JsonUtility.FromJson<JobsHolder>(userData[i].Value);
                     break;
-                
+                case "JobTemplates":
+                    tempJobsTemplateArray = JsonUtility.FromJson<JobsTemplateHolder>(userData[i].Value);
+                    break;                
             }
         }        
     }
