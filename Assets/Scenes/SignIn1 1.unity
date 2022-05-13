@@ -1610,7 +1610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.056, y: 0.69755256}
   m_AnchorMax: {x: 0.94400007, y: 0.77967125}
-  m_AnchoredPosition: {x: 0, y: -0.69999695}
+  m_AnchoredPosition: {x: 0, y: -0.7000122}
   m_SizeDelta: {x: -2, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &587270266
@@ -3720,6 +3720,35 @@ MonoBehaviour:
     appPurchased: 0
   tempJobsArray:
     jobsList: []
+  tempJobsTemplateArray:
+    jobTemplatesList:
+    - jobDescription: Default Template
+      jobReward: 0
+      jobStatus: Lead
+      jobTag: 
+      jobSite: NoSite
+      jobCientObject:
+        clientName: 
+        clientCompany: 
+        clientPhone: 
+        clientEmail: 
+      jobEstimateObject:
+        issueDate: 
+        expirationPeriod: 30
+        description: None
+        poNumber: 0
+        estimateSubtotal: 0
+        estimateOverhead: 0
+        estimateProfit: 0
+        estimateContingency: 0
+        estimateDiscount: 0
+        estimateList: []
+      overhead: 10
+      profit: 10
+      contingency: 15
+      discount: 0
+      taxes: 10
+      jobGlobalAmount: 0
   tempClients:
     clientName: 
     clientCompany: 

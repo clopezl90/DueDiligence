@@ -50,7 +50,7 @@ public class JobsMenuHandler : MonoBehaviour
     }
     public void SendJobs()
     {
-        if (!string.IsNullOrEmpty(jobTemplateText.text))
+        if (JobInfo.instance.templatetoAdd)
         {
             foreach (Jobs job in UserData.jobTemplatesArray.jobTemplatesList)
             {
@@ -61,8 +61,10 @@ public class JobsMenuHandler : MonoBehaviour
 
             }
             UserData.jobsArray.jobsList.Add(selectedTemplateJob);
+            jobTemplateText.text = "";
+
         }
-        else
+        else if (JobInfo.instance.jobToAddInfo)
         {
             string stgJobSite = jobSite.text;
             foreach (Clients client in UserData.clientsArray.clientsList)

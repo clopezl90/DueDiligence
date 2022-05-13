@@ -21,6 +21,9 @@ public class JobInfo : MonoBehaviour
     public Text thisJobClientCompany;
     public Text thisJobClientPhone;
     public Text thisJobClientEmail;
+    public Toggle toggleJobTemplate;
+    public GameObject jobToAddInfo;
+    public GameObject templatetoAdd;
 
 
     public Text thisJobSite;
@@ -42,7 +45,7 @@ public class JobInfo : MonoBehaviour
     public Text jobCustomerText;
     public string noneText = "None";
     public Dropdown clientsDropDown;
-    
+
     [Header("Job estimate")]
     public Text thisJobIssueDate;
     public Text thisJobExpiration;
@@ -80,7 +83,6 @@ public class JobInfo : MonoBehaviour
     public Transform itemsTransform;
 
     [Header("ItemInfo")]
-
     public InputField itemSelectedName;
     public InputField itemSelectedDescription;
     public InputField itemSelectedQuantity;
@@ -134,7 +136,7 @@ public class JobInfo : MonoBehaviour
         thisJobOverhead.text = jobToValue.overhead.ToString();
         thisJobProfit.text = jobToValue.profit.ToString();
         thisJobContingency.text = jobToValue.contingency.ToString();
-        thisJobDiscount.text = jobToValue.discount.ToString();  
+        thisJobDiscount.text = jobToValue.discount.ToString();
         //Estimate
         thisJobIssueDate.text = jobToValue.jobEstimateObject.issueDate;
         thisJobExpiration.text = jobToValue.jobEstimateObject.expirationPeriod.ToString() + " days";
@@ -179,6 +181,20 @@ public class JobInfo : MonoBehaviour
     {
         AssingJobValues(activeJob);
     }
+
+    public void ToogleJobTemplatechanged()
+    {
+        if (toggleJobTemplate.isOn)
+        {
+            templatetoAdd.SetActive(true);
+            jobToAddInfo.SetActive(false);
+        }
+        else
+        {
+            templatetoAdd.SetActive(false);
+            jobToAddInfo.SetActive(true);
+        }
+    }
     public void FillDropdownList()
     {
         clientsDropDown.ClearOptions();
@@ -190,7 +206,7 @@ public class JobInfo : MonoBehaviour
         }
         clientsDropDown.AddOptions(names);
     }
-    
+
     public void UpdateEstimateItems()
     {
         CleanEstimateItems();
@@ -240,7 +256,6 @@ public class JobInfo : MonoBehaviour
             //thisJobDescription.text = jobTitleText.text;
             AssingJobValues(activeJob);
             UserData.instance.SendInfo();
-
             jobTitleText.text = "";
         }
         else
@@ -275,11 +290,6 @@ public class JobInfo : MonoBehaviour
         itemEstimate.itemMaterialCost = double.Parse(itemMaterialCost.text);
         itemEstimate.itemLaborCost = double.Parse(itemLaborCost.text);
         itemEstimate.itemSubtotal = ((itemEstimate.itemMaterialCost + itemEstimate.itemLaborCost) * itemEstimate.itemQuantity);
-        /* itemEstimate.itemOverhead = itemEstimate.itemSubtotal * 0.1;
-        itemEstimate.itemProfit = itemEstimate.itemSubtotal * 0.1;
-        itemEstimate.itemContingency = itemEstimate.itemSubtotal * 0.15;
-        itemEstimate.itemFinalPrice = itemEstimate.itemOverhead + itemEstimate.itemContingency + itemEstimate.itemContingency; */
-        //UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount = UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobGlobalAmount + itemEstimate.itemFinalPrice;
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobEstimateObject.estimateList.Add(itemEstimate);
         UserData.instance.SendInfo();
         AssingJobValues(activeJob);
@@ -319,7 +329,6 @@ public class JobInfo : MonoBehaviour
             AssingJobValues(activeJob);
         }
     }
-
     public void DiscountChange()
     {
         if (!string.IsNullOrEmpty(discountInputfield.text))
@@ -343,7 +352,6 @@ public class JobInfo : MonoBehaviour
 
     public void AssingItemValues(EstimateItems itemToValue)
     {
-        print("este es el nmomebre del item " + itemToValue.itemName);
         itemSelectedName.text = itemToValue.itemName;
         itemSelectedDescription.text = itemToValue.itemDescription;
         itemSelectedQuantity.text = itemToValue.itemQuantity.ToString();

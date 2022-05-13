@@ -122,14 +122,14 @@ public class JobTemplateInfo : MonoBehaviour
         thisJobEstimateExpiration.text = jobTemplateToValue.jobEstimateObject.description;
         if (jobTemplateToValue.jobEstimateObject.estimateList.Count != 0)
         {
-            foreach (EstimateItems item in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeTemplateJob).jobEstimateObject.estimateList)
+            foreach (EstimateItems item in UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).jobEstimateObject.estimateList)
             {
                 itemscounter++;
-                item.itemOverhead = item.itemSubtotal * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeTemplateJob).overhead / 100);
-                item.itemProfit = item.itemSubtotal * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeTemplateJob).profit / 100);
-                item.itemContingency = item.itemSubtotal * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeTemplateJob).contingency / 100);
-                item.itemDiscount = item.itemSubtotal * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeTemplateJob).discount / 100);
-                item.itemTaxes = item.itemSubtotal * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeTemplateJob).taxes / 100);
+                item.itemOverhead = item.itemSubtotal * (UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).overhead / 100);
+                item.itemProfit = item.itemSubtotal * (UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).profit / 100);
+                item.itemContingency = item.itemSubtotal * (UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).contingency / 100);
+                item.itemDiscount = item.itemSubtotal * (UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).discount / 100);
+                item.itemTaxes = item.itemSubtotal * (UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).taxes / 100);
                 subtotalCounter = subtotalCounter + item.itemSubtotal;
                 overheadCouter = overheadCouter + item.itemOverhead;
                 profitCounter = profitCounter + item.itemProfit;

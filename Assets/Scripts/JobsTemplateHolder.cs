@@ -12,7 +12,7 @@ public class JobsTemplateHolder
     public JobsTemplateHolder ()
     {
         jobTemplatesList = new List <Jobs> ();
-        Jobs template = new Jobs("Template1", "NoSite", "Lead");
+        Jobs template = new Jobs("Default Template", "NoSite", "Lead");
         jobTemplatesList.Add(template);
         // jobTemplatesList.Add(
         //     new Jobs("Template1", "NoSite", "Lead")
