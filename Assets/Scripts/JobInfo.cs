@@ -105,6 +105,20 @@ public class JobInfo : MonoBehaviour
     [Header("TaxesInfo")]
 
     public InputField taxesInputfield;
+
+    [Header("RoomInfo")]
+    public InputField roomNameText;
+    public Text roomTypeText;
+    public InputField roomFootageText;
+    public InputField roomPlugsText;
+    public InputField roomPlatesText;
+    public InputField roomSwitchLightsText;
+
+    public Text roomName;
+    public Text roomFootage;
+    public GameObject roomsInfo;
+    public Transform roomsTransform;
+
     public void Awake()
     {
         instance = this;
@@ -357,6 +371,35 @@ public class JobInfo : MonoBehaviour
         itemSelectedQuantity.text = itemToValue.itemQuantity.ToString();
         itemSelectedMaterialCost.text = itemToValue.itemMaterialCost.ToString();
         itemSelectedLaborCost.text = itemToValue.itemLaborCost.ToString();
+    }
+    public void sendRoom()
+    {
+        RoomData roomData = new RoomData();        
+        roomData.roomName = roomNameText.text;
+        roomData.roomType = roomTypeText.text;
+        roomData.roomFootage = float.Parse(roomFootageText.text);
+        roomData.roomPlugs = float.Parse(roomPlugsText.text);
+        roomData.roomPlates = float.Parse(roomPlatesText.text);
+        roomData.roomSwitchLights = float.Parse(roomSwitchLightsText.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Add(roomData);
+        UserData.instance.SendInfo();
+        AssingJobValues(activeJob);
+        roomNameText.text = "";
+        roomTypeText.text = "";
+        roomFootageText.text = "";
+        roomPlugsText.text = "";
+        roomPlatesText.text = "";
+        roomSwitchLightsText.text = "";
+    }
+    public void UpdateRooms()
+    {
+        //CleanEstimateItems();
+        foreach (RoomData rooms in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList)
+        {
+            roomName.text = rooms.roomName;
+            roomFootage.text = roomFootage.ToString();
+            GameObject _tempGo = Instantiate(roomsInfo, roomsTransform);
+        }
     }
 }
 

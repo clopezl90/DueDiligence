@@ -11,6 +11,7 @@ public class JobsMenuHandler : MonoBehaviour
     [SerializeField] InputField jobdText;
     [SerializeField] Text jobClientText;
     [SerializeField] Text jobTemplateText;
+    [SerializeField] Text projectTypeText;
     [SerializeField] InputField jobSite;
 
     [SerializeField] Text description;
@@ -22,6 +23,7 @@ public class JobsMenuHandler : MonoBehaviour
     public GameObject jobsInfo;
     public Transform jobsTransform;
     public GameObject noJobsText;
+    public Dropdown complexTypeDropDown;
     public Dropdown clientsDropDown;
     public Dropdown jobTemplatesDropdown;
     public string noneText = "None";
@@ -50,7 +52,35 @@ public class JobsMenuHandler : MonoBehaviour
     }
     public void SendJobs()
     {
-        if (JobInfo.instance.templatetoAdd)
+        string stgJobSite = jobSite.text;
+        foreach (Clients client in UserData.clientsArray.clientsList)
+        {
+            if (client.clientName == jobClientText.text)
+            {
+                selectedClient = client;
+            }
+
+        }
+        Jobs newJob = new Jobs(jobdText.text, stgJobSite, "Lead");
+        newJob.jobCientObject = selectedClient;
+        newJob.projectType = projectTypeText.text;
+        UserData.jobsArray.jobsList.Add(newJob);
+        selectedClient = new Clients("", "", "", "");
+        foreach (Clients client in UserData.clientsArray.clientsList)
+        {
+            print(jobClientText.text + client.clientName);
+            if (jobClientText.text == client.clientName)
+            {
+                UserData.jobsArray.jobsList[0].jobCientObject = client;
+            }
+        }
+        UpdateJobs();
+        noJobsText.SetActive(false);
+        UserData.instance.SendInfo();
+        jobdText.text = "";
+        jobClientText.text = "";
+        jobSite.text = "";
+        /* if (JobInfo.instance.templatetoAdd)
         {
             foreach (Jobs job in UserData.jobTemplatesArray.jobTemplatesList)
             {
@@ -77,6 +107,7 @@ public class JobsMenuHandler : MonoBehaviour
             }
             Jobs newJob = new Jobs(jobdText.text, stgJobSite, "Lead");
             newJob.jobCientObject = selectedClient;
+            newJob.projectType = projectTypeText.text;
             UserData.jobsArray.jobsList.Add(newJob);
             selectedClient = new Clients("", "", "", "");
             foreach (Clients client in UserData.clientsArray.clientsList)
@@ -93,7 +124,8 @@ public class JobsMenuHandler : MonoBehaviour
         UserData.instance.SendInfo();
         jobdText.text = "";
         jobClientText.text = "";
-        jobSite.text = "";
+        jobSite.text = ""; */
+
     }
 
     public void UpdateJobs()
@@ -134,6 +166,13 @@ public class JobsMenuHandler : MonoBehaviour
             names.Add(c.clientName);
         }
         clientsDropDown.AddOptions(names);
+
+        List<string> complexType = new List<string>();
+
+        complexType.Add("Single-family");
+        complexType.Add("Multi-family");
+
+        complexTypeDropDown.AddOptions(complexType);
     }
     public void FillTemplatesDropdownList()
     {
