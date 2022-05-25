@@ -118,6 +118,16 @@ public class JobInfo : MonoBehaviour
     public Text roomFootage;
     public GameObject roomsInfo;
     public Transform roomsTransform;
+    public Dropdown roomTypeDropdown;
+    public Text bedroomsTotalFootage;
+    public float footageBedroomsCounter;
+    public float footageHalfbathCounter;
+    public float footageFullbathCounter;
+    public float footageKitchenCounter;
+    public float footageLivingCounter;
+    public float footageDinningCounter;
+
+
 
     public void Awake()
     {
@@ -190,6 +200,28 @@ public class JobInfo : MonoBehaviour
         overheadCouter = 0;
         profitCounter = 0;
         contingencyCounter = 0;
+        
+        foreach (RoomData room in activeJob.roomsList)
+        {
+            if (room.roomType == "Bedroom")
+            {
+                footageBedroomsCounter = footageBedroomsCounter + room.roomFootage;
+            }
+            if (room.roomType == "Half bath")
+            {
+                footageHalfbathCounter = footageHalfbathCounter + room.roomFootage;
+            }
+            if (room.roomType == "Full bath")
+            {
+                footageFullbathCounter = footageFullbathCounter + room.roomFootage;
+            }
+
+        }
+        bedroomsTotalFootage.text = footageBedroomsCounter.ToString() + " ft2";
+        footageBedroomsCounter = 0;
+
+
+
     }
     public void OnBackButton()
     {
@@ -363,7 +395,6 @@ public class JobInfo : MonoBehaviour
             AssingJobValues(activeJob);
         }
     }
-
     public void AssingItemValues(EstimateItems itemToValue)
     {
         itemSelectedName.text = itemToValue.itemName;
@@ -393,13 +424,35 @@ public class JobInfo : MonoBehaviour
     }
     public void UpdateRooms()
     {
-        //CleanEstimateItems();
+        CleanRoomItems();
+        FillRoomTypeDropdown();
+        AssingJobValues(activeJob);
         foreach (RoomData rooms in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList)
         {
             roomName.text = rooms.roomName;
-            roomFootage.text = roomFootage.ToString();
+            roomFootage.text = rooms.roomFootage.ToString() + " ft2";
             GameObject _tempGo = Instantiate(roomsInfo, roomsTransform);
         }
+    }
+
+    public void CleanRoomItems()
+    {
+        foreach (Transform child in roomsTransform.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+    }
+
+    public void FillRoomTypeDropdown()
+    {
+        List<string> roomType = new List<string>();
+        roomType.Add("Living room");
+        roomType.Add("Bedroom");
+        roomType.Add("Kitchen");
+        roomType.Add("Dinning room");
+        roomType.Add("Full bath");
+        roomType.Add("Half bath");
+        roomTypeDropdown.AddOptions(roomType);
     }
 }
 
