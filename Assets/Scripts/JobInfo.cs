@@ -120,12 +120,19 @@ public class JobInfo : MonoBehaviour
     public Transform roomsTransform;
     public Dropdown roomTypeDropdown;
     public Text bedroomsTotalFootage;
+    public Text halfBathTotalFootage;
+    public Text fullBathTotalFootage;
+    public Text kitchenTotalFootage;
+    public Text livingRoomsTotalFootage;
+    public Text dinningRoomsTotalFootage;
+    public Text projectTotalFootage;
     public float footageBedroomsCounter;
     public float footageHalfbathCounter;
     public float footageFullbathCounter;
     public float footageKitchenCounter;
     public float footageLivingCounter;
     public float footageDinningCounter;
+    public float totalFootage;
 
 
 
@@ -200,7 +207,7 @@ public class JobInfo : MonoBehaviour
         overheadCouter = 0;
         profitCounter = 0;
         contingencyCounter = 0;
-        
+
         foreach (RoomData room in activeJob.roomsList)
         {
             if (room.roomType == "Bedroom")
@@ -215,13 +222,33 @@ public class JobInfo : MonoBehaviour
             {
                 footageFullbathCounter = footageFullbathCounter + room.roomFootage;
             }
-
+            if (room.roomType == "Kitchen")
+            {
+                footageKitchenCounter = footageKitchenCounter + room.roomFootage;
+            }
+            if (room.roomType == "Dinning room")
+            {
+                footageDinningCounter = footageDinningCounter + room.roomFootage;
+            }
+            if (room.roomType == "Living room")
+            {
+                footageLivingCounter = footageLivingCounter + room.roomFootage;
+            }
         }
         bedroomsTotalFootage.text = footageBedroomsCounter.ToString() + " ft2";
+        halfBathTotalFootage.text = footageHalfbathCounter.ToString() + " ft2";
+        fullBathTotalFootage.text = footageFullbathCounter.ToString() + " ft2";
+        kitchenTotalFootage.text = footageKitchenCounter.ToString() + " ft2";
+        dinningRoomsTotalFootage.text = footageDinningCounter.ToString() + " ft2";
+        livingRoomsTotalFootage.text = footageLivingCounter.ToString() + " ft2";        
+        totalFootage = footageBedroomsCounter + footageHalfbathCounter + footageFullbathCounter + footageKitchenCounter + footageDinningCounter + footageLivingCounter;
+        projectTotalFootage.text = totalFootage.ToString() + " ft2";
         footageBedroomsCounter = 0;
-
-
-
+        footageHalfbathCounter = 0;
+        footageFullbathCounter = 0;
+        footageKitchenCounter = 0;
+        footageDinningCounter = 0;
+        footageLivingCounter = 0;
     }
     public void OnBackButton()
     {
@@ -405,7 +432,7 @@ public class JobInfo : MonoBehaviour
     }
     public void sendRoom()
     {
-        RoomData roomData = new RoomData();        
+        RoomData roomData = new RoomData();
         roomData.roomName = roomNameText.text;
         roomData.roomType = roomTypeText.text;
         roomData.roomFootage = float.Parse(roomFootageText.text);

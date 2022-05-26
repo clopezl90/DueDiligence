@@ -3810,12 +3810,14 @@ MonoBehaviour:
         estimateContingency: 0
         estimateDiscount: 0
         estimateList: []
+      projectType: 
       overhead: 10
       profit: 10
       contingency: 15
       discount: 0
       taxes: 10
       jobGlobalAmount: 0
+      roomsList: []
   tempClients:
     clientName: 
     clientCompany: 
@@ -3843,12 +3845,14 @@ MonoBehaviour:
       estimateContingency: 0
       estimateDiscount: 0
       estimateList: []
+    projectType: 
     overhead: 10
     profit: 10
     contingency: 15
     discount: 0
     taxes: 10
     jobGlobalAmount: 0
+    roomsList: []
 --- !u!1 &1352174245
 GameObject:
   m_ObjectHideFlags: 0

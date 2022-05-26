@@ -460,7 +460,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.040185183, y: 0}
   m_AnchorMax: {x: 0.96400005, y: 0.99500006}
-  m_AnchoredPosition: {x: -2.4999695, y: 5}
+  m_AnchoredPosition: {x: -2.499939, y: 5}
   m_SizeDelta: {x: 3, y: -8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &444186537
@@ -2221,7 +2221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2505227189405135151, guid: fa340c316df51cb4fa8d285bc4d959f0, type: 3}
       propertyPath: m_Text
-      value: 'JOBS
+      value: 'PROJECTS
 
 '
       objectReference: {fileID: 0}
@@ -2906,7 +2906,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.054, y: 0.88100004}
   m_AnchorMax: {x: 0.9464064, y: 0.94189465}
-  m_AnchoredPosition: {x: 1, y: 1.4719849}
+  m_AnchoredPosition: {x: 1, y: 1.4720459}
   m_SizeDelta: {x: -2, y: -0.769001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2057126405
