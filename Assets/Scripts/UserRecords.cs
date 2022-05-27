@@ -10,12 +10,12 @@ public class UserRecords
 {
     public bool tutorial;
     public bool appPurchased;
-    public string companyName = "EasyTest";
-    public string companySite = "New York";
-    public string companyEmail = "easy@easy.co";
-    public string companyphone = "321654987";
-    public string companyWebsite = "www.easycoding.co";
-    public string measurementUnitInUse = "meters";
+    public string companyName = "";
+    public string companySite = "";
+    public string companyEmail = "";
+    public string companyphone = "";
+    public string companyWebsite = "";
+    public string measurementUnitInUse = "";
     public string [] measurementUnits;
     public string currencyInUse;
     public string [] currency;
