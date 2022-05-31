@@ -25,6 +25,7 @@ public class Jobs
     public double taxes = 10;
     public double jobGlobalAmount;
     public List <RoomData> roomsList = new List <RoomData> ();
+    public List <bedroomTypeData> bedroomsTypeList = new List<bedroomTypeData>();
     
 
 
