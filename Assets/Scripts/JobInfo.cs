@@ -123,6 +123,8 @@ public class JobInfo : MonoBehaviour
     public Text apartmentFootageText;
     public GameObject roomsInfo;
     public Transform roomsTransform;
+    public GameObject apartmentsInfo;
+    public Transform apartmentsTransform;
     public Dropdown roomTypeDropdown;
     public Dropdown roomMultifamilyTypeDropdown;
     public Text bedroomsTotalFootage;
@@ -525,14 +527,23 @@ public class JobInfo : MonoBehaviour
 
     public void UpdateMultiFamilyRooms()
     {
-        CleanRoomItems();
+        CleanMultifamilyRoomsItems();
         AssingJobValues(activeJob);
         foreach (bedroomTypeData bedroomType in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList)
         {
             apartmentText.text = bedroomType.bedroomType;
             apartmentFootageText.text = (bedroomType.multiroomfootage + bedroomType.footageHalfBaths + bedroomType.footageFullBaths).ToString() + " ft2";
-            GameObject _tempGo = Instantiate(roomsInfo, roomsTransform);
+            GameObject _tempGo = Instantiate(apartmentsInfo, apartmentsTransform);
         }
+    }
+
+    public void CleanMultifamilyRoomsItems()
+    {
+        foreach (Transform child in apartmentsTransform.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
     }
 }
 

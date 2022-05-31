@@ -54177,8 +54177,12 @@ MonoBehaviour:
   roomSwitchLightsText: {fileID: 1272215091}
   roomName: {fileID: 122495321}
   roomFootage: {fileID: 122495320}
+  apartmentText: {fileID: 0}
+  apartmentFootageText: {fileID: 0}
   roomsInfo: {fileID: 122495319}
   roomsTransform: {fileID: 1035998129}
+  apartmentsInfo: {fileID: 122495319}
+  apartmentsTransform: {fileID: 369344222}
   roomTypeDropdown: {fileID: 314223298}
   roomMultifamilyTypeDropdown: {fileID: 1463432191}
   bedroomsTotalFootage: {fileID: 759029860}
