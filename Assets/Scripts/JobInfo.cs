@@ -116,11 +116,16 @@ public class JobInfo : MonoBehaviour
     public InputField roomPlugsText;
     public InputField roomPlatesText;
     public InputField roomSwitchLightsText;
+    
+    // Single family
 
     public Text roomName;
     public Text roomFootage;
     public Text apartmentText;
     public Text apartmentFootageText;
+    public Text apartmentFullbathsText;
+    public Text apartmentHalfBathText;
+    public Text numberInComplexText;
     public GameObject roomsInfo;
     public Transform roomsTransform;
     public GameObject apartmentsInfo;
@@ -142,19 +147,36 @@ public class JobInfo : MonoBehaviour
     public float footageDinningCounter;
     public float totalFootage;
 
+    //Multifamily
+
     public Text bedroomTypeText;
-    public Text multiroomQuantityInComplexText;
-    public Text multiroomFootageText;
-    public Text multiroomPlugstext;
-    public Text multiroomSwitchLightsText;
-    public Text numberHalfBathsText;
-    public Text footageHalfBathsText;
-    public Text numberPlugsHalfBathsText;
-    public Text numberSwitchesHalfBathsText;
-    public Text numberFullbathsText;
-    public Text footageFullBathsText;
-    public Text numberPlugsFullBathsText;
-    public Text numberSwitchesFullBathsText;
+    public InputField multiroomQuantityInComplexText;
+    public InputField multiroomFootageText;
+    public InputField multiroomPlugstext;
+    public InputField multiroomSwitchLightsText;
+    public InputField numberHalfBathsText;
+    public InputField footageHalfBathsText;
+    public InputField numberPlugsHalfBathsText;
+    public InputField numberSwitchesHalfBathsText;
+    public InputField numberFullbathsText;
+    public InputField footageFullBathsText;
+    public InputField numberPlugsFullBathsText;
+    public InputField numberSwitchesFullBathsText;
+
+    float oneBedroomApartmentsFootageCounter;
+    float twoBedroomApartmentsFootageCounter;
+    float threeBedroomApartmentsFootageCounter;
+    float halfBathApartmentsFootagecounter;
+    float fullBathApartmentsFootageCounter;
+    float switchesApartmensCounter;
+    float plugsApartmentsCounter;
+    public Text switchesApartmentsText;
+    public Text plugsApartmentsText;
+    public Text halfBathFootageText;
+    public Text fullBathFootageText;
+    public Text totalApartmentsfootageText;
+    
+    
 
     public void Awake()
     {
@@ -228,6 +250,8 @@ public class JobInfo : MonoBehaviour
         profitCounter = 0;
         contingencyCounter = 0;
 
+        //Singlefamily
+
         foreach (RoomData room in activeJob.roomsList)
         {
             if (room.roomType == "Bedroom")
@@ -252,11 +276,39 @@ public class JobInfo : MonoBehaviour
         totalFootage = footageBedroomsCounter + footageHalfbathCounter + footageFullbathCounter + footageKitchenCounter + footageDinningCounter + footageLivingCounter;
         projectTotalFootage.text = totalFootage.ToString() + " ft2";
         footageBedroomsCounter = 0;
-        footageHalfbathCounter = 0;
-        footageFullbathCounter = 0;
-        footageKitchenCounter = 0;
-        footageDinningCounter = 0;
-        footageLivingCounter = 0;
+
+        // Multifamily
+        foreach (bedroomTypeData item in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList)
+        {
+            if (item.bedroomType == "1-Bedroom Apartments")
+            {
+                oneBedroomApartmentsFootageCounter = oneBedroomApartmentsFootageCounter +item.multiroomfootage;
+            }
+            if (item.bedroomType == "2-Bedrooms Apartments")
+            {
+                twoBedroomApartmentsFootageCounter = twoBedroomApartmentsFootageCounter +item.multiroomfootage;
+            }
+            if (item.bedroomType == "3-Bedrooms Apartments")
+            {
+                threeBedroomApartmentsFootageCounter = threeBedroomApartmentsFootageCounter +item.multiroomfootage;
+            }
+            halfBathApartmentsFootagecounter = halfBathApartmentsFootagecounter + item.footageHalfBaths;
+            fullBathApartmentsFootageCounter = fullBathApartmentsFootageCounter + item.footageFullBaths;
+            switchesApartmensCounter = switchesApartmensCounter + (item.multiroomSwitchLights + item.numberSwitchesFullBaths+item.numberSwitchesHalfBaths);
+            plugsApartmentsCounter = plugsApartmentsCounter + (item.multiroomPlugs+item.numberPlugsFullBaths+item.numberPlugsHalfBaths); 
+        }
+        switchesApartmentsText.text = switchesApartmensCounter.ToString();
+        plugsApartmentsText.text = plugsApartmentsCounter.ToString();
+        halfBathFootageText.text = halfBathApartmentsFootagecounter.ToString() +" ft2";
+        fullBathFootageText.text = fullBathApartmentsFootageCounter.ToString() +" ft2";
+        totalApartmentsfootageText.text = (oneBedroomApartmentsFootageCounter+twoBedroomApartmentsFootageCounter+threeBedroomApartmentsFootageCounter+halfBathApartmentsFootagecounter+fullBathApartmentsFootageCounter).ToString() +" ft2";
+        oneBedroomApartmentsFootageCounter = 0;
+        twoBedroomApartmentsFootageCounter = 0;
+        threeBedroomApartmentsFootageCounter = 0;
+        switchesApartmensCounter = 0;
+        plugsApartmentsCounter = 0;
+        halfBathApartmentsFootagecounter = 0;
+        fullBathApartmentsFootageCounter = 0;
     }
     public void OnBackButton()
     {
@@ -469,7 +521,6 @@ public class JobInfo : MonoBehaviour
             GameObject _tempGo = Instantiate(roomsInfo, roomsTransform);
         }
     }
-
     public void CleanRoomItems()
     {
         foreach (Transform child in roomsTransform.transform)
@@ -492,12 +543,11 @@ public class JobInfo : MonoBehaviour
     public void FillMultifamilyRoomType()
     {
         List<string> roomMultiFamilyType = new List<string>();
-        roomMultiFamilyType.Add("1-Bedroom");
-        roomMultiFamilyType.Add("2-Bedroom");
-        roomMultiFamilyType.Add("3-Bedroom");        
+        roomMultiFamilyType.Add("1-Bedroom Apartments");
+        roomMultiFamilyType.Add("2-Bedrooms Apartments");
+        roomMultiFamilyType.Add("3-Bedrooms Apartments");
         roomMultifamilyTypeDropdown.AddOptions(roomMultiFamilyType);
     }
-
     public void sendMultifamilyRoom()
     {
         bedroomTypeData bedroomTypeToAdd = new bedroomTypeData();
@@ -552,6 +602,9 @@ public class JobInfo : MonoBehaviour
         {
             apartmentText.text = bedroomType.bedroomType;
             apartmentFootageText.text = (bedroomType.multiroomfootage + bedroomType.footageHalfBaths + bedroomType.footageFullBaths).ToString() + " ft2";
+            apartmentFullbathsText.text = bedroomType.numberFullbaths.ToString();
+            apartmentHalfBathText.text = bedroomType.numberHalfBaths.ToString();
+            numberInComplexText.text = bedroomType.multiroomQuantityInComplex.ToString();
             GameObject _tempGo = Instantiate(apartmentsInfo, apartmentsTransform);
         }
     }
