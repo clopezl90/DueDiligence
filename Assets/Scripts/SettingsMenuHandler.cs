@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SettingsMenuHandler : MonoBehaviour
 {
@@ -78,6 +79,10 @@ public class SettingsMenuHandler : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
+    }
+    public void LoadScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
     }
 
 }

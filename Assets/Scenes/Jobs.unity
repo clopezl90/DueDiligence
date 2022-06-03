@@ -52831,8 +52831,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 521618274}
   - {fileID: 1635702310}
+  - {fileID: 1432588971}
   m_Father: {fileID: 1997879485}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.083}
@@ -54259,12 +54259,19 @@ MonoBehaviour:
   roomTypeDropdown: {fileID: 314223298}
   roomMultifamilyTypeDropdown: {fileID: 1463432191}
   bedroomsTotalFootage: {fileID: 759029860}
+  halfBathTotalFootage: {fileID: 1162056062}
+  fullBathTotalFootage: {fileID: 454989475}
+  kitchenTotalFootage: {fileID: 1635702311}
+  livingRoomsTotalFootage: {fileID: 2103314857}
+  dinningRoomsTotalFootage: {fileID: 2119271100}
+  projectTotalFootage: {fileID: 1894878526}
   footageBedroomsCounter: 0
   footageHalfbathCounter: 0
   footageFullbathCounter: 0
   footageKitchenCounter: 0
   footageLivingCounter: 0
   footageDinningCounter: 0
+  totalFootage: 0
   bedroomTypeText: {fileID: 440172506}
   multiroomQuantityInComplexText: {fileID: 1677438943}
   multiroomFootageText: {fileID: 1302183981}
@@ -58557,6 +58564,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1430917526}
+  m_CullTransparentMesh: 1
+--- !u!1 &1432588970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1432588971}
+  - component: {fileID: 1432588973}
+  - component: {fileID: 1432588972}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1432588971
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432588970}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1290762904}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.772, y: 0.92}
+  m_AnchoredPosition: {x: 5, y: 1}
+  m_SizeDelta: {x: -11, y: -4.181198}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1432588972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432588970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.01886791, g: 0.01886791, b: 0.01886791, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: d508f1cc17c8b4440b7df07493fae219, type: 3}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Kitchen
+--- !u!222 &1432588973
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432588970}
   m_CullTransparentMesh: 1
 --- !u!1 &1433266934
 GameObject:
@@ -67634,7 +67720,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1290762904}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.77947825, y: 0.026666667}
   m_AnchorMax: {x: 0.98700005, y: 0.9066667}
@@ -88508,12 +88594,19 @@ MonoBehaviour:
   roomTypeDropdown: {fileID: 0}
   roomMultifamilyTypeDropdown: {fileID: 0}
   bedroomsTotalFootage: {fileID: 0}
+  halfBathTotalFootage: {fileID: 0}
+  fullBathTotalFootage: {fileID: 0}
+  kitchenTotalFootage: {fileID: 0}
+  livingRoomsTotalFootage: {fileID: 0}
+  dinningRoomsTotalFootage: {fileID: 0}
+  projectTotalFootage: {fileID: 0}
   footageBedroomsCounter: 0
   footageHalfbathCounter: 0
   footageFullbathCounter: 0
   footageKitchenCounter: 0
   footageLivingCounter: 0
   footageDinningCounter: 0
+  totalFootage: 0
   bedroomTypeText: {fileID: 0}
   multiroomQuantityInComplexText: {fileID: 0}
   multiroomFootageText: {fileID: 0}
