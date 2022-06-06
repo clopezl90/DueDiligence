@@ -18,12 +18,12 @@ public class Jobs
     public JobEstimate jobEstimateObject;
     public JobPayments jobPaymentsObject;
     public string projectType;
-    public double overhead = 10;
-    public double profit = 10;
-    public double contingency = 15;
-    public double discount = 0; 
-    public double taxes = 10;
-    public double jobGlobalAmount;
+    public float overhead = 10;
+    public float profit = 10;
+    public float contingency = 15;
+    public float discount = 0; 
+    public float taxes = 10;
+    public float jobGlobalAmount;
     public List <RoomData> roomsList = new List <RoomData> ();
     public List <bedroomTypeData> bedroomsTypeList = new List<bedroomTypeData>();
     

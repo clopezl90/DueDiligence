@@ -3749,7 +3749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scheme: http
-  host: 127.0.0.1
+  host: 165.227.196.154
   port: 7350
   serverKey: defaultkey
   newUser:
@@ -3818,6 +3818,7 @@ MonoBehaviour:
       taxes: 10
       jobGlobalAmount: 0
       roomsList: []
+      bedroomsTypeList: []
   tempClients:
     clientName: 
     clientCompany: 
@@ -3853,6 +3854,7 @@ MonoBehaviour:
     taxes: 10
     jobGlobalAmount: 0
     roomsList: []
+    bedroomsTypeList: []
 --- !u!1 &1352174245
 GameObject:
   m_ObjectHideFlags: 0

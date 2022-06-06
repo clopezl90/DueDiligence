@@ -11,18 +11,18 @@ public class EstimateItems
     public string itemDescription;
     public int itemQuantity;
     // costs
-    public double itemMaterialCost;
-    public double itemLaborCost;
-    public double itemEquipmentCost;
-    public double itemOtherCost;
-    public double itemSubcontractCost;
-    public double itemSubtotal;
-    public double itemFinalPrice;
-    public double itemOverhead;
-    public double itemProfit;
-    public double itemContingency;
-    public double itemDiscount;
-    public double itemTaxes;
+    public float itemMaterialCost;
+    public float itemLaborCost;
+    public float itemEquipmentCost;
+    public float itemOtherCost;
+    public float itemSubcontractCost;
+    public float itemSubtotal;
+    public float itemFinalPrice;
+    public float itemOverhead;
+    public float itemProfit;
+    public float itemContingency;
+    public float itemDiscount;
+    public float itemTaxes;
     
     public EstimateItems (string _itemName)
     {

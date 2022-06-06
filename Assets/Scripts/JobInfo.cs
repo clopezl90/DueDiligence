@@ -8,6 +8,7 @@ public class JobInfo : MonoBehaviour
 {
     public static JobInfo instance;
     public Jobs activeJob;
+    public RoomData activeRoom;
     public Clients thisJobClientsObject;
     public Text mainTitleJob;
     [Header("Instances")]
@@ -69,15 +70,15 @@ public class JobInfo : MonoBehaviour
     public Text itemsEstimateFinalPrice;
     public Text itemText;
     public Text itemCost;
-    double subtotalCounter;
-    double overheadCouter;
-    double profitCounter;
-    double contingencyCounter;
-    double discountCounter;
-    double taxesCounter;
-    double itemFinalPriceCounter;
-    double itemFinalPriceCounterDiscount;
-    double itemFinalPriceCounterTaxes;
+    float subtotalCounter;
+    float overheadCouter;
+    float profitCounter;
+    float contingencyCounter;
+    float discountCounter;
+    float taxesCounter;
+    float itemFinalPriceCounter;
+    float itemFinalPriceCounterDiscount;
+    float itemFinalPriceCounterTaxes;
     int itemscounter = 0;
     public GameObject itemsInfo;
     public Transform itemsTransform;
@@ -116,7 +117,7 @@ public class JobInfo : MonoBehaviour
     public InputField roomPlugsText;
     public InputField roomPlatesText;
     public InputField roomSwitchLightsText;
-    
+
     // Single family
 
     public Text roomName;
@@ -147,6 +148,46 @@ public class JobInfo : MonoBehaviour
     public float footageDinningCounter;
     public float totalFootage;
 
+    public Text roomNameItemCost;
+    public Text roomFootageItemCost;
+    public Text roomTypeItemCost;
+    public GameObject roomsInfoItemCost;
+    public Transform roomsTransformItemCost;
+
+    //single family room info panel 
+    public Text roomTypeItemNameText;
+    public Text roomTypeItemTypeText;
+    public Text roomTypeItemFootageText;
+    public Text roomTypeItemPaintPercentageText;
+    public Text roomTypeItemPaintMaterialCostText;
+    public Text roomTypeItemPaintLaborCostText;
+    public Text roomTypeItemPlugsText;
+    public Text roomTypeItemPlugsMaterialCostText;
+    public Text roomTypeItemPlugsLaborCostText;
+    public Text roomTypeItemSwitchesText;
+    public Text roomTypeItemSwitchesMaterialCostText;
+    public Text roomTypeItemSwitchesLaborCostText;
+
+    
+    public InputField roomTypeItemPaintPercentageInput;
+    public InputField roomTypeItemPaintMaterialCostInput;
+    public InputField roomTypeItemPaintLaborCostInput;    
+    public InputField roomTypeItemPlugsMaterialCostInput;
+    public InputField roomTypeItemPlugsLaborCostInput;    
+    public InputField roomTypeItemSwitchesMaterialCostInput;
+    public InputField roomTypeItemSwitchesLaborCostInput;
+    public Transform SingleFamilyRoomItemsTransform;
+
+    public Text subtotalSingleRoomText;
+    public Text overheadSingleRoomText;
+    public Text profitSingleRoomText;
+    public Text contingencySingleRoomText;
+    public Text markUpSingleRoomText;
+    public Text discountSingleRoomText;
+    public Text withDiscountSingleRoomText;
+    public Text finalPriceSingleRoomText;
+
+
     //Multifamily
 
     public Text bedroomTypeText;
@@ -175,7 +216,6 @@ public class JobInfo : MonoBehaviour
     public Text halfBathFootageText;
     public Text fullBathFootageText;
     public Text totalApartmentsfootageText;
-    
     
 
     public void Awake()
@@ -272,7 +312,7 @@ public class JobInfo : MonoBehaviour
         fullBathTotalFootage.text = footageFullbathCounter.ToString() + " ft2";
         kitchenTotalFootage.text = footageKitchenCounter.ToString() + " ft2";
         dinningRoomsTotalFootage.text = footageDinningCounter.ToString() + " ft2";
-        livingRoomsTotalFootage.text = footageLivingCounter.ToString() + " ft2";        
+        livingRoomsTotalFootage.text = footageLivingCounter.ToString() + " ft2";
         totalFootage = footageBedroomsCounter + footageHalfbathCounter + footageFullbathCounter + footageKitchenCounter + footageDinningCounter + footageLivingCounter;
         projectTotalFootage.text = totalFootage.ToString() + " ft2";
         footageBedroomsCounter = 0;
@@ -282,26 +322,26 @@ public class JobInfo : MonoBehaviour
         {
             if (item.bedroomType == "1-Bedroom Apartments")
             {
-                oneBedroomApartmentsFootageCounter = oneBedroomApartmentsFootageCounter +item.multiroomfootage;
+                oneBedroomApartmentsFootageCounter = oneBedroomApartmentsFootageCounter + item.multiroomfootage;
             }
             if (item.bedroomType == "2-Bedrooms Apartments")
             {
-                twoBedroomApartmentsFootageCounter = twoBedroomApartmentsFootageCounter +item.multiroomfootage;
+                twoBedroomApartmentsFootageCounter = twoBedroomApartmentsFootageCounter + item.multiroomfootage;
             }
             if (item.bedroomType == "3-Bedrooms Apartments")
             {
-                threeBedroomApartmentsFootageCounter = threeBedroomApartmentsFootageCounter +item.multiroomfootage;
+                threeBedroomApartmentsFootageCounter = threeBedroomApartmentsFootageCounter + item.multiroomfootage;
             }
             halfBathApartmentsFootagecounter = halfBathApartmentsFootagecounter + item.footageHalfBaths;
             fullBathApartmentsFootageCounter = fullBathApartmentsFootageCounter + item.footageFullBaths;
-            switchesApartmensCounter = switchesApartmensCounter + (item.multiroomSwitchLights + item.numberSwitchesFullBaths+item.numberSwitchesHalfBaths);
-            plugsApartmentsCounter = plugsApartmentsCounter + (item.multiroomPlugs+item.numberPlugsFullBaths+item.numberPlugsHalfBaths); 
+            switchesApartmensCounter = switchesApartmensCounter + (item.multiroomSwitchLights + item.numberSwitchesFullBaths + item.numberSwitchesHalfBaths);
+            plugsApartmentsCounter = plugsApartmentsCounter + (item.multiroomPlugs + item.numberPlugsFullBaths + item.numberPlugsHalfBaths);
         }
         switchesApartmentsText.text = switchesApartmensCounter.ToString();
         plugsApartmentsText.text = plugsApartmentsCounter.ToString();
-        halfBathFootageText.text = halfBathApartmentsFootagecounter.ToString() +" ft2";
-        fullBathFootageText.text = fullBathApartmentsFootageCounter.ToString() +" ft2";
-        totalApartmentsfootageText.text = (oneBedroomApartmentsFootageCounter+twoBedroomApartmentsFootageCounter+threeBedroomApartmentsFootageCounter+halfBathApartmentsFootagecounter+fullBathApartmentsFootageCounter).ToString() +" ft2";
+        halfBathFootageText.text = halfBathApartmentsFootagecounter.ToString() + " ft2";
+        fullBathFootageText.text = fullBathApartmentsFootageCounter.ToString() + " ft2";
+        totalApartmentsfootageText.text = (oneBedroomApartmentsFootageCounter + twoBedroomApartmentsFootageCounter + threeBedroomApartmentsFootageCounter + halfBathApartmentsFootagecounter + fullBathApartmentsFootageCounter).ToString() + " ft2";
         oneBedroomApartmentsFootageCounter = 0;
         twoBedroomApartmentsFootageCounter = 0;
         threeBedroomApartmentsFootageCounter = 0;
@@ -420,8 +460,8 @@ public class JobInfo : MonoBehaviour
         EstimateItems itemEstimate = new EstimateItems(itemName.text);
         itemEstimate.itemDescription = itemDescription.text;
         itemEstimate.itemQuantity = int.Parse(itemQuantity.text);
-        itemEstimate.itemMaterialCost = double.Parse(itemMaterialCost.text);
-        itemEstimate.itemLaborCost = double.Parse(itemLaborCost.text);
+        itemEstimate.itemMaterialCost = float.Parse(itemMaterialCost.text);
+        itemEstimate.itemLaborCost = float.Parse(itemLaborCost.text);
         itemEstimate.itemSubtotal = ((itemEstimate.itemMaterialCost + itemEstimate.itemLaborCost) * itemEstimate.itemQuantity);
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).jobEstimateObject.estimateList.Add(itemEstimate);
         UserData.instance.SendInfo();
@@ -436,7 +476,7 @@ public class JobInfo : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(overheadInputfield.text))
         {
-            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead = double.Parse(overheadInputfield.text);
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead = float.Parse(overheadInputfield.text);
             UserData.instance.SendInfo();
             overheadInputfield.text = "";
             AssingJobValues(activeJob);
@@ -446,7 +486,7 @@ public class JobInfo : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(profitInputfield.text))
         {
-            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit = double.Parse(profitInputfield.text);
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit = float.Parse(profitInputfield.text);
             UserData.instance.SendInfo();
             profitInputfield.text = "";
             AssingJobValues(activeJob);
@@ -456,7 +496,7 @@ public class JobInfo : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(contingencyInputfield.text))
         {
-            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency = double.Parse(contingencyInputfield.text);
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency = float.Parse(contingencyInputfield.text);
             UserData.instance.SendInfo();
             contingencyInputfield.text = "";
             AssingJobValues(activeJob);
@@ -466,7 +506,7 @@ public class JobInfo : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(discountInputfield.text))
         {
-            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).discount = double.Parse(discountInputfield.text);
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).discount = float.Parse(discountInputfield.text);
             UserData.instance.SendInfo();
             discountInputfield.text = "";
             AssingJobValues(activeJob);
@@ -476,7 +516,7 @@ public class JobInfo : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(taxesInputfield.text))
         {
-            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).taxes = double.Parse(taxesInputfield.text);
+            UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).taxes = float.Parse(taxesInputfield.text);
             UserData.instance.SendInfo();
             taxesInputfield.text = "";
             AssingJobValues(activeJob);
@@ -586,11 +626,14 @@ public class JobInfo : MonoBehaviour
     {
         if (activeJob.projectType == "Multi-family")
         {
-            addMultifamilyUI.SetActive(true);
+            addMultifamilyUI.SetActive(true);            
+            FillMultifamilyRoomType();
+            UpdateMultiFamilyRooms();
         }
         else if (activeJob.projectType == "Single-family")
         {
             addSingleFamilyUI.SetActive(true);
+            UpdateRooms();
         }
     }
 
@@ -616,6 +659,93 @@ public class JobInfo : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
 
+    }
+
+    public void UpdateRoomJobs()
+    {
+        CleanRoomsItems();
+        foreach (RoomData rooms in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList)
+        {
+            roomNameItemCost.text = rooms.roomName;
+            roomFootageItemCost.text = rooms.roomFootage.ToString() + " ft2";
+            roomTypeItemCost.text = rooms.roomType;
+            GameObject _tempGo = Instantiate(roomsInfoItemCost, roomsTransformItemCost);
+            _tempGo.GetComponentInChildren<RoomSingleLoader>().thisRoom = rooms;
+        }
+    }
+
+    public void CleanRoomsItems()
+    {
+        foreach (Transform child in SingleFamilyRoomItemsTransform.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+    }
+
+    public void AssignRoomValues(RoomData roomToValue)
+    {
+        activeRoom =roomToValue;
+        print("this is the test" + roomToValue.roomName);
+        roomTypeItemNameText.text = roomToValue.roomName;
+        roomTypeItemTypeText.text = roomToValue.roomType;
+        roomTypeItemFootageText.text = roomToValue.roomFootage.ToString();
+        roomTypeItemPaintPercentageText.text = roomToValue.roomFootagePercentagePaint.ToString();
+        roomTypeItemPaintMaterialCostText.text = roomToValue.materialRoomFootagePaint.ToString();
+        roomTypeItemPaintLaborCostText.text = roomToValue.laborRoomFootagePaint.ToString();
+        roomTypeItemPlugsText.text = roomToValue.roomPlugs.ToString();
+        roomTypeItemPlugsMaterialCostText.text = roomToValue.materialCostRoomPlugs.ToString();
+        roomTypeItemPlugsLaborCostText.text = roomToValue.laborCostRoomPlugs.ToString();
+        roomTypeItemSwitchesText.text = roomToValue.roomSwitchLights.ToString();
+        roomTypeItemSwitchesMaterialCostText.text = roomToValue.materialCostRoomSwitchLights.ToString();
+        roomTypeItemPlugsLaborCostText.text = roomToValue.laborCostroomSwitchLights.ToString();
+    }
+
+    public void sendRoomItem()
+    {
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Find(RoomData => RoomData == activeRoom).roomFootagePercentagePaint = float.Parse(roomTypeItemPaintPercentageInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Find(RoomData => RoomData == activeRoom).materialRoomFootagePaint = float.Parse(roomTypeItemPaintMaterialCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Find(RoomData => RoomData == activeRoom).laborRoomFootagePaint = float.Parse(roomTypeItemPaintLaborCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Find(RoomData => RoomData == activeRoom).materialCostRoomPlugs = float.Parse(roomTypeItemPaintMaterialCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Find(RoomData => RoomData == activeRoom).laborCostRoomPlugs = float.Parse(roomTypeItemPlugsLaborCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Find(RoomData => RoomData == activeRoom).materialCostRoomSwitchLights = float.Parse(roomTypeItemSwitchesMaterialCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Find(RoomData => RoomData == activeRoom).laborCostroomSwitchLights = float.Parse(roomTypeItemSwitchesLaborCostInput.text);        
+        UserData.instance.SendInfo();
+        AssingJobValues(activeJob);
+        UpdateRoomJobs();
+        UpdateSingleRoomsCosts();
+        roomTypeItemPaintPercentageInput.text = "";
+        roomTypeItemPaintMaterialCostInput.text = "";
+        roomTypeItemPaintLaborCostInput.text = "";
+        roomTypeItemPaintMaterialCostInput.text = "";
+        roomTypeItemPlugsLaborCostInput.text = "";
+        roomTypeItemSwitchesMaterialCostInput.text = "";
+        roomTypeItemSwitchesLaborCostInput.text = "";
+    }
+
+    public void UpdateSingleRoomsCosts ()
+    {
+        float subtotalCounter = 0;
+        foreach (RoomData room  in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList)
+        {
+            float paintCost;
+            float plugsCost;
+            float switchCost;
+            paintCost = ((room.roomFootage *     (room.materialRoomFootagePaint + room.laborRoomFootagePaint)) * (room.roomFootagePercentagePaint/100));
+            plugsCost = (room.laborCostRoomPlugs + room.materialCostRoomPlugs) * room.roomPlugs;
+            switchCost = (room.laborCostroomSwitchLights + room.materialCostRoomSwitchLights) * room.roomSwitchLights;
+            subtotalCounter = subtotalCounter + (paintCost + plugsCost + switchCost);        
+        }
+        subtotalSingleRoomText.text = "$" + subtotalCounter.ToString();
+        overheadSingleRoomText.text = "$" + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead /100)).ToString();
+        profitSingleRoomText.text = "$" + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit /100)).ToString();
+        contingencySingleRoomText.text = "$" + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency /100)).ToString();
+        markUpSingleRoomText.text = "$" + (subtotalCounter + (subtotalCounter * ((UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency /100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit /100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead /100)))).ToString();
+        float markuptotal = subtotalCounter + (subtotalCounter * ((UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency /100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit /100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead /100)));
+        discountSingleRoomText.text = "$"  + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).discount /100)).ToString();
+        float withDiscountTotal = markuptotal -(subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).discount /100));
+        withDiscountSingleRoomText.text = "$" + withDiscountTotal.ToString();
+        finalPriceSingleRoomText.text = "$" + withDiscountTotal.ToString();
     }
 }
 

@@ -51,15 +51,15 @@ public class JobTemplateInfo : MonoBehaviour
     public Text itemsEstimateFinalPrice;
     public Text itemText;
     public Text itemCost;
-    double subtotalCounter;
-    double overheadCouter;
-    double profitCounter;
-    double contingencyCounter;
-    double discountCounter;
-    double taxesCounter;
-    double itemFinalPriceCounter;
-    double itemFinalPriceCounterDiscount;
-    double itemFinalPriceCounterTaxes;
+    float subtotalCounter;
+    float overheadCouter;
+    float profitCounter;
+    float contingencyCounter;
+    float discountCounter;
+    float taxesCounter;
+    float itemFinalPriceCounter;
+    float itemFinalPriceCounterDiscount;
+    float itemFinalPriceCounterTaxes;
     int itemscounter = 0;
     public GameObject itemsInfo;
     public Transform itemsTransform;
@@ -245,8 +245,8 @@ public class JobTemplateInfo : MonoBehaviour
         EstimateItems itemEstimate = new EstimateItems(itemName.text);
         itemEstimate.itemDescription = itemDescription.text;
         itemEstimate.itemQuantity = int.Parse(itemQuantity.text);
-        itemEstimate.itemMaterialCost = double.Parse(itemMaterialCost.text);
-        itemEstimate.itemLaborCost = double.Parse(itemLaborCost.text);
+        itemEstimate.itemMaterialCost = float.Parse(itemMaterialCost.text);
+        itemEstimate.itemLaborCost = float.Parse(itemLaborCost.text);
         itemEstimate.itemSubtotal = ((itemEstimate.itemMaterialCost + itemEstimate.itemLaborCost) * itemEstimate.itemQuantity);
         /* itemEstimate.itemOverhead = itemEstimate.itemSubtotal * 0.1;
         itemEstimate.itemProfit = itemEstimate.itemSubtotal * 0.1;
@@ -266,7 +266,7 @@ public class JobTemplateInfo : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(overheadInputfield.text))
         {
-            UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).overhead = double.Parse(overheadInputfield.text);
+            UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).overhead = float.Parse(overheadInputfield.text);
             UserData.instance.SendInfo();
             overheadInputfield.text = "";
             AssingJobTemplateValues(activeTemplateJob);
@@ -276,7 +276,7 @@ public class JobTemplateInfo : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(profitInputfield.text))
         {
-            UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).profit = double.Parse(profitInputfield.text);
+            UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).profit = float.Parse(profitInputfield.text);
             UserData.instance.SendInfo();
             profitInputfield.text = "";
             AssingJobTemplateValues(activeTemplateJob);
@@ -286,7 +286,7 @@ public class JobTemplateInfo : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(contingencyInputfield.text))
         {
-            UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).contingency = double.Parse(contingencyInputfield.text);
+            UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).contingency = float.Parse(contingencyInputfield.text);
             UserData.instance.SendInfo();
             contingencyInputfield.text = "";
             AssingJobTemplateValues(activeTemplateJob);
@@ -296,7 +296,7 @@ public class JobTemplateInfo : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(discountInputfield.text))
         {
-            UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).discount = double.Parse(discountInputfield.text);
+            UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).discount = float.Parse(discountInputfield.text);
             UserData.instance.SendInfo();
             discountInputfield.text = "";
             AssingJobTemplateValues(activeTemplateJob);
@@ -306,7 +306,7 @@ public class JobTemplateInfo : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(taxesInputfield.text))
         {
-            UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).taxes = double.Parse(taxesInputfield.text);
+            UserData.jobTemplatesArray.jobTemplatesList.Find(Jobs => Jobs == activeTemplateJob).taxes = float.Parse(taxesInputfield.text);
             UserData.instance.SendInfo();
             taxesInputfield.text = "";
             AssingJobTemplateValues(activeTemplateJob);
