@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 80aeb12374eecd04e9699718ab6e9b49
   - enabled: 1
+    path: Assets/Scenes/Databases.unity
+    guid: 134e9b2051a97e342a893cc8a1f10d39
+  - enabled: 1
     path: Assets/Scenes/Jobs.unity
     guid: b3e7a4e62b9612b46a646438dee315b6
   - enabled: 1
@@ -20,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Overview.unity
     guid: a563f7a4422c4d24493f2a65f0eb0f6f
+  - enabled: 1
+    path: Assets/Scenes/AssetEvaluation.unity
+    guid: 19a8c7e202f02714c8f4730aff401253
   - enabled: 1
     path: Assets/Scenes/WorkTemplates.unity
     guid: 58c9a81118c42a24fbe6a2bf774e838e
