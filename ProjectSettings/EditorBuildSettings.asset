@@ -21,6 +21,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Clients.unity
     guid: 6a31e8cfa6d3f69449fee4200c14f707
   - enabled: 1
+    path: Assets/Scenes/Licensed Workforce.unity
+    guid: 1a09a065c5d56234789b03ca2d491eec
+  - enabled: 1
+    path: Assets/Scenes/Tutorial Support.unity
+    guid: 183908e51dcb35045803ad4a92adfc44
+  - enabled: 1
     path: Assets/Scenes/Overview.unity
     guid: a563f7a4422c4d24493f2a65f0eb0f6f
   - enabled: 1
