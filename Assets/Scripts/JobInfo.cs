@@ -9,6 +9,7 @@ public class JobInfo : MonoBehaviour
     public static JobInfo instance;
     public Jobs activeJob;
     public RoomData activeRoom;
+    public bedroomTypeData activeMultiroom;
     public Clients thisJobClientsObject;
     public Text mainTitleJob;
     [Header("Instances")]
@@ -154,6 +155,13 @@ public class JobInfo : MonoBehaviour
     public GameObject roomsInfoItemCost;
     public Transform roomsTransformItemCost;
 
+    public Text multiRoomNameItemCost;
+    public Text multiRoomFootageItemCost;
+    public Text multiRoomTypeItemCost;
+
+    public GameObject multiRoomInfoItemCost;
+    public Transform multiRoomTransformItemCost;
+
     //single family room info panel 
     public Text roomTypeItemNameText;
     public Text roomTypeItemTypeText;
@@ -168,12 +176,12 @@ public class JobInfo : MonoBehaviour
     public Text roomTypeItemSwitchesMaterialCostText;
     public Text roomTypeItemSwitchesLaborCostText;
 
-    
+
     public InputField roomTypeItemPaintPercentageInput;
     public InputField roomTypeItemPaintMaterialCostInput;
-    public InputField roomTypeItemPaintLaborCostInput;    
+    public InputField roomTypeItemPaintLaborCostInput;
     public InputField roomTypeItemPlugsMaterialCostInput;
-    public InputField roomTypeItemPlugsLaborCostInput;    
+    public InputField roomTypeItemPlugsLaborCostInput;
     public InputField roomTypeItemSwitchesMaterialCostInput;
     public InputField roomTypeItemSwitchesLaborCostInput;
     public Transform SingleFamilyRoomItemsTransform;
@@ -186,7 +194,6 @@ public class JobInfo : MonoBehaviour
     public Text discountSingleRoomText;
     public Text withDiscountSingleRoomText;
     public Text finalPriceSingleRoomText;
-
 
     //Multifamily
 
@@ -216,7 +223,7 @@ public class JobInfo : MonoBehaviour
     public Text halfBathFootageText;
     public Text fullBathFootageText;
     public Text totalApartmentsfootageText;
-    
+
 
     public void Awake()
     {
@@ -626,7 +633,7 @@ public class JobInfo : MonoBehaviour
     {
         if (activeJob.projectType == "Multi-family")
         {
-            addMultifamilyUI.SetActive(true);            
+            addMultifamilyUI.SetActive(true);
             FillMultifamilyRoomType();
             UpdateMultiFamilyRooms();
         }
@@ -683,10 +690,18 @@ public class JobInfo : MonoBehaviour
 
     }
 
+    public void CleanMultiRoomsItems()
+    {
+        foreach (Transform child in multiRoomTransformItemCost.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+    }
+
     public void AssignRoomValues(RoomData roomToValue)
     {
-        activeRoom =roomToValue;
-        print("this is the test" + roomToValue.roomName);
+        activeRoom = roomToValue;
         roomTypeItemNameText.text = roomToValue.roomName;
         roomTypeItemTypeText.text = roomToValue.roomType;
         roomTypeItemFootageText.text = roomToValue.roomFootage.ToString();
@@ -698,7 +713,14 @@ public class JobInfo : MonoBehaviour
         roomTypeItemPlugsLaborCostText.text = roomToValue.laborCostRoomPlugs.ToString();
         roomTypeItemSwitchesText.text = roomToValue.roomSwitchLights.ToString();
         roomTypeItemSwitchesMaterialCostText.text = roomToValue.materialCostRoomSwitchLights.ToString();
-        roomTypeItemPlugsLaborCostText.text = roomToValue.laborCostroomSwitchLights.ToString();
+        roomTypeItemSwitchesLaborCostText.text = roomToValue.laborCostroomSwitchLights.ToString();
+    }
+
+    public void AssingBedroomValues(bedroomTypeData multiroomToValue)
+    {
+        activeMultiroom = multiroomToValue;
+        print("Este es el multirroom" + activeMultiroom.bedroomType);
+
     }
 
     public void sendRoomItem()
@@ -709,7 +731,7 @@ public class JobInfo : MonoBehaviour
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Find(RoomData => RoomData == activeRoom).materialCostRoomPlugs = float.Parse(roomTypeItemPaintMaterialCostInput.text);
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Find(RoomData => RoomData == activeRoom).laborCostRoomPlugs = float.Parse(roomTypeItemPlugsLaborCostInput.text);
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Find(RoomData => RoomData == activeRoom).materialCostRoomSwitchLights = float.Parse(roomTypeItemSwitchesMaterialCostInput.text);
-        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Find(RoomData => RoomData == activeRoom).laborCostroomSwitchLights = float.Parse(roomTypeItemSwitchesLaborCostInput.text);        
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Find(RoomData => RoomData == activeRoom).laborCostroomSwitchLights = float.Parse(roomTypeItemSwitchesLaborCostInput.text);
         UserData.instance.SendInfo();
         AssingJobValues(activeJob);
         UpdateRoomJobs();
@@ -723,29 +745,58 @@ public class JobInfo : MonoBehaviour
         roomTypeItemSwitchesLaborCostInput.text = "";
     }
 
-    public void UpdateSingleRoomsCosts ()
+    public void UpdateSingleRoomsCosts()
     {
         float subtotalCounter = 0;
-        foreach (RoomData room  in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList)
+        foreach (RoomData room in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList)
         {
             float paintCost;
             float plugsCost;
             float switchCost;
-            paintCost = ((room.roomFootage *     (room.materialRoomFootagePaint + room.laborRoomFootagePaint)) * (room.roomFootagePercentagePaint/100));
+            paintCost = ((room.roomFootage * (room.materialRoomFootagePaint + room.laborRoomFootagePaint)) * (room.roomFootagePercentagePaint / 100));
             plugsCost = (room.laborCostRoomPlugs + room.materialCostRoomPlugs) * room.roomPlugs;
             switchCost = (room.laborCostroomSwitchLights + room.materialCostRoomSwitchLights) * room.roomSwitchLights;
-            subtotalCounter = subtotalCounter + (paintCost + plugsCost + switchCost);        
+            subtotalCounter = subtotalCounter + (paintCost + plugsCost + switchCost);
         }
         subtotalSingleRoomText.text = "$" + subtotalCounter.ToString();
-        overheadSingleRoomText.text = "$" + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead /100)).ToString();
-        profitSingleRoomText.text = "$" + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit /100)).ToString();
-        contingencySingleRoomText.text = "$" + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency /100)).ToString();
-        markUpSingleRoomText.text = "$" + (subtotalCounter + (subtotalCounter * ((UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency /100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit /100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead /100)))).ToString();
-        float markuptotal = subtotalCounter + (subtotalCounter * ((UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency /100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit /100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead /100)));
-        discountSingleRoomText.text = "$"  + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).discount /100)).ToString();
-        float withDiscountTotal = markuptotal -(subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).discount /100));
+        overheadSingleRoomText.text = "$" + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead / 100)).ToString();
+        profitSingleRoomText.text = "$" + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit / 100)).ToString();
+        contingencySingleRoomText.text = "$" + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency / 100)).ToString();
+        markUpSingleRoomText.text = "$" + (subtotalCounter + (subtotalCounter * ((UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency / 100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit / 100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead / 100)))).ToString();
+        float markuptotal = subtotalCounter + (subtotalCounter * ((UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency / 100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit / 100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead / 100)));
+        discountSingleRoomText.text = "$" + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).discount / 100)).ToString();
+        float withDiscountTotal = markuptotal - (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).discount / 100));
         withDiscountSingleRoomText.text = "$" + withDiscountTotal.ToString();
         finalPriceSingleRoomText.text = "$" + withDiscountTotal.ToString();
+    }
+
+
+    public void OnRoomJobsButton()
+    {
+        if (activeJob.projectType == "Multi-family")
+        {
+            UpdateMultifamilyRoomJobs();
+
+
+        }
+        else if (activeJob.projectType == "Single-family")
+        {
+            UpdateRoomJobs();
+            UpdateSingleRoomsCosts();
+        }
+    }
+
+    public void UpdateMultifamilyRoomJobs()
+    {
+        CleanMultifamilyRoomsItems();
+        foreach (bedroomTypeData bedroomsApartment in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList)
+        {
+            multiRoomNameItemCost.text = bedroomsApartment.bedroomType;
+            multiRoomFootageItemCost.text = bedroomsApartment.multiroomfootage.ToString() + " ft2";
+            multiRoomTypeItemCost.text = bedroomsApartment.multiroomQuantityInComplex.ToString();
+            GameObject _tempGo = Instantiate(multiRoomInfoItemCost, multiRoomTransformItemCost);
+            _tempGo.GetComponentInChildren<MultiRoomLoader>().thisRoom = bedroomsApartment;
+        }
     }
 }
 

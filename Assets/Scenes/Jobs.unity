@@ -65949,6 +65949,7 @@ GameObject:
   - component: {fileID: 1314450049}
   - component: {fileID: 1314450050}
   - component: {fileID: 1314450051}
+  - component: {fileID: 1314450053}
   - component: {fileID: 1314450052}
   m_Layer: 0
   m_Name: ScriptHolder
@@ -66141,6 +66142,20 @@ MonoBehaviour:
     laborCostroomSwitchLights: 0
     numberOfCabinets: 0
     numberOfAppliances: 0
+  activeMultiroom:
+    bedroomType: 
+    multiroomQuantityInComplex: 0
+    multiroomfootage: 0
+    multiroomPlugs: 0
+    multiroomSwitchLights: 0
+    numberHalfBaths: 0
+    footageHalfBaths: 0
+    numberPlugsHalfBaths: 0
+    numberSwitchesHalfBaths: 0
+    numberFullbaths: 0
+    footageFullBaths: 0
+    numberPlugsFullBaths: 0
+    numberSwitchesFullBaths: 0
   thisJobClientsObject:
     clientName: 
     clientCompany: 
@@ -66255,6 +66270,8 @@ MonoBehaviour:
   roomTypeItemCost: {fileID: 1152572598}
   roomsInfoItemCost: {fileID: 619922248234433038}
   roomsTransformItemCost: {fileID: 291674439}
+  multiRoomInfoItemCost: {fileID: 0}
+  multiRoomTransformItemCost: {fileID: 0}
   roomTypeItemNameText: {fileID: 961421971}
   roomTypeItemTypeText: {fileID: 839018972}
   roomTypeItemFootageText: {fileID: 1503207154}
@@ -66359,6 +66376,32 @@ MonoBehaviour:
     laborCostroomSwitchLights: 0
     numberOfCabinets: 0
     numberOfAppliances: 0
+--- !u!114 &1314450053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314450046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab070c919b93ff947b01196f6bfb47a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisRoom:
+    bedroomType: 
+    multiroomQuantityInComplex: 0
+    multiroomfootage: 0
+    multiroomPlugs: 0
+    multiroomSwitchLights: 0
+    numberHalfBaths: 0
+    footageHalfBaths: 0
+    numberPlugsHalfBaths: 0
+    numberSwitchesHalfBaths: 0
+    numberFullbaths: 0
+    footageFullBaths: 0
+    numberPlugsFullBaths: 0
+    numberSwitchesFullBaths: 0
 --- !u!1 &1314467692
 GameObject:
   m_ObjectHideFlags: 0
@@ -107403,6 +107446,20 @@ MonoBehaviour:
     laborCostroomSwitchLights: 0
     numberOfCabinets: 0
     numberOfAppliances: 0
+  activeMultiroom:
+    bedroomType: 
+    multiroomQuantityInComplex: 0
+    multiroomfootage: 0
+    multiroomPlugs: 0
+    multiroomSwitchLights: 0
+    numberHalfBaths: 0
+    footageHalfBaths: 0
+    numberPlugsHalfBaths: 0
+    numberSwitchesHalfBaths: 0
+    numberFullbaths: 0
+    footageFullBaths: 0
+    numberPlugsFullBaths: 0
+    numberSwitchesFullBaths: 0
   thisJobClientsObject:
     clientName: 
     clientCompany: 
@@ -107506,6 +107563,8 @@ MonoBehaviour:
   roomTypeItemCost: {fileID: 0}
   roomsInfoItemCost: {fileID: 0}
   roomsTransformItemCost: {fileID: 0}
+  multiRoomInfoItemCost: {fileID: 0}
+  multiRoomTransformItemCost: {fileID: 0}
   roomTypeItemNameText: {fileID: 0}
   roomTypeItemTypeText: {fileID: 0}
   roomTypeItemFootageText: {fileID: 0}
