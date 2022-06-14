@@ -795,7 +795,7 @@ public class JobInfo : MonoBehaviour
 
     public void sendMultiRoomItem()
     {
-        //UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).multiRoomFootagePercentagePaint= float.Parse(multiroomTypeItemPaintPercentageInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).multiRoomFootagePercentagePaint= float.Parse(multiroomTypeItemPaintPercentageInput.text);
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).materialMultiRoomFootagePaint = float.Parse(multiroomTypeItemPaintMaterialCostInput.text);
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).laborMultiRoomFootagePaint = float.Parse(multiroomTypeItemPaintLaborCostInput.text);
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).materialCostMultiRoomPlugs = float.Parse(multiroomTypeItemPaintMaterialCostInput.text);
@@ -809,7 +809,7 @@ public class JobInfo : MonoBehaviour
         multiroomTypeItemPaintPercentageInput.text = "";
         multiroomTypeItemPaintMaterialCostInput.text = "";
         multiroomTypeItemPaintLaborCostInput.text = "";
-        multiroomTypeItemPaintMaterialCostInput.text = "";
+        multiroomTypeItemPlugsMaterialCostInput.text = "";
         multiroomTypeItemPlugsLaborCostInput.text = "";
         multiroomTypeItemSwitchesMaterialCostInput.text = "";
         multiroomTypeItemSwitchesLaborCostInput.text = "";
