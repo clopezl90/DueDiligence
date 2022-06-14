@@ -198,6 +198,23 @@ public class JobInfo : MonoBehaviour
     //Multifamily
 
     public Text bedroomTypeText;
+
+    public Text multiroomTypeItemNameText;
+    public Text multiroomTypeItemTypeText;
+    public Text multiroomTypeItemFootageText;
+    public Text multiroomTypeItemPaintPercentageText;
+    public Text multiroomTypeItemPaintMaterialCostText;
+    public Text multiroomTypeItemPaintLaborCostText;
+    public Text multiroomTypeItemPlugsText;
+    public Text multiroomTypeItemPlugsMaterialCostText;
+    public Text multiroomTypeItemPlugsLaborCostText;
+    public Text multiroomTypeItemSwitchesText;
+    public Text multiroomTypeItemSwitchesMaterialCostText;
+    public Text multiroomTypeItemSwitchesLaborCostText;
+
+
+
+
     public InputField multiroomQuantityInComplexText;
     public InputField multiroomFootageText;
     public InputField multiroomPlugstext;
@@ -223,6 +240,24 @@ public class JobInfo : MonoBehaviour
     public Text halfBathFootageText;
     public Text fullBathFootageText;
     public Text totalApartmentsfootageText;
+
+    public InputField multiroomTypeItemPaintPercentageInput;
+    public InputField multiroomTypeItemPaintMaterialCostInput;
+    public InputField multiroomTypeItemPaintLaborCostInput;
+    public InputField multiroomTypeItemPlugsMaterialCostInput;
+    public InputField multiroomTypeItemPlugsLaborCostInput;
+    public InputField multiroomTypeItemSwitchesMaterialCostInput;
+    public InputField multiroomTypeItemSwitchesLaborCostInput;
+    
+
+    public Text subtotalMultiRoomText;
+    public Text overheadMultiRoomText;
+    public Text profitMultiRoomText;
+    public Text contingencyMultiRoomText;
+    public Text markUpMultiRoomText;
+    public Text discountMultiRoomText;
+    public Text withDiscountMultiRoomText;
+    public Text finalPriceMultiRoomText;
 
 
     public void Awake()
@@ -716,10 +751,22 @@ public class JobInfo : MonoBehaviour
         roomTypeItemSwitchesLaborCostText.text = roomToValue.laborCostroomSwitchLights.ToString();
     }
 
-    public void AssingBedroomValues(bedroomTypeData multiroomToValue)
+    public void     AssingBedroomValues(bedroomTypeData multiroomToValue)
     {
         activeMultiroom = multiroomToValue;
         print("Este es el multirroom" + activeMultiroom.bedroomType);
+        multiroomTypeItemNameText.text = multiroomToValue.bedroomType;
+        multiroomTypeItemTypeText.text = multiroomToValue.bedroomType;
+        multiroomTypeItemFootageText.text = multiroomToValue.multiroomfootage.ToString();
+        multiroomTypeItemPaintPercentageText.text = multiroomToValue.multiRoomFootagePercentagePaint.ToString();
+        multiroomTypeItemPaintMaterialCostText.text = multiroomToValue.materialMultiRoomFootagePaint.ToString();
+        multiroomTypeItemPaintLaborCostText.text = multiroomToValue.laborMultiRoomFootagePaint.ToString();
+        multiroomTypeItemPlugsText.text = multiroomToValue.multiroomPlugs.ToString();
+        multiroomTypeItemPlugsMaterialCostText.text = multiroomToValue.materialCostMultiRoomPlugs.ToString();
+        multiroomTypeItemPlugsLaborCostText.text = multiroomToValue.laborCostMultiRoomPlugs.ToString();
+        multiroomTypeItemSwitchesText.text = multiroomToValue.multiroomSwitchLights.ToString();
+        multiroomTypeItemSwitchesMaterialCostText.text = multiroomToValue.materialCostMultiRoomSwitchLights.ToString();
+        roomTypeItemSwitchesLaborCostText.text = multiroomToValue.laborCostMultiroomSwitchLights.ToString();
 
     }
 
@@ -745,6 +792,29 @@ public class JobInfo : MonoBehaviour
         roomTypeItemSwitchesLaborCostInput.text = "";
     }
 
+
+    public void sendMultiRoomItem()
+    {
+        //UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).multiRoomFootagePercentagePaint= float.Parse(multiroomTypeItemPaintPercentageInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).materialMultiRoomFootagePaint = float.Parse(multiroomTypeItemPaintMaterialCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).laborMultiRoomFootagePaint = float.Parse(multiroomTypeItemPaintLaborCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).materialCostMultiRoomPlugs = float.Parse(multiroomTypeItemPaintMaterialCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).laborCostMultiRoomPlugs = float.Parse(multiroomTypeItemPlugsLaborCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).materialCostMultiRoomSwitchLights = float.Parse(multiroomTypeItemSwitchesMaterialCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).laborCostMultiroomSwitchLights = float.Parse(multiroomTypeItemSwitchesLaborCostInput.text);
+        UserData.instance.SendInfo();
+        AssingJobValues(activeJob);
+        UpdateMultiFamilyRooms();
+        UpdateMultiRoomsCosts();
+        multiroomTypeItemPaintPercentageInput.text = "";
+        multiroomTypeItemPaintMaterialCostInput.text = "";
+        multiroomTypeItemPaintLaborCostInput.text = "";
+        multiroomTypeItemPaintMaterialCostInput.text = "";
+        multiroomTypeItemPlugsLaborCostInput.text = "";
+        multiroomTypeItemSwitchesMaterialCostInput.text = "";
+        multiroomTypeItemSwitchesLaborCostInput.text = "";
+    }
+
     public void UpdateSingleRoomsCosts()
     {
         float subtotalCounter = 0;
@@ -768,6 +838,31 @@ public class JobInfo : MonoBehaviour
         float withDiscountTotal = markuptotal - (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).discount / 100));
         withDiscountSingleRoomText.text = "$" + withDiscountTotal.ToString();
         finalPriceSingleRoomText.text = "$" + withDiscountTotal.ToString();
+    }
+
+    public void UpdateMultiRoomsCosts()
+    {
+        float subtotalCounter = 0;
+        foreach (bedroomTypeData room in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList)
+        {
+            float paintCost;
+            float plugsCost;
+            float switchCost;
+            paintCost = ((room.multiroomfootage * (room.materialMultiRoomFootagePaint + room.laborMultiRoomFootagePaint)) * (room.multiRoomFootagePercentagePaint / 100));
+            plugsCost = (room.laborCostMultiRoomPlugs + room.materialCostMultiRoomPlugs) * room.multiroomPlugs;
+            switchCost = (room.laborCostMultiroomSwitchLights + room.materialCostMultiRoomSwitchLights) * room.multiroomSwitchLights;
+            subtotalCounter = subtotalCounter + (paintCost + plugsCost + switchCost);
+        }
+        subtotalMultiRoomText.text = "$" + subtotalCounter.ToString();
+        overheadMultiRoomText.text = "$" + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead / 100)).ToString();
+        profitMultiRoomText.text = "$" + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit / 100)).ToString();
+        contingencyMultiRoomText.text = "$" + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency / 100)).ToString();
+        markUpMultiRoomText.text = "$" + (subtotalCounter + (subtotalCounter * ((UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency / 100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit / 100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead / 100)))).ToString();
+        float markuptotal = subtotalCounter + (subtotalCounter * ((UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).contingency / 100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).profit / 100) + (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).overhead / 100)));
+        discountMultiRoomText.text = "$" + (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).discount / 100)).ToString();
+        float withDiscountTotal = markuptotal - (subtotalCounter * (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).discount / 100));
+        withDiscountMultiRoomText.text = "$" + withDiscountTotal.ToString();
+        finalPriceMultiRoomText.text = "$" + withDiscountTotal.ToString();
     }
 
 
