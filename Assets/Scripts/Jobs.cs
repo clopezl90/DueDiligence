@@ -18,6 +18,7 @@ public class Jobs
     public JobEstimate jobEstimateObject;
     public JobPayments jobPaymentsObject;
     public string projectType;
+    public string projectLocation;
     public float overhead = 10;
     public float profit = 10;
     public float contingency = 15;
