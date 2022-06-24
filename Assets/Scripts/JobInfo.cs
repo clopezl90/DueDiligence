@@ -128,6 +128,7 @@ public class JobInfo : MonoBehaviour
     public Text apartmentFullbathsText;
     public Text apartmentHalfBathText;
     public Text numberInComplexText;
+    public Text totalFootageUnit;
     public GameObject roomsInfo;
     public Transform roomsTransform;
     public GameObject apartmentsInfo;
@@ -364,15 +365,15 @@ public class JobInfo : MonoBehaviour
         {
             if (item.bedroomType == "1-Bedroom Apartments")
             {
-                oneBedroomApartmentsFootageCounter = oneBedroomApartmentsFootageCounter + item.multiroomfootage;
+                oneBedroomApartmentsFootageCounter = oneBedroomApartmentsFootageCounter + (item.multiroomfootage * item.multiroomQuantityInComplex);
             }
             if (item.bedroomType == "2-Bedrooms Apartments")
             {
-                twoBedroomApartmentsFootageCounter = twoBedroomApartmentsFootageCounter + item.multiroomfootage;
+                twoBedroomApartmentsFootageCounter = twoBedroomApartmentsFootageCounter + (item.multiroomfootage * item.multiroomQuantityInComplex);
             }
             if (item.bedroomType == "3-Bedrooms Apartments")
             {
-                threeBedroomApartmentsFootageCounter = threeBedroomApartmentsFootageCounter + item.multiroomfootage;
+                threeBedroomApartmentsFootageCounter = threeBedroomApartmentsFootageCounter + (item.multiroomfootage * item.multiroomQuantityInComplex);
             }
             halfBathApartmentsFootagecounter = halfBathApartmentsFootagecounter + item.footageHalfBaths;
             fullBathApartmentsFootageCounter = fullBathApartmentsFootageCounter + item.footageFullBaths;
@@ -383,7 +384,7 @@ public class JobInfo : MonoBehaviour
         plugsApartmentsText.text = plugsApartmentsCounter.ToString();
         halfBathFootageText.text = halfBathApartmentsFootagecounter.ToString() + " ft2";
         fullBathFootageText.text = fullBathApartmentsFootageCounter.ToString() + " ft2";
-        totalApartmentsfootageText.text = (oneBedroomApartmentsFootageCounter + twoBedroomApartmentsFootageCounter + threeBedroomApartmentsFootageCounter + halfBathApartmentsFootagecounter + fullBathApartmentsFootageCounter).ToString() + " ft2";
+        totalApartmentsfootageText.text = (oneBedroomApartmentsFootageCounter + twoBedroomApartmentsFootageCounter + threeBedroomApartmentsFootageCounter).ToString() + " ft2";
         oneBedroomApartmentsFootageCounter = 0;
         twoBedroomApartmentsFootageCounter = 0;
         threeBedroomApartmentsFootageCounter = 0;
@@ -686,10 +687,11 @@ public class JobInfo : MonoBehaviour
         foreach (bedroomTypeData bedroomType in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList)
         {
             apartmentText.text = bedroomType.bedroomType;
-            apartmentFootageText.text = (bedroomType.multiroomfootage + bedroomType.footageHalfBaths + bedroomType.footageFullBaths).ToString() + " ft2";
-            apartmentFullbathsText.text = bedroomType.numberFullbaths.ToString();
-            apartmentHalfBathText.text = bedroomType.numberHalfBaths.ToString();
+            apartmentFootageText.text = (bedroomType.multiroomfootage).ToString() + " ft2";
+            //apartmentFullbathsText.text = bedroomType.numberFullbaths.ToString();
+            //apartmentHalfBathText.text = bedroomType.numberHalfBaths.ToString();
             numberInComplexText.text = bedroomType.multiroomQuantityInComplex.ToString();
+            totalFootageUnit.text = (bedroomType.multiroomfootage * bedroomType.multiroomQuantityInComplex).ToString() + " ft2";
             GameObject _tempGo = Instantiate(apartmentsInfo, apartmentsTransform);
         }
     }
