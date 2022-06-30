@@ -14,6 +14,7 @@ public class JobsMenuHandler : MonoBehaviour
     [SerializeField] Text projectTypeText;
     [SerializeField] InputField jobSite;
     [SerializeField] Text jobProjectLocation;
+    
 
     [SerializeField] Text description;
     [SerializeField] Text client;

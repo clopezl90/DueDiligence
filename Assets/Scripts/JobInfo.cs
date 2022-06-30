@@ -90,6 +90,7 @@ public class JobInfo : MonoBehaviour
     public InputField itemSelectedQuantity;
     public InputField itemSelectedMaterialCost;
     public InputField itemSelectedLaborCost;
+    
 
     [Header("OverheadInfo")]
 

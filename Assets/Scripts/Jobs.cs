@@ -35,6 +35,7 @@ public class Jobs
         jobDescription =_jobDescription;          
         jobSite = _jobSite;
         jobStatus = _jobStatus;
+        jobEstimateObject = new JobEstimate(); 
     }
 
     
