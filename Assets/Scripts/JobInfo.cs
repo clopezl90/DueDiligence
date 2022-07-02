@@ -90,7 +90,7 @@ public class JobInfo : MonoBehaviour
     public InputField itemSelectedQuantity;
     public InputField itemSelectedMaterialCost;
     public InputField itemSelectedLaborCost;
-    
+
 
     [Header("OverheadInfo")]
 
@@ -124,6 +124,7 @@ public class JobInfo : MonoBehaviour
 
     public Text roomName;
     public Text roomFootage;
+    public Text roomType;
     public Text apartmentText;
     public Text apartmentFootageText;
     public Text apartmentFullbathsText;
@@ -165,6 +166,8 @@ public class JobInfo : MonoBehaviour
     public Transform multiRoomTransformItemCost;
 
     //single family room info panel 
+    public GameObject noRoomsText;
+    
     public Text roomTypeItemNameText;
     public Text roomTypeItemTypeText;
     public Text roomTypeItemFootageText;
@@ -198,6 +201,8 @@ public class JobInfo : MonoBehaviour
     public Text finalPriceSingleRoomText;
 
     //Multifamily
+
+    public GameObject noMultiroomsText;
 
     public Text bedroomTypeText;
 
@@ -250,7 +255,7 @@ public class JobInfo : MonoBehaviour
     public InputField multiroomTypeItemPlugsLaborCostInput;
     public InputField multiroomTypeItemSwitchesMaterialCostInput;
     public InputField multiroomTypeItemSwitchesLaborCostInput;
-    
+
 
     public Text subtotalMultiRoomText;
     public Text overheadMultiRoomText;
@@ -360,6 +365,8 @@ public class JobInfo : MonoBehaviour
         totalFootage = footageBedroomsCounter + footageHalfbathCounter + footageFullbathCounter + footageKitchenCounter + footageDinningCounter + footageLivingCounter;
         projectTotalFootage.text = totalFootage.ToString() + " ft2";
         footageBedroomsCounter = 0;
+
+
 
         // Multifamily
         foreach (bedroomTypeData item in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList)
@@ -598,12 +605,23 @@ public class JobInfo : MonoBehaviour
         CleanRoomItems();
         FillRoomTypeDropdown();
         AssingJobValues(activeJob);
-        foreach (RoomData rooms in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList)
+
+        if (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Count > 0)
         {
-            roomName.text = rooms.roomName;
-            roomFootage.text = rooms.roomFootage.ToString() + " ft2";
-            GameObject _tempGo = Instantiate(roomsInfo, roomsTransform);
+            noRoomsText.SetActive(false);
+            foreach (RoomData rooms in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList)
+            {
+                roomName.text = rooms.roomName;
+                roomFootage.text = rooms.roomFootage.ToString() + " ft2";
+                roomType.text = rooms.roomType;
+                GameObject _tempGo = Instantiate(roomsInfo, roomsTransform);
+            }
         }
+        else
+        {
+            noRoomsText.SetActive(true);
+        }
+
     }
     public void CleanRoomItems()
     {
@@ -685,16 +703,28 @@ public class JobInfo : MonoBehaviour
     {
         CleanMultifamilyRoomsItems();
         AssingJobValues(activeJob);
-        foreach (bedroomTypeData bedroomType in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList)
+
+        if (UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Count > 0)
         {
-            apartmentText.text = bedroomType.bedroomType;
-            apartmentFootageText.text = (bedroomType.multiroomfootage).ToString() + " ft2";
-            //apartmentFullbathsText.text = bedroomType.numberFullbaths.ToString();
-            //apartmentHalfBathText.text = bedroomType.numberHalfBaths.ToString();
-            numberInComplexText.text = bedroomType.multiroomQuantityInComplex.ToString();
-            totalFootageUnit.text = (bedroomType.multiroomfootage * bedroomType.multiroomQuantityInComplex).ToString() + " ft2";
-            GameObject _tempGo = Instantiate(apartmentsInfo, apartmentsTransform);
+            noMultiroomsText.SetActive(false);
+            foreach (bedroomTypeData bedroomType in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList)
+            {
+                apartmentText.text = bedroomType.bedroomType;
+                apartmentFootageText.text = (bedroomType.multiroomfootage).ToString() + " ft2";
+                //apartmentFullbathsText.text = bedroomType.numberFullbaths.ToString();
+                //apartmentHalfBathText.text = bedroomType.numberHalfBaths.ToString();
+                numberInComplexText.text = bedroomType.multiroomQuantityInComplex.ToString();
+                totalFootageUnit.text = (bedroomType.multiroomfootage * bedroomType.multiroomQuantityInComplex).ToString() + " ft2";
+                GameObject _tempGo = Instantiate(apartmentsInfo, apartmentsTransform);
+            }
+
         }
+        else 
+        {
+            noMultiroomsText.SetActive(true);
+
+        }
+
     }
 
     public void CleanMultifamilyRoomsItems()
@@ -754,7 +784,7 @@ public class JobInfo : MonoBehaviour
         roomTypeItemSwitchesLaborCostText.text = roomToValue.laborCostroomSwitchLights.ToString();
     }
 
-    public void     AssingBedroomValues(bedroomTypeData multiroomToValue)
+    public void AssingBedroomValues(bedroomTypeData multiroomToValue)
     {
         activeMultiroom = multiroomToValue;
         print("Este es el multirroom" + activeMultiroom.bedroomType);
@@ -798,13 +828,13 @@ public class JobInfo : MonoBehaviour
 
     public void sendMultiRoomItem()
     {
-        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).multiRoomFootagePercentagePaint= float.Parse(multiroomTypeItemPaintPercentageInput.text);
-        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).materialMultiRoomFootagePaint = float.Parse(multiroomTypeItemPaintMaterialCostInput.text);
-        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).laborMultiRoomFootagePaint = float.Parse(multiroomTypeItemPaintLaborCostInput.text);
-        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).materialCostMultiRoomPlugs = float.Parse(multiroomTypeItemPaintMaterialCostInput.text);
-        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).laborCostMultiRoomPlugs = float.Parse(multiroomTypeItemPlugsLaborCostInput.text);
-        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).materialCostMultiRoomSwitchLights = float.Parse(multiroomTypeItemSwitchesMaterialCostInput.text);
-        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData=> bedroomTypeData == activeMultiroom).laborCostMultiroomSwitchLights = float.Parse(multiroomTypeItemSwitchesLaborCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData => bedroomTypeData == activeMultiroom).multiRoomFootagePercentagePaint = float.Parse(multiroomTypeItemPaintPercentageInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData => bedroomTypeData == activeMultiroom).materialMultiRoomFootagePaint = float.Parse(multiroomTypeItemPaintMaterialCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData => bedroomTypeData == activeMultiroom).laborMultiRoomFootagePaint = float.Parse(multiroomTypeItemPaintLaborCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData => bedroomTypeData == activeMultiroom).materialCostMultiRoomPlugs = float.Parse(multiroomTypeItemPaintMaterialCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData => bedroomTypeData == activeMultiroom).laborCostMultiRoomPlugs = float.Parse(multiroomTypeItemPlugsLaborCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData => bedroomTypeData == activeMultiroom).materialCostMultiRoomSwitchLights = float.Parse(multiroomTypeItemSwitchesMaterialCostInput.text);
+        UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Find(bedroomTypeData => bedroomTypeData == activeMultiroom).laborCostMultiroomSwitchLights = float.Parse(multiroomTypeItemSwitchesLaborCostInput.text);
         UserData.instance.SendInfo();
         AssingJobValues(activeJob);
         UpdateMultiFamilyRooms();

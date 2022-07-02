@@ -20,6 +20,8 @@ public class JobsMenuHandler : MonoBehaviour
     [SerializeField] Text client;
     [SerializeField] Text site;
     [SerializeField] Text location;
+    [SerializeField] Text type;
+    public Toggle templateToggle;
 
     public Clients selectedClient;
     public Jobs selectedTemplateJob;
@@ -85,6 +87,10 @@ public class JobsMenuHandler : MonoBehaviour
         jobdText.text = "";
         jobClientText.text = "";
         jobSite.text = "";
+        templateToggle.isOn = false;
+        
+        
+
     }
 
     public void UpdateJobs()
@@ -103,6 +109,7 @@ public class JobsMenuHandler : MonoBehaviour
             }
             site.text = p.jobSite;
             location.text = p.projectLocation;
+            type.text = p.projectType;
             if (p.projectLocation == "Interior")
             {
                 location.color = new Color32(46, 98, 171, 255); // azul
