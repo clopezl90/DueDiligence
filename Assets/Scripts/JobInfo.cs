@@ -119,6 +119,17 @@ public class JobInfo : MonoBehaviour
     public InputField roomPlugsText;
     public InputField roomPlatesText;
     public InputField roomSwitchLightsText;
+    public InputField roomEntriesText;
+    public InputField roomDoorAndFramesText;
+    public InputField roomThresholdText;
+    public InputField roomPeepHoleText;
+    public InputField roomClosetsText;
+    public InputField roomClosetDoorsText;
+    public InputField roomClosetShelfsText;
+    public InputField roomClosetRodText;
+    public InputField roomClosetLightsText;
+
+
 
     // Single family
 
@@ -157,6 +168,8 @@ public class JobInfo : MonoBehaviour
     public Text roomTypeItemCost;
     public GameObject roomsInfoItemCost;
     public Transform roomsTransformItemCost;
+    public GameObject roomsInfoCostScreen;
+    public GameObject multiRoomsInfoCostScreen;
 
     public Text multiRoomNameItemCost;
     public Text multiRoomFootageItemCost;
@@ -167,7 +180,7 @@ public class JobInfo : MonoBehaviour
 
     //single family room info panel 
     public GameObject noRoomsText;
-    
+
     public Text roomTypeItemNameText;
     public Text roomTypeItemTypeText;
     public Text roomTypeItemFootageText;
@@ -190,6 +203,29 @@ public class JobInfo : MonoBehaviour
     public InputField roomTypeItemSwitchesMaterialCostInput;
     public InputField roomTypeItemSwitchesLaborCostInput;
     public Transform SingleFamilyRoomItemsTransform;
+
+    [Header("SingleRoomMaterialList")]
+    public Text singleRoomNameMaterial;
+    public Text singleRoomTypeMaterial;
+    public Text singleRoomFootagelsName;
+    public Text singleRoomPaintPercentageMaterial;
+    public Text singleRoomEntriesMaterial;
+    public Text singleRoomDoorsMaterial;
+    public Text singleRoomThresholdsMaterial;
+    public Text singleRoomPeepHoleMaterial;
+    public Text singleRoomClosetsMaterial;
+    public Text singleRoomClosetDoorsMaterial;
+    public Text singleRoomClosetShelfsMaterial;
+    public Text singleRoomClosetRodsMaterial;
+    public Text singleRoomClosetLightsMaterial;
+    public Text singleRoomPlugsMaterial;
+    public Text singleRoomSwitchLightsMaterial;
+    public GameObject roomsInfoMaterialList;
+    public Transform roomsTransformMaterialList;
+
+
+
+
 
     public Text subtotalSingleRoomText;
     public Text overheadSingleRoomText;
@@ -590,6 +626,16 @@ public class JobInfo : MonoBehaviour
         roomData.roomPlugs = float.Parse(roomPlugsText.text);
         roomData.roomPlates = float.Parse(roomPlatesText.text);
         roomData.roomSwitchLights = float.Parse(roomSwitchLightsText.text);
+        roomData.roomEntries = float.Parse(roomEntriesText.text);
+        roomData.roomDoorAndFrames = float.Parse(roomDoorAndFramesText.text);
+        roomData.roomThreshold = float.Parse(roomSwitchLightsText.text);
+        roomData.roomPeepHole = float.Parse(roomPeepHoleText.text);
+        roomData.roomClosets = float.Parse(roomClosetsText.text);
+        roomData.roomClosetDoors = float.Parse(roomClosetDoorsText.text);
+        roomData.roomClosetShelfs = float.Parse(roomClosetShelfsText.text);
+        roomData.roomClosetRod = float.Parse(roomClosetRodText.text);
+        roomData.roomClosetLights = float.Parse(roomClosetLightsText.text);
+
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Add(roomData);
         UserData.instance.SendInfo();
         AssingJobValues(activeJob);
@@ -640,6 +686,7 @@ public class JobInfo : MonoBehaviour
         roomType.Add("Dinning room");
         roomType.Add("Full bath");
         roomType.Add("Half bath");
+        roomType.Add("General House");
         roomTypeDropdown.AddOptions(roomType);
     }
     public void FillMultifamilyRoomType()
@@ -719,7 +766,7 @@ public class JobInfo : MonoBehaviour
             }
 
         }
-        else 
+        else
         {
             noMultiroomsText.SetActive(true);
 
@@ -741,6 +788,7 @@ public class JobInfo : MonoBehaviour
         CleanRoomsItems();
         foreach (RoomData rooms in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList)
         {
+            print("encontre un room");
             roomNameItemCost.text = rooms.roomName;
             roomFootageItemCost.text = rooms.roomFootage.ToString() + " ft2";
             roomTypeItemCost.text = rooms.roomType;
@@ -903,12 +951,15 @@ public class JobInfo : MonoBehaviour
     {
         if (activeJob.projectType == "Multi-family")
         {
+            multiRoomsInfoCostScreen.SetActive(true);
             UpdateMultifamilyRoomJobs();
 
 
         }
         else if (activeJob.projectType == "Single-family")
         {
+            print("este es un single family");
+            roomsInfoCostScreen.SetActive(true);
             UpdateRoomJobs();
             UpdateSingleRoomsCosts();
         }
@@ -926,6 +977,35 @@ public class JobInfo : MonoBehaviour
             _tempGo.GetComponentInChildren<MultiRoomLoader>().thisRoom = bedroomsApartment;
         }
     }
+
+
+    //Materials Functions
+
+    public void SingleRoomsMaterialsList()
+    {
+        CleanRoomsItems();
+        foreach (RoomData rooms in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList)
+        {
+            print("entre a llenar un material");
+            singleRoomNameMaterial.text = rooms.roomName;
+            singleRoomTypeMaterial.text = rooms.roomFootage.ToString() + " ft2";
+            singleRoomPaintPercentageMaterial.text = rooms.roomFootagePercentagePaint.ToString() + "%";
+            singleRoomEntriesMaterial.text = rooms.roomEntries.ToString();
+            singleRoomDoorsMaterial.text = rooms.roomDoorAndFrames.ToString();
+            singleRoomThresholdsMaterial.text = rooms.roomThreshold.ToString();
+            singleRoomPeepHoleMaterial.text = rooms.roomPeepHole.ToString();
+            singleRoomClosetsMaterial.text = rooms.roomClosets.ToString();
+            singleRoomClosetDoorsMaterial.text = rooms.roomClosetDoors.ToString();
+            singleRoomClosetShelfsMaterial.text = rooms.roomClosetShelfs.ToString();
+            singleRoomClosetRodsMaterial.text = rooms.roomClosetRod.ToString();
+            singleRoomPlugsMaterial.text = rooms.roomPlugs.ToString();
+            singleRoomSwitchLightsMaterial.text = rooms.roomSwitchLights.ToString();
+            GameObject _tempGo = Instantiate(roomsInfoMaterialList, roomsTransformMaterialList);
+            //_tempGo.GetComponentInChildren<RoomSingleLoader>().thisRoom = rooms;
+        }
+
+    }
 }
+
 
 

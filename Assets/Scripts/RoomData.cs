@@ -5,25 +5,53 @@ using System;
 
 [Serializable]
 
-public class RoomData 
+public class RoomData
 {
+    #region name and type
+
     public string roomName;
     public string roomType;
+    #endregion
+
+    #region paint
+
     public float roomFootage;
     public float roomFootagePercentagePaint;
     public float materialRoomFootagePaint;
     public float laborRoomFootagePaint;
+
+    #endregion
+
+    #region items 
     public float roomPlugs;
-    public float materialCostRoomPlugs;
-    public float laborCostRoomPlugs;
     public float roomPlates;
-    public float materialCostRoomPlates;
-    public float laborCostRoomPlates;
     public float roomSwitchLights;
-    public float materialCostRoomSwitchLights;
-    public float laborCostroomSwitchLights;
+
+    public float roomEntries;
+    public float roomDoorAndFrames;
+    public float roomThreshold;
+    public float roomPeepHole;
+    public float roomClosets;
+    public float roomClosetDoors;
+    public float roomClosetShelfs;
+    public float roomClosetRod;
+    public float roomClosetLights;
     public float numberOfCabinets;
     public float numberOfAppliances;
+    #endregion
 
-    public RoomData(){}
+    #region costs
+
+    public float materialCostRoomPlugs;
+    public float laborCostRoomPlugs;
+
+    public float materialCostRoomPlates;
+    public float laborCostRoomPlates;
+
+    public float materialCostRoomSwitchLights;
+    public float laborCostroomSwitchLights;
+
+    #endregion
+
+    public RoomData() { }
 }
