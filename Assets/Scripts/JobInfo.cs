@@ -628,14 +628,13 @@ public class JobInfo : MonoBehaviour
         roomData.roomSwitchLights = float.Parse(roomSwitchLightsText.text);
         roomData.roomEntries = float.Parse(roomEntriesText.text);
         roomData.roomDoorAndFrames = float.Parse(roomDoorAndFramesText.text);
-        roomData.roomThreshold = float.Parse(roomSwitchLightsText.text);
+        roomData.roomThreshold = float.Parse(roomThresholdText.text);
         roomData.roomPeepHole = float.Parse(roomPeepHoleText.text);
         roomData.roomClosets = float.Parse(roomClosetsText.text);
         roomData.roomClosetDoors = float.Parse(roomClosetDoorsText.text);
         roomData.roomClosetShelfs = float.Parse(roomClosetShelfsText.text);
         roomData.roomClosetRod = float.Parse(roomClosetRodText.text);
         roomData.roomClosetLights = float.Parse(roomClosetLightsText.text);
-
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList.Add(roomData);
         UserData.instance.SendInfo();
         AssingJobValues(activeJob);
@@ -645,6 +644,14 @@ public class JobInfo : MonoBehaviour
         roomPlugsText.text = "";
         roomPlatesText.text = "";
         roomSwitchLightsText.text = "";
+        roomThresholdText.text = "";
+        roomPeepHoleText.text = "";
+        roomClosetsText.text = "";
+        roomClosetDoorsText.text = "";
+        roomClosetShelfsText.text = "";
+        roomClosetRodText.text = "";
+        roomClosetLightsText.text = "";
+
     }
     public void UpdateRooms()
     {
