@@ -128,9 +128,6 @@ public class JobInfo : MonoBehaviour
     public InputField roomClosetShelfsText;
     public InputField roomClosetRodText;
     public InputField roomClosetLightsText;
-
-
-
     // Single family
 
     public Text roomName;
@@ -194,7 +191,6 @@ public class JobInfo : MonoBehaviour
     public Text roomTypeItemSwitchesMaterialCostText;
     public Text roomTypeItemSwitchesLaborCostText;
 
-
     public InputField roomTypeItemPaintPercentageInput;
     public InputField roomTypeItemPaintMaterialCostInput;
     public InputField roomTypeItemPaintLaborCostInput;
@@ -222,11 +218,6 @@ public class JobInfo : MonoBehaviour
     public Text singleRoomSwitchLightsMaterial;
     public GameObject roomsInfoMaterialList;
     public Transform roomsTransformMaterialList;
-
-
-
-
-
     public Text subtotalSingleRoomText;
     public Text overheadSingleRoomText;
     public Text profitSingleRoomText;
@@ -235,6 +226,60 @@ public class JobInfo : MonoBehaviour
     public Text discountSingleRoomText;
     public Text withDiscountSingleRoomText;
     public Text finalPriceSingleRoomText;
+
+    [Header("MultiRoomMaterialList")]
+
+    public Text multiroomMaterialsBedroomFootageText;
+    public Text multiroomMaterialsBedroomWindowsText;
+    public Text multiroomMaterialsBedroomDoorsText;
+    public Text multiroomMaterialsBedroomScreensText;
+    public Text multiroomMaterialsBedroomSmokeDetectorsText;
+    public Text multiroomMaterialsBedroomLightsText;
+    public Text multiroomMaterialsBedroomReceptaclesText;
+    public Text multiroomMaterialsBedroomCeilingFansText;
+    public Text multiroomMaterialsBedroomClosetsText;
+    public Text multiroomMaterialsBedroomClosetLightsText;
+    public Text multiroomMaterialsBedroomPlugsText;
+    public Text multiroomMaterialsBedroomSwitchLightsText;
+
+    //Bathroom
+
+    public Text multiroomMaterialsBathroomFootageText;
+    //public Text multiroomMaterialsBathroomPlugsText;
+    //public Text multiroomMaterialsBathroomSwitchLightsText;
+    public Text multiroomMaterialsBathroomTubText;
+    public Text multiroomMaterialsBathroomToiletText;
+    public Text multiroomMaterialsBathroomMirrorText;
+    public Text multiroomMaterialsBathroomReceptaclesText;
+    public Text multiroomMaterialsBathroomLightsText;
+    public Text multiroomMaterialsBathroomExhaustFanText;
+    public Text multiroomMaterialsBathroomSinkText;
+    public Text multiroomMaterialsBathroomTowelRodText;
+    public Text multiroomMaterialsBathroomCabinetsText;
+
+    //Living
+
+    public Text multiroomMaterialsLivingWindowsText;
+    public Text multiroomMaterialsLivingDoorsText;
+    public Text multiroomMaterialsLivingReceptaclesText;
+    public Text multiroomMaterialsLivingThersholdsText;
+    public Text multiroomMaterialsLivingSmokeDetectorsText;
+    public Text multiroomMaterialsLivingLightsText;
+    public Text multiroomMaterialsLivingCeilingFansText;
+
+    // Kitchen
+
+    public Text multiroomMaterialsKitchenRangeHoodText;
+    public Text multiroomMaterialsrefrigeratorText;
+    public Text multiroomMaterialsSinkText;
+    public Text multiroomMaterialsKitchenCabinetsText;
+    public Text multiroomMaterialsKitchenMicrowaveText;
+    public Text multiroomMaterialsKitchenReceptaclesText;
+    public Text multiroomMaterialsKitchenLightsText;
+    public Text multiroomMaterialsKitchenLightSwitchesText;
+    public Text multiroomMaterialsKitchenBreakerPanelsText;
+
+
 
     //Multifamily
 
@@ -255,9 +300,6 @@ public class JobInfo : MonoBehaviour
     public Text multiroomTypeItemSwitchesMaterialCostText;
     public Text multiroomTypeItemSwitchesLaborCostText;
 
-
-
-
     public InputField multiroomQuantityInComplexText;
     public InputField multiroomFootageText;
     public InputField multiroomPlugstext;
@@ -270,6 +312,60 @@ public class JobInfo : MonoBehaviour
     public InputField footageFullBathsText;
     public InputField numberPlugsFullBathsText;
     public InputField numberSwitchesFullBathsText;
+
+    [Header("Bedrooms")]
+
+
+    public InputField multiroomBedroomWindows;
+    public InputField multiroomBedroomDoors;
+    public InputField multiroomBedroomScreens;
+    public InputField multiroomBedroomSmokeDetectors;
+    public InputField multiroomBedroomLights;
+    public InputField multiroomBedroomReceptacles;
+    public InputField multiroomBedroomCeilingFans;
+    public InputField multiroomBedroomClosets;
+    public InputField multiroomBedroomClosetLights;
+
+    [Header("FullBath")]
+
+
+    public InputField multiroomBFullbathTub;
+    public InputField multiroomBFullbathToilet;
+    public InputField multiroomBFullbathMirror;
+    public InputField multiroomBFullbathReceptacles;
+    public InputField multiroomBFullbathLights;
+    public InputField multiroomBFullbathExhaustFan;
+    public InputField multiroomBFullbathSink;
+    public InputField multiroomBFullbathTowelRod;
+    public InputField multiroomBFullbathCabinets;
+
+    [Header("Living")]
+
+
+
+    public InputField multiroomLivingWindowsText;
+    public InputField multiroomLivingDoorsText;
+    public InputField multiroomLivingReceptaclesText;
+    public InputField multiroomLivingThresholdsText;
+    public InputField multiroomLivingSmokeDetectorsText;
+    public InputField multiroomLivingLightstext;
+    public InputField multiroomLivingCeilingFansText;
+
+    [Header("Kitchen")]
+
+
+    public InputField multiroomKitchenRangeHoodText;
+    public InputField multiroomKitchenRefrigeratorsText;
+    public InputField multiroomKitchenSinkText;
+    public InputField multiroomKitchenCabinetsText;
+    public InputField multiroomKitchenMicrowaveText;
+    public InputField multiroomKitchenReceptaclesText;
+    public InputField multiroomKitchenLightsText;
+    public InputField multiroomKitchenLightSwitchesText;
+    public InputField multiroomKitchenbreakerPanelsText;
+
+
+
 
     float oneBedroomApartmentsFootageCounter;
     float twoBedroomApartmentsFootageCounter;
@@ -292,7 +388,6 @@ public class JobInfo : MonoBehaviour
     public InputField multiroomTypeItemSwitchesMaterialCostInput;
     public InputField multiroomTypeItemSwitchesLaborCostInput;
 
-
     public Text subtotalMultiRoomText;
     public Text overheadMultiRoomText;
     public Text profitMultiRoomText;
@@ -308,10 +403,6 @@ public class JobInfo : MonoBehaviour
         instance = this;
     }
     void Start()
-    {
-
-    }
-    void Update()
     {
 
     }
@@ -720,6 +811,50 @@ public class JobInfo : MonoBehaviour
         bedroomTypeToAdd.footageFullBaths = float.Parse(footageFullBathsText.text);
         bedroomTypeToAdd.numberPlugsFullBaths = float.Parse(numberPlugsFullBathsText.text);
         bedroomTypeToAdd.numberSwitchesFullBaths = float.Parse(numberSwitchesFullBathsText.text);
+
+
+        bedroomTypeToAdd.multiroomWindows = float.Parse(multiroomBedroomWindows.text);
+        bedroomTypeToAdd.multiroomDoors = float.Parse(multiroomBedroomDoors.text);
+        bedroomTypeToAdd.multiroomScreens = float.Parse(multiroomBedroomScreens.text);
+        bedroomTypeToAdd.multiroomSmokeDetectors = float.Parse(multiroomBedroomSmokeDetectors.text);
+        bedroomTypeToAdd.multiroomLights = float.Parse(multiroomBedroomLights.text);
+        bedroomTypeToAdd.multiroomReceptacles = float.Parse(multiroomBedroomReceptacles.text);
+        bedroomTypeToAdd.multiroomCeilingFans = float.Parse(multiroomBedroomCeilingFans.text);
+        bedroomTypeToAdd.multiroomClosets = float.Parse(multiroomBedroomClosets.text);
+        bedroomTypeToAdd.multiroomClosetLights = float.Parse(multiroomBedroomClosetLights.text);
+
+        bedroomTypeToAdd.numberTubFullBath = float.Parse(multiroomBFullbathTub.text);
+        bedroomTypeToAdd.numberToiletFullBath = float.Parse(multiroomBFullbathToilet.text);
+        bedroomTypeToAdd.numberMirrorFullBath = float.Parse(multiroomBFullbathMirror.text);
+        bedroomTypeToAdd.numberReceptaclesFullBath = float.Parse(multiroomBFullbathReceptacles.text);
+        bedroomTypeToAdd.numberLightsFullBath = float.Parse(multiroomBFullbathLights.text);
+        bedroomTypeToAdd.numberExhaustFanFullBath = float.Parse(multiroomBFullbathExhaustFan.text);
+        bedroomTypeToAdd.numberSinkFullBath = float.Parse(multiroomBFullbathSink.text);
+        bedroomTypeToAdd.numberTowelRodFullBath = float.Parse(multiroomBFullbathTowelRod.text);
+        bedroomTypeToAdd.numberCabinetsFullBath = float.Parse(multiroomBFullbathCabinets.text);
+
+
+        bedroomTypeToAdd.multiroomLivingWindows = float.Parse(multiroomLivingWindowsText.text);
+        bedroomTypeToAdd.multiroomLivingDoors = float.Parse(multiroomLivingDoorsText.text);
+        bedroomTypeToAdd.multiroomLivingReceptacles = float.Parse(multiroomLivingReceptaclesText.text);
+        bedroomTypeToAdd.multiroomLivingThresholds = float.Parse(multiroomLivingThresholdsText.text);
+        bedroomTypeToAdd.multiroomLivingSmokeDetectors = float.Parse(multiroomLivingSmokeDetectorsText.text);
+        bedroomTypeToAdd.multiroomLivingLights = float.Parse(multiroomLivingLightstext.text);
+        bedroomTypeToAdd.multiroomLivingCeilingFans = float.Parse(multiroomLivingCeilingFansText.text);
+
+
+
+        bedroomTypeToAdd.multiroomKitchenRangeHood = float.Parse(multiroomKitchenRangeHoodText.text);
+        bedroomTypeToAdd.multiroomKitchenRefrigerators = float.Parse(multiroomKitchenRefrigeratorsText.text);
+        bedroomTypeToAdd.multiroomKitchenSink = float.Parse(multiroomKitchenSinkText.text);
+        bedroomTypeToAdd.multiroomKitchenCabinets = float.Parse(multiroomKitchenCabinetsText.text);
+        bedroomTypeToAdd.multiroomKitchenMicrowave = float.Parse(multiroomKitchenMicrowaveText.text);
+        bedroomTypeToAdd.multiroomKitchenReceptacles = float.Parse(multiroomKitchenReceptaclesText.text);
+        bedroomTypeToAdd.multiroomKitchenLights = float.Parse(multiroomKitchenLightsText.text);
+        bedroomTypeToAdd.multiroomKitchenLightSwitches = float.Parse(multiroomKitchenLightSwitchesText.text);
+        bedroomTypeToAdd.multiroomKitchenbreakerPanels = float.Parse(multiroomKitchenbreakerPanelsText.text);
+
+
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Add(bedroomTypeToAdd);
         UserData.instance.SendInfo();
         AssingJobValues(activeJob);
@@ -736,6 +871,45 @@ public class JobInfo : MonoBehaviour
         footageFullBathsText.text = "";
         numberPlugsFullBathsText.text = "";
         numberSwitchesFullBathsText.text = "";
+
+
+        multiroomBedroomWindows.text = "";
+        multiroomBedroomDoors.text = "";
+        multiroomBedroomScreens.text = "";
+        multiroomBedroomSmokeDetectors.text = "";
+        multiroomBedroomLights.text = "";
+        multiroomBedroomReceptacles.text = "";
+        multiroomBedroomCeilingFans.text = "";
+        multiroomBedroomClosets.text = "";
+        multiroomBedroomClosetLights.text = "";
+
+        multiroomBFullbathTub.text = "";
+        multiroomBFullbathToilet.text = "";
+        multiroomBFullbathMirror.text = "";
+        multiroomBFullbathReceptacles.text = "";
+        multiroomBFullbathLights.text = "";
+        multiroomBFullbathExhaustFan.text = "";
+        multiroomBFullbathSink.text = "";
+        multiroomBFullbathTowelRod.text = "";
+        multiroomBFullbathCabinets.text = "";
+
+        multiroomLivingWindowsText.text = "";
+        multiroomLivingDoorsText.text = "";
+        multiroomLivingReceptaclesText.text = "";
+        multiroomLivingThresholdsText.text = "";
+        multiroomLivingSmokeDetectorsText.text = "";
+        multiroomLivingLightstext.text = "";
+        multiroomLivingCeilingFansText.text = "";
+
+        multiroomKitchenRangeHoodText.text = "";
+        multiroomKitchenRefrigeratorsText.text = "";
+        multiroomKitchenSinkText.text = "";
+        multiroomKitchenCabinetsText.text = "";
+        multiroomKitchenMicrowaveText.text = "";
+        multiroomKitchenReceptaclesText.text = "";
+        multiroomKitchenLightsText.text = "";
+        multiroomKitchenLightSwitchesText.text = "";
+        multiroomKitchenbreakerPanelsText.text = "";
     }
 
     public void ShowTypeUIPanel()
@@ -771,14 +945,11 @@ public class JobInfo : MonoBehaviour
                 totalFootageUnit.text = (bedroomType.multiroomfootage * bedroomType.multiroomQuantityInComplex).ToString() + " ft2";
                 GameObject _tempGo = Instantiate(apartmentsInfo, apartmentsTransform);
             }
-
         }
         else
         {
             noMultiroomsText.SetActive(true);
-
         }
-
     }
 
     public void CleanMultifamilyRoomsItems()
@@ -787,7 +958,6 @@ public class JobInfo : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
-
     }
 
     public void UpdateRoomJobs()
@@ -810,7 +980,6 @@ public class JobInfo : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
-
     }
 
     public void CleanMultiRoomsItems()
@@ -819,7 +988,6 @@ public class JobInfo : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
-
     }
 
     public void AssignRoomValues(RoomData roomToValue)
@@ -855,7 +1023,6 @@ public class JobInfo : MonoBehaviour
         multiroomTypeItemSwitchesText.text = multiroomToValue.multiroomSwitchLights.ToString();
         multiroomTypeItemSwitchesMaterialCostText.text = multiroomToValue.materialCostMultiRoomSwitchLights.ToString();
         roomTypeItemSwitchesLaborCostText.text = multiroomToValue.laborCostMultiroomSwitchLights.ToString();
-
     }
 
     public void sendRoomItem()
@@ -965,7 +1132,6 @@ public class JobInfo : MonoBehaviour
         }
         else if (activeJob.projectType == "Single-family")
         {
-            print("este es un single family");
             roomsInfoCostScreen.SetActive(true);
             UpdateRoomJobs();
             UpdateSingleRoomsCosts();
@@ -985,15 +1151,12 @@ public class JobInfo : MonoBehaviour
         }
     }
 
-
     //Materials Functions
-
     public void SingleRoomsMaterialsList()
     {
         CleanRoomsItems();
         foreach (RoomData rooms in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).roomsList)
         {
-            print("entre a llenar un material");
             singleRoomNameMaterial.text = rooms.roomName;
             singleRoomTypeMaterial.text = rooms.roomFootage.ToString() + " ft2";
             singleRoomPaintPercentageMaterial.text = rooms.roomFootagePercentagePaint.ToString() + "%";
@@ -1008,11 +1171,75 @@ public class JobInfo : MonoBehaviour
             singleRoomPlugsMaterial.text = rooms.roomPlugs.ToString();
             singleRoomSwitchLightsMaterial.text = rooms.roomSwitchLights.ToString();
             GameObject _tempGo = Instantiate(roomsInfoMaterialList, roomsTransformMaterialList);
-            //_tempGo.GetComponentInChildren<RoomSingleLoader>().thisRoom = rooms;
         }
+    }
+
+    public void MultiRoomMaterialList()
+    {
+        foreach (bedroomTypeData multiroom in UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList)
+        {
+
+            multiroomMaterialsBedroomFootageText.text = multiroom.multiroomfootage.ToString() + " ft2";
+            multiroomMaterialsBedroomWindowsText.text = multiroom.multiroomWindows.ToString();
+            multiroomMaterialsBedroomDoorsText.text = multiroom.multiroomDoors.ToString();
+            multiroomMaterialsBedroomScreensText.text = multiroom.multiroomScreens.ToString();
+            multiroomMaterialsBedroomSmokeDetectorsText.text = multiroom.multiroomSmokeDetectors.ToString();
+            multiroomMaterialsBedroomLightsText.text = multiroom.multiroomLights.ToString();
+            multiroomMaterialsBedroomReceptaclesText.text = multiroom.multiroomReceptacles.ToString();
+            multiroomMaterialsBedroomCeilingFansText.text = multiroom.multiroomCeilingFans.ToString();
+            multiroomMaterialsBedroomClosetsText.text = multiroom.multiroomClosets.ToString();
+            multiroomMaterialsBedroomClosetLightsText.text = multiroom.multiroomClosetLights.ToString();
+            multiroomMaterialsBedroomPlugsText.text = multiroom.multiroomPlugs.ToString();
+            multiroomMaterialsBedroomSwitchLightsText.text = multiroom.multiroomSwitchLights.ToString();
+
+
+            multiroomMaterialsBathroomFootageText.text = multiroom.footageFullBaths.ToString() + " ft2";
+            //multiroomMaterialsBathroomPlugsText.text = multiroom.numberPlugsFullBaths.ToString();
+            //multiroomMaterialsBathroomSwitchLightsText.text = multiroom.numberSwitchesFullBaths.ToString();
+            multiroomMaterialsBathroomTubText.text = multiroom.numberTubFullBath.ToString();
+            multiroomMaterialsBathroomToiletText.text = multiroom.numberToiletFullBath.ToString();
+            multiroomMaterialsBathroomMirrorText.text = multiroom.numberMirrorFullBath.ToString();
+            multiroomMaterialsBathroomReceptaclesText.text = multiroom.numberReceptaclesFullBath.ToString();
+            multiroomMaterialsBathroomLightsText.text = multiroom.numberLightsFullBath.ToString();
+            multiroomMaterialsBathroomExhaustFanText.text = multiroom.numberExhaustFanFullBath.ToString();
+            multiroomMaterialsBathroomSinkText.text = multiroom.numberSinkFullBath.ToString();
+            multiroomMaterialsBathroomTowelRodText.text = multiroom.numberTowelRodFullBath.ToString();
+            multiroomMaterialsBathroomCabinetsText.text = multiroom.numberCabinetsFullBath.ToString();
+
+
+            multiroomMaterialsLivingWindowsText.text = multiroom.multiroomLivingWindows.ToString();
+            multiroomMaterialsLivingDoorsText.text = multiroom.multiroomLivingDoors.ToString();
+            multiroomMaterialsLivingReceptaclesText.text = multiroom.multiroomLivingReceptacles.ToString();
+            multiroomMaterialsLivingThersholdsText.text = multiroom.multiroomLivingThresholds.ToString();
+            multiroomMaterialsLivingSmokeDetectorsText.text = multiroom.multiroomLivingSmokeDetectors.ToString();
+            multiroomMaterialsLivingLightsText.text = multiroom.multiroomLivingLights.ToString();
+            multiroomMaterialsLivingCeilingFansText.text = multiroom.multiroomLivingCeilingFans.ToString();
+
+
+            multiroomMaterialsKitchenRangeHoodText.text = multiroom.multiroomKitchenRangeHood.ToString();
+            multiroomMaterialsrefrigeratorText.text = multiroom.multiroomKitchenRefrigerators.ToString();
+            multiroomMaterialsSinkText.text = multiroom.multiroomKitchenSink.ToString();
+            multiroomMaterialsKitchenCabinetsText.text = multiroom.multiroomKitchenCabinets.ToString();
+            multiroomMaterialsKitchenMicrowaveText.text = multiroom.multiroomKitchenMicrowave.ToString();
+            multiroomMaterialsKitchenReceptaclesText.text = multiroom.multiroomKitchenReceptacles.ToString();
+            multiroomMaterialsKitchenLightsText.text = multiroom.multiroomKitchenLights.ToString();
+            multiroomMaterialsKitchenLightSwitchesText.text = multiroom.multiroomKitchenLightSwitches.ToString();
+            multiroomMaterialsKitchenBreakerPanelsText.text = multiroom.multiroomKitchenbreakerPanels.ToString();
+
+
+
+
+
+
+        }
+
+
+
 
     }
 }
+
+
 
 
 
