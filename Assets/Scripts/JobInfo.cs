@@ -279,6 +279,20 @@ public class JobInfo : MonoBehaviour
     public Text multiroomMaterialsKitchenLightSwitchesText;
     public Text multiroomMaterialsKitchenBreakerPanelsText;
 
+    // Entry
+
+    public Text multiroomMaterialsEntryKnockerText;
+    public Text multiroomMaterialsEntryPeepholeText;
+    public Text multiroomMaterialsEntryThresholdText;
+
+    // Hall
+
+    public Text multiroomMaterialsHallSmokeDetectorText;
+    public Text multiroomMaterialsHallLightsText;
+    public Text multiroomMaterialsHallReceptaclesText;
+    public Text multiroomMaterialsHallCeilingFansText;  
+
+
 
 
     //Multifamily
@@ -363,6 +377,21 @@ public class JobInfo : MonoBehaviour
     public InputField multiroomKitchenLightsText;
     public InputField multiroomKitchenLightSwitchesText;
     public InputField multiroomKitchenbreakerPanelsText;
+
+    [Header("Entry")]
+
+    public InputField multiroomEntryKnockerText;
+    public InputField multiroomEntryPeepholeText;
+    public InputField multiroomEntryThresholdText;
+
+    [Header("Hall")]
+
+    public InputField multiroomHallSmokeDetectorText;
+    public InputField multiroomHallSmokeLightsText;
+    public InputField multiroomHallReceptaclesText;
+    public InputField multiroomHallCeilingFansText;
+    
+    
 
 
 
@@ -855,6 +884,16 @@ public class JobInfo : MonoBehaviour
         bedroomTypeToAdd.multiroomKitchenbreakerPanels = float.Parse(multiroomKitchenbreakerPanelsText.text);
 
 
+        bedroomTypeToAdd.multiroomEntryKnocker = float.Parse(multiroomEntryKnockerText.text);
+        bedroomTypeToAdd.multiroomEntryPeephole = float.Parse(multiroomEntryPeepholeText.text);
+        bedroomTypeToAdd.multiroomEntryThreshold = float.Parse(multiroomEntryThresholdText.text);
+
+        bedroomTypeToAdd.multiroomHallSmokeDetector = float.Parse(multiroomHallSmokeDetectorText.text);
+        bedroomTypeToAdd.multiroomHallSmokeLights = float.Parse(multiroomHallSmokeLightsText.text);
+        bedroomTypeToAdd.multiroomHallReceptacles = float.Parse(multiroomHallReceptaclesText.text);
+        bedroomTypeToAdd.multiroomHallCeilingFans = float.Parse(multiroomHallCeilingFansText.text);
+
+
         UserData.jobsArray.jobsList.Find(Jobs => Jobs == activeJob).bedroomsTypeList.Add(bedroomTypeToAdd);
         UserData.instance.SendInfo();
         AssingJobValues(activeJob);
@@ -910,6 +949,15 @@ public class JobInfo : MonoBehaviour
         multiroomKitchenLightsText.text = "";
         multiroomKitchenLightSwitchesText.text = "";
         multiroomKitchenbreakerPanelsText.text = "";
+
+        multiroomEntryKnockerText.text = "";
+        multiroomEntryPeepholeText.text = "";
+        multiroomEntryThresholdText.text = "";
+
+        multiroomHallSmokeDetectorText.text = "";
+        multiroomHallSmokeLightsText.text = "";
+        multiroomHallReceptaclesText.text = "";
+        multiroomHallCeilingFansText.text = "";
     }
 
     public void ShowTypeUIPanel()
@@ -1180,62 +1228,62 @@ public class JobInfo : MonoBehaviour
         {
 
             multiroomMaterialsBedroomFootageText.text = multiroom.multiroomfootage.ToString() + " ft2";
-            multiroomMaterialsBedroomWindowsText.text = multiroom.multiroomWindows.ToString();
-            multiroomMaterialsBedroomDoorsText.text = multiroom.multiroomDoors.ToString();
-            multiroomMaterialsBedroomScreensText.text = multiroom.multiroomScreens.ToString();
-            multiroomMaterialsBedroomSmokeDetectorsText.text = multiroom.multiroomSmokeDetectors.ToString();
-            multiroomMaterialsBedroomLightsText.text = multiroom.multiroomLights.ToString();
-            multiroomMaterialsBedroomReceptaclesText.text = multiroom.multiroomReceptacles.ToString();
-            multiroomMaterialsBedroomCeilingFansText.text = multiroom.multiroomCeilingFans.ToString();
-            multiroomMaterialsBedroomClosetsText.text = multiroom.multiroomClosets.ToString();
-            multiroomMaterialsBedroomClosetLightsText.text = multiroom.multiroomClosetLights.ToString();
-            multiroomMaterialsBedroomPlugsText.text = multiroom.multiroomPlugs.ToString();
-            multiroomMaterialsBedroomSwitchLightsText.text = multiroom.multiroomSwitchLights.ToString();
+            multiroomMaterialsBedroomWindowsText.text = (multiroom.multiroomWindows * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBedroomDoorsText.text = (multiroom.multiroomDoors * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBedroomScreensText.text = (multiroom.multiroomScreens * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBedroomSmokeDetectorsText.text = (multiroom.multiroomSmokeDetectors * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBedroomLightsText.text = (multiroom.multiroomLights * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBedroomReceptaclesText.text = (multiroom.multiroomReceptacles * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBedroomCeilingFansText.text = (multiroom.multiroomCeilingFans * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBedroomClosetsText.text = (multiroom.multiroomClosets * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBedroomClosetLightsText.text = (multiroom.multiroomClosetLights * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBedroomPlugsText.text = (multiroom.multiroomPlugs * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBedroomSwitchLightsText.text = (multiroom.multiroomSwitchLights * multiroom.multiroomQuantityInComplex).ToString();
 
 
             multiroomMaterialsBathroomFootageText.text = multiroom.footageFullBaths.ToString() + " ft2";
             //multiroomMaterialsBathroomPlugsText.text = multiroom.numberPlugsFullBaths.ToString();
             //multiroomMaterialsBathroomSwitchLightsText.text = multiroom.numberSwitchesFullBaths.ToString();
-            multiroomMaterialsBathroomTubText.text = multiroom.numberTubFullBath.ToString();
-            multiroomMaterialsBathroomToiletText.text = multiroom.numberToiletFullBath.ToString();
-            multiroomMaterialsBathroomMirrorText.text = multiroom.numberMirrorFullBath.ToString();
-            multiroomMaterialsBathroomReceptaclesText.text = multiroom.numberReceptaclesFullBath.ToString();
-            multiroomMaterialsBathroomLightsText.text = multiroom.numberLightsFullBath.ToString();
-            multiroomMaterialsBathroomExhaustFanText.text = multiroom.numberExhaustFanFullBath.ToString();
-            multiroomMaterialsBathroomSinkText.text = multiroom.numberSinkFullBath.ToString();
-            multiroomMaterialsBathroomTowelRodText.text = multiroom.numberTowelRodFullBath.ToString();
-            multiroomMaterialsBathroomCabinetsText.text = multiroom.numberCabinetsFullBath.ToString();
+            multiroomMaterialsBathroomTubText.text = (multiroom.numberTubFullBath * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBathroomToiletText.text = (multiroom.numberToiletFullBath * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBathroomMirrorText.text = (multiroom.numberMirrorFullBath * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBathroomReceptaclesText.text = (multiroom.numberReceptaclesFullBath * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBathroomLightsText.text = (multiroom.numberLightsFullBath * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBathroomExhaustFanText.text = (multiroom.numberExhaustFanFullBath * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBathroomSinkText.text = (multiroom.numberSinkFullBath * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBathroomTowelRodText.text = (multiroom.numberTowelRodFullBath * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsBathroomCabinetsText.text = (multiroom.numberCabinetsFullBath * multiroom.multiroomQuantityInComplex).ToString();
 
 
-            multiroomMaterialsLivingWindowsText.text = multiroom.multiroomLivingWindows.ToString();
-            multiroomMaterialsLivingDoorsText.text = multiroom.multiroomLivingDoors.ToString();
-            multiroomMaterialsLivingReceptaclesText.text = multiroom.multiroomLivingReceptacles.ToString();
-            multiroomMaterialsLivingThersholdsText.text = multiroom.multiroomLivingThresholds.ToString();
-            multiroomMaterialsLivingSmokeDetectorsText.text = multiroom.multiroomLivingSmokeDetectors.ToString();
-            multiroomMaterialsLivingLightsText.text = multiroom.multiroomLivingLights.ToString();
-            multiroomMaterialsLivingCeilingFansText.text = multiroom.multiroomLivingCeilingFans.ToString();
+            multiroomMaterialsLivingWindowsText.text = (multiroom.multiroomLivingWindows * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsLivingDoorsText.text = (multiroom.multiroomLivingDoors * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsLivingReceptaclesText.text = (multiroom.multiroomLivingReceptacles * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsLivingThersholdsText.text = (multiroom.multiroomLivingThresholds * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsLivingSmokeDetectorsText.text = (multiroom.multiroomLivingSmokeDetectors * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsLivingLightsText.text = (multiroom.multiroomLivingLights * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsLivingCeilingFansText.text = (multiroom.multiroomLivingCeilingFans * multiroom.multiroomQuantityInComplex).ToString();
 
 
-            multiroomMaterialsKitchenRangeHoodText.text = multiroom.multiroomKitchenRangeHood.ToString();
-            multiroomMaterialsrefrigeratorText.text = multiroom.multiroomKitchenRefrigerators.ToString();
-            multiroomMaterialsSinkText.text = multiroom.multiroomKitchenSink.ToString();
-            multiroomMaterialsKitchenCabinetsText.text = multiroom.multiroomKitchenCabinets.ToString();
-            multiroomMaterialsKitchenMicrowaveText.text = multiroom.multiroomKitchenMicrowave.ToString();
-            multiroomMaterialsKitchenReceptaclesText.text = multiroom.multiroomKitchenReceptacles.ToString();
-            multiroomMaterialsKitchenLightsText.text = multiroom.multiroomKitchenLights.ToString();
-            multiroomMaterialsKitchenLightSwitchesText.text = multiroom.multiroomKitchenLightSwitches.ToString();
-            multiroomMaterialsKitchenBreakerPanelsText.text = multiroom.multiroomKitchenbreakerPanels.ToString();
+            multiroomMaterialsKitchenRangeHoodText.text = (multiroom.multiroomKitchenRangeHood * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsrefrigeratorText.text = (multiroom.multiroomKitchenRefrigerators * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsSinkText.text = (multiroom.multiroomKitchenSink * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsKitchenCabinetsText.text = (multiroom.multiroomKitchenCabinets * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsKitchenMicrowaveText.text = (multiroom.multiroomKitchenMicrowave * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsKitchenReceptaclesText.text = (multiroom.multiroomKitchenReceptacles * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsKitchenLightsText.text = (multiroom.multiroomKitchenLights * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsKitchenLightSwitchesText.text = (multiroom.multiroomKitchenLightSwitches * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsKitchenBreakerPanelsText.text = (multiroom.multiroomKitchenbreakerPanels * multiroom.multiroomQuantityInComplex).ToString();
+
+            multiroomMaterialsEntryKnockerText.text = (multiroom.multiroomEntryKnocker * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsEntryPeepholeText.text = (multiroom.multiroomEntryPeephole * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsEntryThresholdText.text = (multiroom.multiroomEntryKnocker * multiroom.multiroomQuantityInComplex).ToString();
 
 
-
-
-
-
+            multiroomMaterialsHallSmokeDetectorText.text = (multiroom.multiroomHallSmokeDetector * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsHallLightsText.text = (multiroom.multiroomHallSmokeLights * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsHallReceptaclesText.text = (multiroom.multiroomHallReceptacles * multiroom.multiroomQuantityInComplex).ToString();
+            multiroomMaterialsHallCeilingFansText.text = (multiroom.multiroomHallCeilingFans * multiroom.multiroomQuantityInComplex).ToString();
         }
-
-
-
-
     }
 }
 

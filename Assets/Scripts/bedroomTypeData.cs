@@ -87,6 +87,23 @@ public class bedroomTypeData
     #endregion
 
 
+    #region Entry
+    public float multiroomEntryKnocker;
+    public float multiroomEntryPeephole;
+    public float multiroomEntryThreshold;
+    
+
+    #endregion
+    #region Hall
+    public float multiroomHallSmokeDetector;
+    public float multiroomHallSmokeLights;
+    public float multiroomHallReceptacles;
+    public float multiroomHallCeilingFans;
+    
+
+    #endregion
+
+
 
 
     public bedroomTypeData(){}
