@@ -144,7 +144,7 @@ public class JobsMenuHandler : MonoBehaviour
 
         List<string> complexType = new List<string>();
 
-        complexType.Add("Single-family");
+        //complexType.Add("Single-family");
         complexType.Add("Multi-family");
         complexTypeDropDown.AddOptions(complexType);
 

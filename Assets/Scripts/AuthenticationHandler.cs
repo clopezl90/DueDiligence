@@ -27,6 +27,10 @@ public class AuthenticationHandler : MonoBehaviour
     public InputField signUserPasswordRepeat;
     public InputField userName;
     public GameObject error;
+    public Text confirmationText1;
+    public Text confirmationText2;
+    
+   
 
     [SerializeField] GameObject loadingPanel;
     
@@ -133,6 +137,7 @@ public class AuthenticationHandler : MonoBehaviour
             //loadingPanel.SetActive(false);
             //Error(error, e.Message);
             Debug.LogError($"Error: {e.Message} / codes: {e.StatusCode}, {e.GrpcStatusCode}");
+            
         }
 
 
@@ -215,27 +220,31 @@ public class AuthenticationHandler : MonoBehaviour
         if (string.IsNullOrEmpty(signUserEmail.text) || string.IsNullOrEmpty(signUserPassword.text)
             || string.IsNullOrEmpty(signUserPasswordRepeat.text) || string.IsNullOrEmpty(userName.text))
         {
-            //Error(error, "Please Fill all the Fields");
+            Error(error, "Please Fill all the Fields");
             print("Please fill all the fields");
             return;
         }
         if (signUserPassword.text != signUserPasswordRepeat.text)
         {
-            //Error(error, "Passwords Don't Match");
+            Error(error, "Passwords Don't Match");
             print("Passwords do not match");
             return;
         }
         if (signUserPassword.text.Contains('#') || signUserPassword.text.Contains('?') || signUserPassword.text.Contains('%')
         || signUserPassword.text.Contains("\"") || signUserPassword.text.Contains("\'") || signUserPassword.text.Contains("&"))
         {
-            //Error(error, "Please don't use special characters for password: \", \', ?, #, %, &.");
+            Error(error, "Please don't use special characters for password: \", \', ?, #, %, &.");
             print("Please don't use special characters for password: \", \', ?, #, %, &.");
             return;
         }
 
+        
+
 
         CheckSign(signUserEmail.text, signUserPassword.text, userName.text);
         //SignUp(signEmail.text, signUserPassword.text, country);
+        confirmationText1.text = "Your account has been created!";
+        confirmationText2.text = "Go and Sign In for start.";
 
     }
 
@@ -402,11 +411,24 @@ public class AuthenticationHandler : MonoBehaviour
         else { errorText.color = Color.red; }
         errorText.text = error;
         StartCoroutine(ErrorHide(errorPanel, errorText));
+        confirmationText1.text = "Your account has not been created";
+        confirmationText2.text = "Please try again";
+        
     }
+
+    
+
+    
     private IEnumerator ErrorHide(GameObject errorPanel, Text errorText)
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         errorPanel.SetActive(false);
         errorText.text = String.Empty;
+        
+        
+
     } 
+
+
+     
 }
